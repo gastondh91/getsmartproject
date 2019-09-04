@@ -1,0 +1,91 @@
+/* eslint-disable no-unused-vars */
+const S = require('sequelize');
+const crypto = require('crypto');
+const db = require('../config/db');
+const OrdenCompra = require('./OrdenCompra');
+const Carrito = require('../models/Carrito')
+
+const Usuario = db.define('usuario', {
+  nombre: {
+    type: S.STRING,
+    allowNull: false
+  },
+  apellido: {
+    type: S.STRING,
+    allowNull: false
+  },
+  domicilio: {
+    type: S.STRING,
+    allowNull: false
+  },
+  email: {
+    type: S.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  },
+  password: {
+    type: S.STRING,
+    allowNull: false
+  },
+  salt: {
+    type: S.STRING
+  },
+  isAdmin: {
+    type: S.BOOLEAN
+  }
+});
+
+// Usuario.belongsTo(OrdenCompra, { as: 'owner' });
+
+var mayusculasNombre = (usuario) => {
+
+  if (usuario.nombre.includes(' ') || usuario.nombre[0] === usuario.nombre[0].toLowerCase()) {
+    newUsuario = usuario.nombre.split('')
+  
+    if(newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
+    
+    for (i = 0; i < newUsuario.length; i++) {
+      if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
+    }
+    usuario.nombre = newUsuario.join('')
+  
+  }}
+
+  var mayusculasApellido = (usuario) => {
+
+    if (usuario.apellido.includes(' ') || usuario.apellido[0] === usuario.apellido[0].toLowerCase()) {
+      newUsuario = usuario.apellido.split('')
+    
+      if(newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
+      
+      for (i = 0; i < newUsuario.length; i++) {
+        if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
+      }
+      usuario.apellido = newUsuario.join('')
+    
+    }}
+
+Usuario.addHook('beforeCreate', (usuario) => {
+  usuario.salt = crypto.randomBytes(20).toString('hex');
+  usuario.password = usuario.hashPassword(usuario.password);
+  usuario.email = usuario.email.toLowerCase()
+  mayusculasNombre(usuario)
+  mayusculasApellido(usuario)
+});
+
+
+Usuario.prototype.hashPassword = function (password) {
+  return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+};
+
+Usuario.prototype.validPassword = function (password) {
+  return this.password === this.hashPassword(password);
+};
+
+module.exports = {
+  Usuario,
+  db
+};

@@ -1,0 +1,78 @@
+{
+  "name": "getSmart",
+  "version": "1.0.0",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "description": "ecommerce de celulares",
+  "main": "./back/server.js",
+  "scripts": {
+    "start": "webpack -w & nodemon ./back/server.js",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ombaez/getSmart.git"
+  },
+  "author": "plataforma 5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ombaez/getSmart"
+  },
+  "homepage": "https://github.com/ombaez/getSmart#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "cheerio": "^1.0.0-rc.2",
+    "connect-session-sequelize": "^6.0.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
+    "mandrill-api": "^1.0.45",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.8.2",
+    "pg-hstore": "^2.3.2",
+    "react": "^16.8.3",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "^16.8.3",
+    "react-redux": "^5.1.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-star-rating-component": "^1.4.1",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "request": "^2.88.0",
+    "sequelize": "^4.43.0",
+    "twilio": "^3.29.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.15.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
