@@ -32,7 +32,6 @@ const Producto = db.define('productos', {
     type: S.ARRAY(S.TEXT),
     allowNull: true
   }
-
 });
 
 var mayusculas = (producto)=>{

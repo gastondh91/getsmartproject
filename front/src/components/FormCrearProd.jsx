@@ -85,7 +85,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
     </div>
     <div className="form-group ">
       <label><h3>* Descripcion: </h3>
-        <textarea onChange={onChange} name='Descripcion' rows="4" cols="50" required></textarea>
+        <textarea onChange={onChange} name='Descripcion' placeholder='Agrega una descripcion para el producto' rows="4" cols="50" required></textarea>
       </label>
     </div>
 

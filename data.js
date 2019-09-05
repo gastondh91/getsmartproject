@@ -43,7 +43,7 @@ const productos = [
     stock: 6,
     descripcion: 'El Xiaomi Redmi Note 7 es el nuevo miembro de la serie Redmi Note, esta vez con una impresionante cámara dual de 48 MP + 5 MP. Potenciado por un procesador Qualcomm Snapdragon 660 de ocho núcleos, el Redmi Note 7 está disponible con 3GB de RAM y 32GB de almacenamiento o bien 4GB o 6GB de RAM con 64GB de almacenamiento, con una pantalla Full HD+ de 6.3 pulgadas con notch en forma de gota de agua. Con una batería de 4000 mAh con carga rápida, el Redmi Note 7 completa sus características con un lector de huellas posterior, infrarrojo, puerto USB-C, cámara frontal de 13 MP y MIUI 10 basado en Android 9.0 Pie.',
     precio: '20.000',
-    imagenes: ['https://images-na.ssl-images-amazon.com/images/I/61ZaskM5hBL._SL1016_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/51HVHxdC15L._SL1000_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/51y6-u-qjiL._SL1000_.jpg']
+    imagenes: ['https://cdn.alza.co.uk/ImgW.ashx?fd=f4&cd=XI192d3&i=1.jpg', 'https://images-na.ssl-images-amazon.com/images/I/51HVHxdC15L._SL1000_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/51y6-u-qjiL._SL1000_.jpg']
   },
   {
     marca: 'Motorola',
@@ -51,7 +51,7 @@ const productos = [
     stock: 5,
     descripcion: 'El Motorola One es un smartphone parte del programa Android One de Google y recibirá Android 9.0 Pie poco después de llegar al mercado. El Motorola One cuenta con una pantalla HD+ de 5.9 pulgadas y está potenciado por un procesador Snapdragon 625 con 4GB de RAM y 64GB de almacenamiento interno. En su posterior su ubica una cámara dual de 13 MP + 2 MP, mientras que una cámara de 8 megapixels se encarga de las selfies. El Motorola One completa sus características con radio FM, puerto USB-C, lector de huellas y una batería de 3000 mAh con soporte de carga rápida.',
     precio: '23.000',
-    imagenes: ['https://images-na.ssl-images-amazon.com/images/I/61hQeMa9R2L._SL1000_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/61NMz0lHaUL._SL1000_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/41Qh8BYrWHL._SL1000_.jpg']
+    imagenes: ['https://i.linio.com/p/7a8fc7ee403fe8346a9a6f14d075af4b-product.jpg', 'https://images-na.ssl-images-amazon.com/images/I/61NMz0lHaUL._SL1000_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/41Qh8BYrWHL._SL1000_.jpg']
   },
   {
     marca: 'Huawei',
@@ -59,7 +59,7 @@ const productos = [
     stock: 2,
     descripcion: 'El Huawei P20 Pro es el primer smartphone de Huawei con cámara triple. Con tres lentes de 40 MP, 20 MP y 8 MP provistos por Leica, el Huawei P20 Pro apunta a dominar la fotografía en el campo de los smartphones. El resto de las características incluye una pantalla Full HD+ de 6.1 pulgadas, procesador octa-core, 6GB de RAM y 128GB de almacenamiento, y Android 8.0 Oreo.',
     precio: '45.000',
-    imagenes: ['https://www.dealstherapy.com/wp-content/uploads/2019/03/xiaomi-redmi-note-dealstherapy.com-pro-00121.jpg', 'https://images-na.ssl-images-amazon.com/images/I/81LK3tI7eWL._SL1500_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/61hw9BppiPL._SL1500_.jpg']
+    imagenes: ['https://www.mediaelectronica.com/188687-thickbox_default/huawei-p20-pro-128gb.jpg', 'https://images-na.ssl-images-amazon.com/images/I/81LK3tI7eWL._SL1500_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/61hw9BppiPL._SL1500_.jpg']
   },
   {
     marca: 'LG',
@@ -77,7 +77,7 @@ const iPhone = {
   stock: 3,
   descripcion: 'El iPhone XR tiene un diseño similar al iPhone X. Aun así, tiene un marco de aluminio y está disponible en una gran variedad de colores. El hardware del iPhone XR es similar al del iPhone XS pero en vez de 3D Touch, el XR cuenta con Haptic Touch donde el usuario realiza una pulsación prolongada hasta sentir la vibración del Taptic Engine. El XR también tiene una pantalla LCD (en vez del OLED), denominada Liquid Retina. La proporción de la pantalla en el dispositivo es de 79.3%, mucho mayor que el 67.5% del iPhone 8 Plus pero menor que la mayoría de teléfonos de similar precio.5​ A diferencia de los otros modelos, el XR lleva una única cámara trasera, con especificaciones idénticas a la cámara principal en los modelos XS y XS Max.',
   precio: '75.000',
-  imagenes: ['https://images-na.ssl-images-amazon.com/images/I/51PuFBgBK4L._SL1024_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/41p9ZCOyH6L._SL1024_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/51W40Z3SaXL._SL1024_.jpg']
+  imagenes: ['https://ecsmedia.pl/c/apple-iphone-xr-128-gb-dual-sim-b-iext53568863.jpg', 'https://images-na.ssl-images-amazon.com/images/I/41p9ZCOyH6L._SL1024_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/51W40Z3SaXL._SL1024_.jpg']
 }
 
 const samsung = {
@@ -110,6 +110,9 @@ const categorias = [
   },
   {
     name: 'Libre'
+  },
+  {
+    name: 'Ranura SD'
   }
 ]
 

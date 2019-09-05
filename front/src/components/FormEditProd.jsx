@@ -91,7 +91,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
       </div>
       {prodAEditar.descripcion && <div className="form-group ">
         <label><h3>* Descripcion: </h3>
-          <textarea onChange={onChange} defaultValue={prodAEditar.descripcion} name='Descripcion' rows="4" cols="50"></textarea>
+          <textarea onChange={onChange} defaultValue={prodAEditar.descripcion} placeholder='Agrega una descripcion para el producto' name='Descripcion' rows="4" cols="50"></textarea>
         </label>
       </div>}
       <button onSubmit={(e) => onSubmit(e)} className='btn btn-lg btn-success'>SUBMIT</button>

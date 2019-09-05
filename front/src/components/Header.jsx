@@ -1,13 +1,19 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React,{ useState} from 'react';
 import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
 
 export default (props) => {
+
+  let [Busqueda, setBusqueda] = useState('')
+
   const handleSubmit = (e, red) => {
     e.preventDefault();
-    red.push(`/productos?modelo=${e.target.input.value}`);
+    // red.push(`/productos?modelo=${e.target.input.value}`);
   };
+
+  const handleChange = (e) => {
+  }
 
   return (
     !props.login
@@ -23,7 +29,7 @@ export default (props) => {
         <Route render={({ history }) => {
           return (
             <form method='GET' onSubmit={(e) => handleSubmit(e, history)}>
-              <input name='modelo' placeholder='Busca tu producto 🔎' id='input' />
+              <input onChange={handleChange} name='modelo' placeholder='Busca tu producto 🔎' id='input' />
             </form>
           );
         }
