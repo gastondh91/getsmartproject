@@ -59,7 +59,7 @@ const AdminProd = (props) =>{
       })
         .then(() => {
           alert('Se creo el producto' + ' ' + Marca + ' ' + Modelo)
-          props.history.push(`/productos/${product.data.id}`);
+          props.history.push(`/productos/${Productos.id}`);
         });
     }
 

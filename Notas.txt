@@ -2,3 +2,4 @@
 * En productos poner las categorias a la par de la descripcion
 * Arreglar navbar
 * Ver textos cuando hay hover
+* Barra de busqueda no funciona bien

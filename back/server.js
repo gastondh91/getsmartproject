@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 const session = require('express-session');
-const { usuarios, productos, categorias, iPhone, samsung } = require('../data')
 var path = require('path');
 var morgan = require('morgan');
 const db = require('./config/db');
@@ -16,6 +15,10 @@ const Categorias = require('./models/Categorias')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
+
+//Linea de Seedeo de la base de datos
+const { usuarios, productos, categorias, iPhone, samsung } = require('../data')
+
 
 app.use(cookieParser());
 app.use(
@@ -202,14 +205,14 @@ sessionStore.sync()
       app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
     });
   })
-  .then(() => {
-     Productos.create(iPhone, { individualHooks: true })
-     .then(producto => producto.setCategorias([3,5,7]))
-     Productos.create(samsung, { individualHooks: true })
-     .then(producto => producto.setCategorias([3,4,6]))       
-    Productos.bulkCreate(productos, { individualHooks: true })
-    Usuarios.bulkCreate(usuarios, { individualHooks: true });
-    Categorias.bulkCreate(categorias, { individualHooks: true });
-  })
-  .then(() => console.log('user inserted succesfully'))
-  .catch(err => console.log(err))
+  // .then(() => {
+  //   Productos.create(iPhone, { individualHooks: true })
+  //     .then(producto => producto.setCategorias([3, 5, 7]))
+  //   Productos.create(samsung, { individualHooks: true })
+  //     .then(producto => producto.setCategorias([3, 4, 6]))
+  //   Productos.bulkCreate(productos, { individualHooks: true })
+  //   Usuarios.bulkCreate(usuarios, { individualHooks: true });
+  //   Categorias.bulkCreate(categorias, { individualHooks: true });
+  // })
+  // .then(() => console.log('Base de datos Seedeada con exito'))
+  // .catch(err => console.log(err))

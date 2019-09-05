@@ -11,6 +11,10 @@
     border-radius: 4px;
 }
 
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    text-indent: 0
+  }
+
 #cartbutton:hover{
     background-color: #476694;
     color: black;
@@ -77,7 +81,8 @@
     border-radius: 25px;
     width: 500px;
     height: 40px;
-    padding-left: 20px;
+    padding-left: 10px;
+    text-indent: 10px;
 }
 
 #input::-webkit-input-placeholder{
@@ -85,7 +90,8 @@
 }
 
 .last{
-    max-block-size: 20px
+    max-block-size: 20px;
+    margin-top: 1%
 }
 
 #carrito{
@@ -94,8 +100,10 @@
 }
 
 .card{
-    padding: 15%;
+    padding: 6% 3% 10%;
     margin-top: 20px;
+    height: 460px;
+    width: 371px;
 }
 .card-body{
     color: black;
@@ -117,8 +125,8 @@
     margin-top: 20px
 }
 .imgproduct{
-    height: 350px;
-    width: 300px;
+    height: 65%;
+    width: 80%;
     margin: 0 auto;
     object-fit: contain;
 }
@@ -403,11 +411,7 @@ a:hover{
     font-size: 12px;
   
 }
-.card{
-    width: 18rem;
-    width: 371px;
 
-}
 .inputDetail{
     background-color: transparent;
     border: 0px solid;
