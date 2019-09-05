@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React,{ useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import FormEditProd from '../components/FormEditProd';
 import axios from 'axios';
 
@@ -7,23 +7,26 @@ let arrCategorias = []
 
 const AdminProd = (props) => {
 
-let [prodAEditar, setProdAEditar] = useState({})
-let [categoriasDisponibles, setcategoriasDisponibles] = useState([])
-let [Marca, setMarca] = useState()
-let [Modelo, setModelo] = useState()
-let [Stock, setStock] = useState()
-let [Precio, setPrecio] = useState()
-let [Imagen, setImagen] = useState()
-let [Descripcion, setDescripcion] = useState()
+  let [prodAEditar, setProdAEditar] = useState({})
+  let [categoriasDisponibles, setcategoriasDisponibles] = useState([])
+  let [Marca, setMarca] = useState()
+  let [Modelo, setModelo] = useState()
+  let [Stock, setStock] = useState()
+  let [Precio, setPrecio] = useState()
+  let [Imagen, setImagen] = useState()
+  let [Descripcion, setDescripcion] = useState()
+  let [Productos, setProductos] = useState([])
 
-useEffect(() => {
+  useEffect(() => {
 
-  axios.get(`/api/productos/${props.prodId}`)
-    .then(producto => setProdAEditar( prodAEditar = producto.data ))
-  axios.get('/api/categorias/get')
-    .then(categorias => setcategoriasDisponibles( categoriasDisponibles = categorias.data ));
+    axios.get(`/api/productos/${props.prodId}`)
+      .then(producto => setProdAEditar(prodAEditar = producto.data))
+    axios.get('/api/categorias/get')
+      .then(categorias => setcategoriasDisponibles(categoriasDisponibles = categorias.data));
+    axios.get(`/api/productos/`)
+      .then(res => setProductos(Productos = res.data));
 
-},[])
+  }, [])
 
 
   const quitarCategorias = (arr, value) => {
@@ -33,7 +36,6 @@ useEffect(() => {
     });
 
   }
-
   const addCat = (cadaCategoria) => {
     cadaCategoria = Number(cadaCategoria)
 
@@ -45,7 +47,7 @@ useEffect(() => {
     }
   };
 
-  const checkCat = (cat)=> {
+  const checkCat = (cat) => {
     cat = Number(cat)
 
     if (!(arrCategorias.includes(cat))) {
@@ -67,25 +69,31 @@ useEffect(() => {
   }
 
   const handleChange = (e) => {
-    switch(e.target.name){
-     case 'Marca': setMarca(Marca = e.target.value);
-     break;
-     case 'Modelo': setModelo(Modelo = e.target.value);
-     break;
-     case 'Stock': setStock(Stock = e.target.value);
-     break;
-     case 'Precio': setPrecio(Precio = e.target.value);
-     break;
-     case 'Imagen': setImagen(Imagen = e.target.value);
-     break;
-     case 'Descripcion': setDescripcion(Descripcion = e.target.value);
-     break;
+    switch (e.target.name) {
+      case 'Marca': setMarca(Marca = e.target.value);
+        break;
+      case 'Modelo': setModelo(Modelo = e.target.value);
+        break;
+      case 'Stock': setStock(Stock = e.target.value);
+        break;
+      case 'Precio': setPrecio(Precio = e.target.value);
+        break;
+      case 'Imagen': setImagen(Imagen = e.target.value);
+        break;
+      case 'Descripcion': setDescripcion(Descripcion = e.target.value);
+        break;
     }
-   }
+  }
 
   const handleSubmit = (e, catsFinales) => {
-    catsFinales = arrCategorias
     e.preventDefault();
+    for(let i=0 ; i<Productos.length ; i+=1){
+      if(Productos[i].modelo == Modelo ) {
+        alert('Ya existe ese modelo de telefono')
+        return
+      }
+    }
+    catsFinales = arrCategorias
     axios.put(`/api/productos/edit/${prodAEditar.id}`, {
       marca: Marca,
       modelo: Modelo,
@@ -101,22 +109,22 @@ useEffect(() => {
       });
   }
 
-    return (
-      <div>
-        <FormEditProd
-          catDisponibles={categoriasDisponibles}
-          prodAEditar={prodAEditar}
-          marca={Marca}
-          modelo={Modelo}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          history={props.history}
-          checked={checked}
-          arrCategorias={arrCategorias}
-          addCat={addCat}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <FormEditProd
+        catDisponibles={categoriasDisponibles}
+        prodAEditar={prodAEditar}
+        marca={Marca}
+        modelo={Modelo}
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        history={props.history}
+        checked={checked}
+        arrCategorias={arrCategorias}
+        addCat={addCat}
+      />
+    </div>
+  );
+}
 
-  export default AdminProd
+export default AdminProd

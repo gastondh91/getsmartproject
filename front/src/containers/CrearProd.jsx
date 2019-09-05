@@ -4,17 +4,20 @@ import FormCrearProd from '../components/FormCrearProd';
 import axios from 'axios';
 
 const AdminProd = (props) =>{
-      var [Marca, setMarca] = useState()
-      var [Modelo, setModelo] = useState()
-      var [Stock, setStock] = useState()
-      var [Precio, setPrecio] = useState()
-      var [Imagen, setImagen] = useState()
-      var [Categorias, setCategorias] = useState([])
-      var [Descripcion, setDescripcion] = useState()
+      let [Marca, setMarca] = useState()
+      let [Modelo, setModelo] = useState()
+      let [Stock, setStock] = useState()
+      let [Precio, setPrecio] = useState()
+      let [Imagen, setImagen] = useState()
+      let [Categorias, setCategorias] = useState([])
+      let [Descripcion, setDescripcion] = useState()
+      let [Productos, setProductos] = useState([])
 
       useEffect(() => {
         axios.get('/api/categorias/get')
           .then(categorias => setCategorias(Categorias = categorias.data))
+        axios.get(`/api/productos/`)
+          .then(res => setProductos(Productos = res.data));
         },[])
     
 
@@ -38,6 +41,13 @@ const AdminProd = (props) =>{
 
     const handleSubmit = (e, categorias) => {
       e.preventDefault();
+      
+      for(let i=0 ; i<Productos.length ; i+=1){
+        if(Productos[i].modelo == Modelo) {
+          alert('Ya existe ese modelo de telefono')
+          return
+        }
+      }
       axios.post('/api/productos/add', {
         marca: Marca,
         modelo: Modelo,
