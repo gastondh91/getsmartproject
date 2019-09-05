@@ -91,7 +91,7 @@ passport.use(new FacebookStrategy(
     Usuarios.findOne(selector)
       .then(usuario => {
         if (!usuario) {
-          Usuario.create(values)
+          Usuarios.create(values)
             .then(user => done(user))
             .catch(err => done(err));
         } else {
@@ -124,7 +124,7 @@ passport.use(new GoogleStrategy(
     Usuarios.findOne(selector)
       .then(usuario => {
         if (!usuario) {
-          Usuario.create(values)
+          Usuarios.create(values)
             .then(user => done(user))
             .catch(err => done(err));
         } else {
@@ -202,14 +202,14 @@ sessionStore.sync()
       app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
     });
   })
-  .then(() => {
-     Productos.create(iPhone, { individualHooks: true })
-     .then(producto => producto.setCategorias([3,5,7]))
-     Productos.create(samsung, { individualHooks: true })
-     .then(producto => producto.setCategorias([3,4,6]))       
-    Productos.bulkCreate(productos, { individualHooks: true })
-    Usuarios.bulkCreate(usuarios, { individualHooks: true });
-    Categorias.bulkCreate(categorias, { individualHooks: true });
-  })
-  .then(() => console.log('user inserted succesfully'))
-  .catch(err => console.log(err))
+  // .then(() => {
+  //    Productos.create(iPhone, { individualHooks: true })
+  //    .then(producto => producto.setCategorias([3,5,7]))
+  //    Productos.create(samsung, { individualHooks: true })
+  //    .then(producto => producto.setCategorias([3,4,6]))       
+  //   Productos.bulkCreate(productos, { individualHooks: true })
+  //   Usuarios.bulkCreate(usuarios, { individualHooks: true });
+  //   Categorias.bulkCreate(categorias, { individualHooks: true });
+  // })
+  // .then(() => console.log('user inserted succesfully'))
+  // .catch(err => console.log(err))
