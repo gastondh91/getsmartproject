@@ -11,6 +11,14 @@
     border-radius: 4px;
 }
 
+#cartbutton:hover{
+    background-color: #476694;
+    color: black;
+    font-weight: bold
+    /* -webkit-text-stroke: medium */
+}
+
+
 /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #b3b3b3;
@@ -76,13 +84,17 @@
     line-height: 100px;/* Centrado vertical */
 }
 
+.last{
+    max-block-size: 20px
+}
+
 #carrito{
     width: 150%;
     height: auto
 }
 
 .card{
-    padding: 10px;
+    padding: 15%;
     margin-top: 20px;
 }
 .card-body{
@@ -435,6 +447,12 @@ a:hover{
     color: #fff;
     text-align: center;
     background-color: rgba(51, 51, 51, 0.3)
+}
+
+
+
+.w-100{
+    object-fit: contain
 }
 
 .registro-contenedor{

@@ -9,7 +9,9 @@ const Producto = db.define('productos', {
   },
   modelo: {
     type: S.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
+
   },
   descripcion: {
     type: S.TEXT,
@@ -23,7 +25,7 @@ const Producto = db.define('productos', {
     }
   },
   precio: {
-    type: S.DECIMAL,
+    type: S.STRING,
     allowNull: false
   },
   imagenes: {

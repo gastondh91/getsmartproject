@@ -2,10 +2,8 @@
 const S = require('sequelize');
 const crypto = require('crypto');
 const db = require('../config/db');
-const OrdenCompra = require('./OrdenCompra');
-const Carrito = require('../models/Carrito')
 
-const Usuario = db.define('usuario', {
+const Usuarios = db.define('usuario', {
   nombre: {
     type: S.STRING,
     allowNull: false
@@ -68,7 +66,7 @@ var mayusculasNombre = (usuario) => {
     
     }}
 
-Usuario.addHook('beforeCreate', (usuario) => {
+Usuarios.addHook('beforeCreate', (usuario) => {
   usuario.salt = crypto.randomBytes(20).toString('hex');
   usuario.password = usuario.hashPassword(usuario.password);
   usuario.email = usuario.email.toLowerCase()
@@ -77,15 +75,15 @@ Usuario.addHook('beforeCreate', (usuario) => {
 });
 
 
-Usuario.prototype.hashPassword = function (password) {
+Usuarios.prototype.hashPassword = function (password) {
   return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
 };
 
-Usuario.prototype.validPassword = function (password) {
+Usuarios.prototype.validPassword = function (password) {
   return this.password === this.hashPassword(password);
 };
 
 module.exports = {
-  Usuario,
+  Usuarios,
   db
 };

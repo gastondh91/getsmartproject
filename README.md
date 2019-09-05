@@ -1,2 +1,0 @@
-# getsmartproject
-# getsmartproject

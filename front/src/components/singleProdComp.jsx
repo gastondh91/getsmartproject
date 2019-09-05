@@ -19,7 +19,7 @@ const SingleProdComp = (props) => {
           <h1 style={{ textAlign: 'center', marginBottom: '10px', borderBottom: '1px solid black', paddingBottom: '7px' }}>{producto.marca} {producto.modelo}</h1>
 
           <div className="row" style={{ marginTop: '20px' }}>
-            <div className="col-lg-6 col-xs-12"><h1 style={{ textAlign: 'center' }}>${producto.precio} </h1></div>
+            <div className="col-lg-6 col-xs-12"><h1 style={{ textAlign: 'center' }}>$ {producto.precio} </h1></div>
             <div style={{ textAlign: 'center', marginTop: '9px' }} className="col-lg-6 col-xs-12">{producto.stock > 5 ? <h4>Disponible</h4> : <h4>Últimas {producto.stock} unidades</h4>}</div>
           </div>
 
@@ -53,7 +53,7 @@ const SingleProdComp = (props) => {
               </Carousel.Item>
             ))}
           </Carousel>
-          <button onClick={() => props.addToCart(props.producto.id, props.usuario.id)} className="btn btn-lg" type="button" style={{ marginLeft: '20%', color: '#28a745', borderColor: '#28a745', padding: '20px' }}>Agregar al Carrito</button>
+          <button onClick={() => props.addToCart(props.producto.id, props.usuario.id)} className="btn btn-lg" id='cartbutton' type="button" style={{ marginLeft: '20%', color: 'black', borderColor: '#476694', padding: '20px' }}>Agregar al Carrito</button>
         </div>
       </div>
 

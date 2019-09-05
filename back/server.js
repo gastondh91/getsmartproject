@@ -5,15 +5,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 const session = require('express-session');
+const { usuarios, productos, categorias, iPhone, samsung } = require('../data')
 var path = require('path');
 var morgan = require('morgan');
 const db = require('./config/db');
 const apiRoutes = require('./routes');
-const { Usuario } = require('./models/Usuario');
+const { Usuarios } = require('./models/Usuario');
+const Productos = require('./models/Producto')
+const Categorias = require('./models/Categorias')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
-
 
 app.use(cookieParser());
 app.use(
@@ -23,10 +25,10 @@ app.use(
     resave: false,
     saveUninitialized: false
   })
-  );
-  
-  // ESTRATEGIAS DE LOGIN
-  
+);
+
+// ESTRATEGIAS DE LOGIN
+
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
@@ -42,7 +44,7 @@ passport.serializeUser(function (user, done) {
 }); /* esta funcion esta serializando el usuario=> como guardo el usuario */
 
 passport.deserializeUser(function (id, done) {
-  Usuario.findByPk(id)
+  Usuarios.findByPk(id)
     .then(user => done(null, user));
 }); /* esta funcion esta deserializando el usuario => como veo el usuario */
 
@@ -54,7 +56,7 @@ passport.use(new LocalStrategy(
     passwordField: 'password'
   },
   function (username, password, done) {
-    Usuario.findOne({ where: { email: username } })
+    Usuarios.findOne({ where: { email: username } })
       .then(function (user) {
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
@@ -86,7 +88,7 @@ passport.use(new FacebookStrategy(
     };
     var selector = { where: { email: profile._json.email } };
 
-    Usuario.findOne(selector)
+    Usuarios.findOne(selector)
       .then(usuario => {
         if (!usuario) {
           Usuario.create(values)
@@ -119,7 +121,7 @@ passport.use(new GoogleStrategy(
 
     var selector = { where: { email: profile.email } };
 
-    Usuario.findOne(selector)
+    Usuarios.findOne(selector)
       .then(usuario => {
         if (!usuario) {
           Usuario.create(values)
@@ -199,4 +201,15 @@ sessionStore.sync()
       console.log(`${con.options.dialect} database ${con.config.database} connected at ${con.config.host}:${con.config.port}`);
       app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
     });
-  });
+  })
+  .then(() => {
+     Productos.create(iPhone, { individualHooks: true })
+     .then(producto => producto.setCategorias([3,5,7]))
+     Productos.create(samsung, { individualHooks: true })
+     .then(producto => producto.setCategorias([3,4,6]))       
+    Productos.bulkCreate(productos, { individualHooks: true })
+    Usuarios.bulkCreate(usuarios, { individualHooks: true });
+    Categorias.bulkCreate(categorias, { individualHooks: true });
+  })
+  .then(() => console.log('user inserted succesfully'))
+  .catch(err => console.log(err))

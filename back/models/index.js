@@ -2,21 +2,21 @@ const Productos = require('./Producto');
 const Categorias = require('./Categorias');
 const Carrito = require('./Carrito')
 const OrdenCompra = require('./OrdenCompra');
-const Usuario = require('./Usuario').Usuario;
+const Usuarios = require('./Usuario').Usuarios;
 
 const modelos = {
   Categorias,
   Productos,
   Carrito,
-  Usuario
+  Usuarios
 };
 
 Categorias.belongsToMany(Productos, { through: 'categorias_productos' });
 
 Productos.belongsToMany(Categorias, { through: 'categorias_productos' });
 // Carrito.belongsTo(Usuario,{as:'owner'})
-Usuario.belongsToMany(Productos, { through: Carrito });
-Productos.belongsToMany(Usuario, { through: Carrito });
+Usuarios.belongsToMany(Productos, { through: Carrito });
+Productos.belongsToMany(Usuarios, { through: Carrito });
 
 const ordenes = {
   OrdenCompra,

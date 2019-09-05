@@ -6,6 +6,7 @@ const Categorias = db.define('categorias', {
     name: {
         type:S.STRING,
         allowNull: true,
+        unique: true
     }
 })
 

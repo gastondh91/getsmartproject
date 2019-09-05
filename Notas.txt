@@ -1,0 +1,2 @@
+* Cuando elimino un producto y recargo la pagina sigue figurando.
+* En productos poner las categorias a la par de la descripcion
