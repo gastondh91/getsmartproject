@@ -94,7 +94,7 @@ passport.use(new FacebookStrategy(
     Usuarios.findOne(selector)
       .then(usuario => {
         if (!usuario) {
-          Usuario.create(values)
+          Usuarios.create(values)
             .then(user => done(user))
             .catch(err => done(err));
         } else {
@@ -127,7 +127,7 @@ passport.use(new GoogleStrategy(
     Usuarios.findOne(selector)
       .then(usuario => {
         if (!usuario) {
-          Usuario.create(values)
+          Usuarios.create(values)
             .then(user => done(user))
             .catch(err => done(err));
         } else {
