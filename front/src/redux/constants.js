@@ -9,10 +9,11 @@ export const GET_USER = 'GET_USER';
 export const CHECK_USER = 'CHECK_USER';
 export const ADD_USER = 'ADD_USER';
 export const ADM_ACCESS = 'ADM_ACCESS';
-export const GET_SELUSER = 'GET_SELUSER'
+export const GET_SELUSER = 'GET_SELUSER';
 
 //ARTICULOS
 export const SET_CATEGORIAS = 'SET_CATEGORIAS';
+export const SET_BUSQ = 'SET_BUSQ';
 
 //MARCAS
 export const SEARCH_MARK = 'SEARCH_MARK';

@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class NavbarUser extends Component {
+class NavbarUser extends Component {
   render () {
     return (
       <div className="navbar-light" id='navbar-light'>
         <div className="row">
           <div style={{paddingTop: '1.4%'}} className="col-sm-2 nav-link">
             <div className='col-lg-10 '>
-              <Link to='/productos' onClick = { this.handleClick }>Productos</Link>
+              <Link onClick={()=> (this.props.location.pathname == '/productos') && this.props.history.push('/productos')} to='/productos'>Productos</Link>
             </div>
           </div>
           <div className="col-sm-2 nav-link">
@@ -37,3 +37,6 @@ export default class NavbarUser extends Component {
     );
   }
 }
+
+
+export default NavbarUser;

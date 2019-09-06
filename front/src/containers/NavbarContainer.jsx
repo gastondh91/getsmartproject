@@ -8,7 +8,7 @@ class NavbarContainer extends React.Component {
   render () {
     return (
       <div>
-        { this.props.isAdmin ? <NavbarAdm /> : <NavbarUser />}
+        { this.props.isAdmin ? <NavbarAdm history={history} location={this.props.location} /> : <NavbarUser history={history} location={this.props.location} />}
       </div>
     );
   }

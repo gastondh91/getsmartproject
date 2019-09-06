@@ -1,23 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React,{ useState} from 'react';
+import React,{ useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux'
+import { setBusqueda } from '../redux/action-creators/action-creator'
 
-export default (props) => {
 
-  let [Busqueda, setBusqueda] = useState('')
+ const Header = (props) => {
 
-  const handleSubmit = (e, red) => {
-    e.preventDefault();
-    // red.push(`/productos?modelo=${e.target.input.value}`);
-  };
+  useEffect(()=>{
+    {props.location.pathname != '/productos' && cancelCourse()}
+  },[props.location.pathname])
 
   const handleChange = (e) => {
+    props.setBusqueda(e.target.value)
+    props.history.push('/productos')
+  }
+
+  const cancelCourse = () => {
+    document.getElementById("input").value=''
+    props.setBusqueda('')
   }
 
   return (
     !props.login
-      ? <header className='header'>
+    ? <header className='header'>
         <div>
           <Link to='/usuarios/registro' id='linkLogIn'><img id='userLogIn' src="/utils/user.svg"></img>
             <span className='caption'>Registrate</span>
@@ -28,7 +35,7 @@ export default (props) => {
         <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
-            <form method='GET' onSubmit={(e) => handleSubmit(e, history)}>
+            <form >
               <input onChange={handleChange} name='modelo' placeholder='Busca tu producto 🔎' id='input' />
             </form>
           );
@@ -43,18 +50,18 @@ export default (props) => {
             onClick={(e) => {
               e.preventDefault();
               axios.get('/api/usuarios/logOut')
-                .then(data => props.fetchUser(data.data));
+              .then(data => props.fetchUser(data.data));
               return props.history.push('/');
             }}>
             LOG OUT
           </button>
         </Link>
-        <Link to='/' id='linkLogOut'><img id='userLogOut' src="/utils/logout.svg"></img></Link>
+        <img style={{width:'3.5rem',marginLeft:'2rem',borderRadius:'2rem'}} src="https://i.ibb.co/Wcc4wjy/Whats-App-Image-2019-05-16-at-13-30-39.jpg" id='userLogOut' alt="Avatar" className="avatar"></img>
         <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
-            <form method='GET' onSubmit={(e) => handleSubmit(e, history)}>
-              <input name='modelo' placeholder='  Busca tu producto 🔎' id='input' />
+            <form>
+              <input onChange={handleChange} name='modelo' placeholder='  Busca tu producto 🔎' id='input' />
             </form>
           );
         }
@@ -64,3 +71,13 @@ export default (props) => {
       </header>
   );
 };
+
+const mapStateToProps = (state) => ({
+  savedBusqueda : state.savedBusqueda
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setBusqueda: (busqueda) => dispatch(setBusqueda(busqueda))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

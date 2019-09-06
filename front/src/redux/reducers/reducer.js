@@ -1,4 +1,4 @@
-import { GET_SELUSER, CHECK_USER, SET_ALLCAT, SET_SAVEDCATEGORIES, ADD_USER, ADM_ACCESS, RECEIVE_PRODUCT, GET_USER, SET_PRODUCTS, SET_CATEGORIAS, SEARCH_MARK, SET_ADDTOCART } from '../constants';
+import { SET_BUSQ ,GET_SELUSER, CHECK_USER, SET_ALLCAT, SET_SAVEDCATEGORIES, ADD_USER, ADM_ACCESS, RECEIVE_PRODUCT, GET_USER, SET_PRODUCTS, SET_CATEGORIAS, SEARCH_MARK, SET_ADDTOCART } from '../constants';
 
 const initialState = {
   products: [],
@@ -12,11 +12,14 @@ const initialState = {
   marcas: [],
   allCategories: [],
   savedCategories: [],
-  selectedUser: {}
+  selectedUser: {},
+  savedBusqueda: ''
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_BUSQ:
+      return Object.assign({}, state, { savedBusqueda: action.busqueda });
     case GET_SELUSER:
       return Object.assign({}, state, { selectedUser: action.selectedUser });
     case SET_ALLCAT:
