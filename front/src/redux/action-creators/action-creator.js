@@ -1,9 +1,14 @@
 import axios from 'axios';
-import { GET_SELUSER, CHECK_USER, ADD_USER, ADM_ACCESS, GET_USER } from '../constants';
+import { SET_BUSQ, GET_SELUSER, CHECK_USER, ADD_USER, ADM_ACCESS, GET_USER } from '../constants';
 
 export const addUser = (user) => ({
   type: ADD_USER,
   user
+});
+
+export const setBusqueda = (busqueda) => ({
+  type: SET_BUSQ,
+  busqueda
 });
 
 export const checkUser = (data) => ({

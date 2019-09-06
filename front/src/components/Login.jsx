@@ -23,13 +23,18 @@ class Login extends React.Component {
     e.preventDefault();
     const user = this.state;
     this.props.checkUserLogin(user)
-      .then(() => {
-        this.props.history.push('/');
+      .then((data) => {
+        if(data.usuario){
+          alert('Bienvenido de vuelta ' + data.usuario.nombre + ' '+ data.usuario.apellido );
+          this.props.history.push('/')
+        }
       })
+      .catch(err => err && alert('Usuario o contraseña incorrectos'))
     ;
   }
 
   render () {
+    console.log(this.props)
     return (
       <div className="login-contenedor">
         <div className='FRUsuarios'>

@@ -44,8 +44,8 @@ class Main extends React.Component {
     return (
       this.state.loading ? <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         : <div id='main' className='container-fluid'>
-          <Route render= {({ history }) => (<Header login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
-          <NavbarContainer isAdmin={this.props.usuario.isAdmin} />
+          <Route render= {({ history,location,match }) => (<Header location={location} match={match} login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
+          <NavbarContainer location={location} history={history} isAdmin={this.props.usuario.isAdmin} />
           <Switch>
             <Route exact path="/usuarios" render={() => (<HomeRL />)} />
             <Route exact path="/usuarios/all" render={({ history }) => (<UsersContainer history={history} />)} />

@@ -33,7 +33,10 @@ const Usuarios = db.define('usuario', {
   },
   isAdmin: {
     type: S.BOOLEAN
-  }
+  },
+    avatar: {
+      type: S.STRING
+    }
 });
 
 // Usuario.belongsTo(OrdenCompra, { as: 'owner' });
