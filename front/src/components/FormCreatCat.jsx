@@ -12,7 +12,7 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">¿Eliminar Categoria?</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Eliminar Categoria</h5>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -34,7 +34,7 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Categoria creada</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Categoría creada</h5>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -52,7 +52,7 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
  {/* <button id='eliminar'>Hover Me</button> */}
 
       <div className='formProdAm' id='showCat'>
-        <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Categorias: </h1>
+        <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Categorías: </h1>
         {categorias.map((categoria) => (
           <div key={categoria.id} style={{ cursor: 'pointer' }} className="list-group">
             <button id='eliminar' data-toggle="modal" data-target="#definiteModal" type="button" value={categoria.id}
@@ -64,12 +64,12 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
         ))}
       </div>
       <form id='newCategory' className='formProdAm' onSubmit={onSubmit} >
-        <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Crear Categoria: </h1>
+        <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Crear Categoría: </h1>
         <div className="row">
           <div id='modelo' className="form-group col-lg-12">
             <div className="input-group input-group-lg">
               <div className="input-group-prepend">
-                <span className="input-group-text" id="inputGroup-sizing-lg">Nueva Categoria :</span>
+                <span className="input-group-text" id="inputGroup-sizing-lg">Nueva Categoría :</span>
               </div>
               <input name='newCategory' onChange={onChange} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
             </div>

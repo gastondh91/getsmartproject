@@ -10,7 +10,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
     <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Crear un Nuevo Producto</h1>
     <div className="row">
       <h3>Marca: </h3>
-      <div className="dropdown form-group col-lg-9 " >
+      <div style={{marginTop:'0.8%'}} className="dropdown form-group col-lg-9 " >
         <div className="form-check form-check-inline">
           <input onChange={onChange} className="form-check-input" type="radio" name="Marca" id="iPhone" value="iPhone" defaultChecked />
           <label className="form-check-label" htmlFor="iPhone">iPhone</label>
@@ -42,7 +42,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
       <div id='modelo' className="form-group col-lg-12">
         <div className="input-group input-group-lg">
           <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-lg">Modelo :</span>
+            <span className="input-group-text" id="inputGroup-sizing-lg">Modelo</span>
           </div>
           <input name='Modelo' onChange={onChange} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" required />
         </div>
@@ -62,17 +62,17 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
       <div className="input-group-prepend">
         <span className="input-group-text" id="inputGroup-sizing-lg">Precio</span>
       </div>
-      <input name='Precio' onChange={onChange} type="text" className="form-control" id="inputAddress" placeholder="Precio" required />
+      <input name='Precio' onChange={onChange} type="text" className="form-control" id="inputAddress" required />
     </div>
 
     <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
       <div className="input-group-prepend">
         <span className="input-group-text" id="inputGroup-sizing-lg">Unidades</span>
       </div>
-      <input name='Stock' onChange={onChange} type="text" className="form-control" id="inputAddress" placeholder="Unid." required />
+      <input name='Stock' onChange={onChange} type="text" className="form-control" id="inputAddress" required />
     </div>
 
-    <div className="form-group">
+    <div className="form-group selCat">
       <h3 id='modelo' className="form-group"> * Seleccionar Categorias:</h3>
 
       {array.map((categoria) => (
@@ -85,7 +85,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
     </div>
     <div className="form-group ">
       <label><h3>* Descripcion: </h3>
-        <textarea onChange={onChange} name='Descripcion' placeholder='Agrega una descripcion para el producto' rows="4" cols="50" required></textarea>
+        <textarea onChange={onChange} name='Descripcion' placeholder='Agrega una descripcion para el producto' style={{borderRadius: '0.4rem'}} rows="5" cols="78" required></textarea>
       </label>
     </div>
 

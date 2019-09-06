@@ -19,12 +19,12 @@ export default class NavbarUser extends Component {
           </div>
           <div className="col-sm-2 nav-link">
             <div className='col-lg-10 '>
-              <Link to='/adm/purchaseOrders' onClick={this.handleClick}>Ordenes de <br/> compra</Link>
+              <Link to='/adm/purchaseOrders' onClick={this.handleClick}>Órdenes de <br/> compra</Link>
             </div>
           </div>
           <div className="col-sm-2 nav-link">
             <div className='col-lg-10 '>
-              <Link to='/categorias/add' onClick={this.handleClick}>Gestión de <br/> categorias</Link>
+              <Link to='/categorias/add' onClick={this.handleClick}>Gestión de <br/> categorías</Link>
             </div>
           </div>
           <div className="col-sm-2 nav-link">

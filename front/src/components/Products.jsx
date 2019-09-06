@@ -26,7 +26,7 @@ const Products = ({ search, products }) => {
             <div className="card-body">
               <h5 className="card-title last"> {product.marca + ' ' + product.modelo} </h5>
               <strong><p className="card-text"> ${product.precio} </p></strong>
-              <p className="card-text last"> {product.descripcion.slice(0, 70) + '...'} </p>
+              <p className="card-text last"> {product.descripcion.slice(0, 90) + '...'} </p>
             </div>
           </div>
         </div>

@@ -10,11 +10,11 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
       className='formProdAm'
       onSubmit={(e) => onSubmit(e, arrCategorias)} >
       <h1
-        style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} <b>Editar producto: </b> <br /> '{prodAEditar.marca}  {prodAEditar.modelo}'  </h1>
+        style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} <b>Editar producto: </b> <br /> {prodAEditar.marca}  {prodAEditar.modelo}  </h1>
       <div
         className="row">
         <h3>Marca: </h3>
-        {prodAEditar.marca && <div className="dropdown form-group col-lg-9 " >
+        {prodAEditar.marca && <div style={{marginTop:'0.8%'}} className="dropdown form-group col-lg-9 " >
           <div className="form-check form-check-inline">
             <input defaultChecked={prodAEditar.marca === 'iPhone'} onChange={onChange} className="form-check-input" type="radio" name="Marca" id="iPhone" value="iPhone" />
             <label className="form-check-label" htmlFor="iPhone">iPhone</label>
@@ -44,7 +44,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
         <div id='modelo' className="form-group col-lg-12">
           <div className="input-group input-group-lg">
             <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroup-sizing-lg">Modelo :</span>
+              <span className="input-group-text" id="inputGroup-sizing-lg">Modelo</span>
             </div>
             <input name='Modelo' defaultValue={prodAEditar.modelo} onChange={onChange} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
           </div>
@@ -62,17 +62,17 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-lg">Precio</span>
         </div>
-        <input name='Precio' defaultValue={prodAEditar.precio} onChange={onChange} type="text" className="form-control" id="inputAddress" placeholder="Precio" />
+        <input name='Precio' defaultValue={prodAEditar.precio} onChange={onChange} type="text" className="form-control" id="inputAddress" />
       </div>
 
       <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-lg">Unidades</span>
         </div>
-        <input name='Stock' onChange={onChange} defaultValue={prodAEditar.stock} type="text" className="form-control" id="inputAddress" placeholder="Unid." />
+        <input name='Stock' onChange={onChange} defaultValue={prodAEditar.stock} type="text" className="form-control" id="inputAddress" />
       </div>
 
-      <div className="form-group">
+      <div className="form-group selCat">
         <h3 id='modelo' className="form-group"> * Seleccionar Categorias:</h3>
         <div className="form-group"></div>
 
@@ -91,7 +91,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
       </div>
       {prodAEditar.descripcion && <div className="form-group ">
         <label><h3>* Descripcion: </h3>
-          <textarea onChange={onChange} defaultValue={prodAEditar.descripcion} placeholder='Agrega una descripcion para el producto' name='Descripcion' rows="4" cols="50"></textarea>
+          <textarea onChange={onChange} defaultValue={prodAEditar.descripcion} placeholder='Agrega una descripcion para el producto' name='Descripcion' rows="5" cols="78" style={{borderRadius: '0.4rem'}}></textarea>
         </label>
       </div>}
       <button onSubmit={(e) => onSubmit(e)} className='btn btn-lg btn-success'>SUBMIT</button>

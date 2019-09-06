@@ -15,6 +15,14 @@
     text-indent: 0
   }
 
+.selCat{
+    max-height: 9rem
+}
+
+#carousel{
+    object-fit: cover
+}
+
 #cartbutton:hover{
     background-color: #476694;
     color: black;
