@@ -42,7 +42,12 @@ class Main extends React.Component {
 
   render () {
     return (
-      this.state.loading ? <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      this.state.loading ? <div><div className="cssload-loader">
+      <div className="cssload-inner cssload-one"></div>
+      <div className="cssload-inner cssload-two"></div>
+      <div className="cssload-inner cssload-three"></div>
+    </div>
+    <div style={{textAlign: 'center', fontSize: 'xx-large', fontFamily: 'serif'}}>Loading...</div></div>
         : <div id='main' className='container-fluid'>
           <Route render= {({ history,location,match }) => (<Header location={location} match={match} login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
           <NavbarContainer location={location} history={history} isAdmin={this.props.usuario.isAdmin} />
