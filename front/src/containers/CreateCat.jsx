@@ -43,7 +43,7 @@ const AdminProd = (props) => {
     let catNames = props.allCategories.map(categorias => categorias.name)
 
     if (catNames.includes(newCategory)) {
-      alert('Ya existe la categoria ' + '\"' + newCategory + '\"');
+      alert('Ya existe la categoría ' + '\"' + newCategory + '\"');
     }
     else if(!newCategory) { alert('Debe ingresar una categoria')}
     else {
@@ -51,7 +51,7 @@ const AdminProd = (props) => {
         name: newCategory
       })
         .then(categoria => {
-          alert('Se creo la categoria ' + '\"' + categoria.data.name + '\"');
+          alert('Se creo la categoría ' + '\"' + categoria.data.name + '\"');
         })
         .then(()=>props.getAllCat())
     }

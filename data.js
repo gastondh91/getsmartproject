@@ -110,9 +110,6 @@ const categorias = [
   },
   {
     name: 'Libre'
-  },
-  {
-    name: 'Ranura SD'
   }
 ]
 
