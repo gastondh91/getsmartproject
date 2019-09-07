@@ -1,7 +1,7 @@
 const usuarios =
   [
     {
-      nombre: 'Gaston',
+      nombre: 'Gastón',
       apellido: 'd' + '\'' + 'Hiriart',
       email: 'gastondh91@gmail.com',
       domicilio: 'Las acacias 153',

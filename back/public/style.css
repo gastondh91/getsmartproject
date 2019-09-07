@@ -362,7 +362,7 @@ a:hover{
 .cssload-loader {
 	position: relative;
     left: calc(50% - 156px);
-    margin-top: 150px;
+    margin-top: 130px;
 	width: 312px;
 	height: 312px;
 	border-radius: 50%;
@@ -397,7 +397,7 @@ a:hover{
 		-ms-animation: cssload-rotate-one 0.65s linear infinite;
 		-webkit-animation: cssload-rotate-one 0.65s linear infinite;
 		-moz-animation: cssload-rotate-one 0.65s linear infinite;
-	border-bottom: 15px solid rgb(0,0,0);
+	border-bottom: 15px solid #192a56;
 }
 
 .cssload-inner.cssload-two {
@@ -408,7 +408,7 @@ a:hover{
 		-ms-animation: cssload-rotate-two 0.65s linear infinite;
 		-webkit-animation: cssload-rotate-two 0.65s linear infinite;
 		-moz-animation: cssload-rotate-two 0.65s linear infinite;
-	border-right: 15px solid rgb(0,0,0);
+	border-right: 15px solid #192a56
 }
 
 .cssload-inner.cssload-three {
@@ -419,7 +419,7 @@ a:hover{
 		-ms-animation: cssload-rotate-three 0.65s linear infinite;
 		-webkit-animation: cssload-rotate-three 0.65s linear infinite;
 		-moz-animation: cssload-rotate-three 0.65s linear infinite;
-	border-top: 15px solid rgb(0,0,0);
+	border-top: 15px solid #192a56
 }
 
 
