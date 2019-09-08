@@ -22,7 +22,6 @@ const Products = ({ products,savedBusqueda }) => {
     
     })
 
-
   return (
 
     (savedBusqueda ? filtered : products).sort((a, b) => { return b.id - a.id }).map(product => (

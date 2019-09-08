@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import FormCreatCat from '../components/FormCreatCat';
 import { getAllCat } from '../redux/action-creators/products-actions'
 import axios from 'axios';
+import Noautorizado from '../components/Noautorizado';
 
 
 const AdminProd = (props) => {
@@ -60,14 +61,14 @@ const AdminProd = (props) => {
 
   return (
     <div>
-      <FormCreatCat
+        {props.isAdmin ? <FormCreatCat
         onSubmit={handleSubmit}
         onChange={handleChange}
         Active={Active}
         toggleClass={toggleClass}
         categorias={props.allCategories}
         handleClick={handleClick}
-        />
+        /> : <Noautorizado/>}
     </div>
   );
 }

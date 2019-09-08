@@ -1,5 +1,4 @@
-* Cuando elimino un producto y recargo la pagina sigue figurando.
+* Cuando elimino un usuario y recargo la pagina sigue figurando.
 * En productos poner las categorias a la par de la descripcion
 * Arreglar navbar
 * Ver textos cuando hay hover
-* Barra de busqueda no funciona bien

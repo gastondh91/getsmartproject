@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import FormEditProd from '../components/FormEditProd';
 import axios from 'axios';
+import Noautorizado from '../components/Noautorizado';
+
 
 let arrCategorias = []
 
@@ -87,8 +89,8 @@ const AdminProd = (props) => {
 
   const handleSubmit = (e, catsFinales) => {
     e.preventDefault();
-    for(let i=0 ; i<Productos.length ; i+=1){
-      if(Productos[i].modelo == Modelo ) {
+    for (let i = 0; i < Productos.length; i += 1) {
+      if (Productos[i].modelo == Modelo) {
         alert('Ya existe ese modelo de telefono')
         return
       }
@@ -111,18 +113,19 @@ const AdminProd = (props) => {
 
   return (
     <div>
-      <FormEditProd
-        catDisponibles={categoriasDisponibles}
-        prodAEditar={prodAEditar}
-        marca={Marca}
-        modelo={Modelo}
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        history={props.history}
-        checked={checked}
-        arrCategorias={arrCategorias}
-        addCat={addCat}
-      />
+      {props.isAdmin ?
+        <FormEditProd
+          catDisponibles={categoriasDisponibles}
+          prodAEditar={prodAEditar}
+          marca={Marca}
+          modelo={Modelo}
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          history={props.history}
+          checked={checked}
+          arrCategorias={arrCategorias}
+          addCat={addCat}
+        /> : <Noautorizado/>}
     </div>
   );
 }

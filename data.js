@@ -6,6 +6,7 @@ const usuarios =
       email: 'gastondh91@gmail.com',
       domicilio: 'Las acacias 153',
       password: '5739gaston',
+      genero: 'Masculino',
       isAdmin: true,
       avatar: 'https://i.ibb.co/Wcc4wjy/Whats-App-Image-2019-05-16-at-13-30-39.jpg'
     },
@@ -14,6 +15,7 @@ const usuarios =
       apellido: 'Araoz',
       email: 'juancarlos@gmail.com',
       domicilio: 'Salas y valdez 647',
+      genero: 'Masculino',
       password: '123456',
       isAdmin: false
     },
@@ -22,16 +24,36 @@ const usuarios =
       apellido: 'Silva',
       email: 'julisilva@gmail.com',
       domicilio: 'Los Ceibos 635',
+      genero: 'Femenino',
       password: '123456',
-      isAdmin: false
+      isAdmin: true
     },
     {
       nombre: 'Bill',
       apellido: 'Gates',
       email: 'billgates@gmail.com',
       domicilio: 'West Avenue 458',
+      genero: 'Masculino',
       password: '123456',
-      isAdmin: true
+      isAdmin: false
+    },
+    {
+      nombre: 'Valentina',
+      apellido: 'Ruiz Cossio',
+      email: 'valeruiz@gmail.com',
+      domicilio: 'Lamadrid 529',
+      genero: 'Femenino',
+      password: '123456',
+      isAdmin: false
+    },
+    {
+      nombre: 'Jose',
+      apellido: 'Montiel',
+      email: 'josemontiel@gmail.com',
+      domicilio: 'Av. Santa Fe 1238',
+      genero: 'Masculino',
+      password: '123456',
+      isAdmin: false
     }
 
   ]

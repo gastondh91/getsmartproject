@@ -55,7 +55,8 @@ router.get('/all', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  Usuarios.destroy({ where: { id: req.params.id } });
+  Usuarios.destroy({ where: { id: req.params.id } })
+    .then( (ok) => res.sendStatus(200))
 });
 
 module.exports = router;

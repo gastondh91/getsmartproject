@@ -172,13 +172,24 @@ margin-right: 10px;
 }
 
 #editUser{
-    width: 32%;
+    width: 4.1rem;
     cursor: pointer;
     margin-bottom: 10%;
-    margin-left: 10%
 }
 
 #editUser:hover{
+    transform: scale(1.2)
+}
+
+#deleteUser{
+    width: 4.1rem;
+    cursor: pointer;
+    margin-top: 1px;
+    margin-left: 5%;
+    float: right
+}
+
+#deleteUser:hover{
     transform: scale(1.2)
 }
 
@@ -359,18 +370,31 @@ a:hover{
     transition: all 500ms ease; 
 }
 
+.editbox{
+    margin-top: 1%;
+    margin-left: 1rem;
+    float: right;
+}
+
+.editAvatar{
+    width: 8rem;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 8rem;
+}
+
 .cssload-loader {
-	position: relative;
-    left: calc(50% - 156px);
     margin-top: 130px;
-	width: 312px;
-	height: 312px;
+	position: relative;
+	left: calc(50% - 100px);
+	width: 200px;
+	height: 200px;
 	border-radius: 50%;
 		-o-border-radius: 50%;
 		-ms-border-radius: 50%;
 		-webkit-border-radius: 50%;
 		-moz-border-radius: 50%;
-	perspective: 3900px;
+	perspective: 2500px;
 }
 
 .cssload-inner {
@@ -392,38 +416,35 @@ a:hover{
 .cssload-inner.cssload-one {
 	left: 0%;
 	top: 0%;
-	animation: cssload-rotate-one 0.65s linear infinite;
-		-o-animation: cssload-rotate-one 0.65s linear infinite;
-		-ms-animation: cssload-rotate-one 0.65s linear infinite;
-		-webkit-animation: cssload-rotate-one 0.65s linear infinite;
-		-moz-animation: cssload-rotate-one 0.65s linear infinite;
-	border-bottom: 15px solid #192a56;
+	animation: cssload-rotate-one 0.35s linear infinite;
+		-o-animation: cssload-rotate-one 0.35s linear infinite;
+		-ms-animation: cssload-rotate-one 0.35s linear infinite;
+		-webkit-animation: cssload-rotate-one 0.35s linear infinite;
+		-moz-animation: cssload-rotate-one 0.35s linear infinite;
+	border-bottom: 9px solid #192a56
 }
 
 .cssload-inner.cssload-two {
 	right: 0%;
 	top: 0%;
-	animation: cssload-rotate-two 0.65s linear infinite;
-		-o-animation: cssload-rotate-two 0.65s linear infinite;
-		-ms-animation: cssload-rotate-two 0.65s linear infinite;
-		-webkit-animation: cssload-rotate-two 0.65s linear infinite;
-		-moz-animation: cssload-rotate-two 0.65s linear infinite;
-	border-right: 15px solid #192a56
+	animation: cssload-rotate-two 0.35s linear infinite;
+		-o-animation: cssload-rotate-two 0.35s linear infinite;
+		-ms-animation: cssload-rotate-two 0.35s linear infinite;
+		-webkit-animation: cssload-rotate-two 0.35s linear infinite;
+		-moz-animation: cssload-rotate-two 0.35s linear infinite;
+	border-right: 9px solid #192a56
 }
 
 .cssload-inner.cssload-three {
 	right: 0%;
 	bottom: 0%;
-	animation: cssload-rotate-three 0.65s linear infinite;
-		-o-animation: cssload-rotate-three 0.65s linear infinite;
-		-ms-animation: cssload-rotate-three 0.65s linear infinite;
-		-webkit-animation: cssload-rotate-three 0.65s linear infinite;
-		-moz-animation: cssload-rotate-three 0.65s linear infinite;
-	border-top: 15px solid #192a56
+	animation: cssload-rotate-three 0.35s linear infinite;
+		-o-animation: cssload-rotate-three 0.35s linear infinite;
+		-ms-animation: cssload-rotate-three 0.35s linear infinite;
+		-webkit-animation: cssload-rotate-three 0.35s linear infinite;
+		-moz-animation: cssload-rotate-three 0.35s linear infinite;
+	border-top: 9px solid #192a56
 }
-
-
-
 
 
 
@@ -956,26 +977,34 @@ margin-left: 160px;
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
+    width: 85%
 }
 .listItem:hover{
     border: solid rgb(36, 36, 36) 1px
 }
 .containerTrash{
     float: right;
-    margin: 15%
+    margin: 15% 10% 7%
 }
 
 #listaUsuarios{
     background-color: #476694;
-    border-color: #476694
+    border-color: #476694;
+    width: 85%
 }
 
 .list-group{
     max-width: 60%;
     margin: 0 auto
 }
+
+.listedituser{
+    align-items: center
+}
+
 .titlesUsers{
     margin-right: 3px;
+    line-height: 1.6;
 }
 
 #editElim{

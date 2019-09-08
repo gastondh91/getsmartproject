@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import FormCrearProd from '../components/FormCrearProd';
 import axios from 'axios';
+import Noautorizado from '../components/Noautorizado';
 
 const AdminProd = (props) =>{
       let [Marca, setMarca] = useState()
@@ -65,12 +66,13 @@ const AdminProd = (props) =>{
 
     return (
       <div>
+        {props.isAdmin ?
         <FormCrearProd
           array={Categorias}
           onSubmit={handleSubmit}
           onChange={handleChange}
           history={props.history}
-          />
+          /> : <Noautorizado/>}
       </div>
     );
   }

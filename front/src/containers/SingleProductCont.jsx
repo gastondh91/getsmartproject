@@ -11,9 +11,12 @@ class SingleProd extends React.Component {
   }
 
   borrarProd = () => {
-    axios.delete(`/api/productos/${this.props.producto.id}`);
-    alert('Se elimino ' + this.props.producto.marca + ' ' + this.props.producto.modelo);
-    this.props.history.push('/productos');
+    axios.delete(`/api/productos/${this.props.producto.id}`)
+    .then(()=>{
+      alert('Se elimino ' + this.props.producto.marca + ' ' + this.props.producto.modelo);
+      this.props.history.push('/productos');
+    })
+
   }
 
   componentDidMount () {

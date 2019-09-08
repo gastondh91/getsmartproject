@@ -24,7 +24,7 @@ class NavbarUser extends Component {
           </div>
           <div className="col-sm-2 nav-link">
             <div className='col-lg-10 '>
-              <Link to='/categorias/add' onClick={this.handleClick}>Gestión de <br/> categorías</Link>
+              <Link to='/categorias/adm' onClick={this.handleClick}>Gestión de <br/> categorías</Link>
             </div>
           </div>
           <div className="col-sm-2 nav-link">

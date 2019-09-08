@@ -49,6 +49,7 @@ router.get('/:id', (req, res) => {
 
 router.delete(('/:id'), (req, res, next) => {
   modelos.Productos.destroy({ where: { id: req.params.id } })
+    .then( () => res.sendStatus(200))
     .catch(err => console.log(err));
 });
 

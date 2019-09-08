@@ -16,6 +16,10 @@ const Usuarios = db.define('usuario', {
     type: S.STRING,
     allowNull: false
   },
+  genero: {
+    type: S.ENUM,
+    values: ['Masculino', 'Femenino']
+  },
   email: {
     type: S.STRING,
     allowNull: false,

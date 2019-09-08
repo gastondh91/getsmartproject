@@ -2,7 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchUsers, deleteUser } from '../redux/action-creators/user-actions';
+import { fetchUsers } from '../redux/action-creators/user-actions';
+import Noautorizado from '../components/Noautorizado';
+import ModalUsers from '../components/ModalUsers'
 
 class UsersContainer extends React.Component {
   constructor(props) {
@@ -19,32 +21,18 @@ class UsersContainer extends React.Component {
   //   if (prevProps.users.length !== this.props.usershis.length) this.props.fetchUsers();
   // }
   render() {
-    return (
-      <div>
+    return ( 
+       this.props.isAdmin ? <div>
 
-        <div className="modal fade" id="definiteModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">¿Eliminar Usuario?</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p>{`¿Confirma que desea eliminar al usuario "${this.state.userName}" ?`}</p>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.props.users.length > 1 ? this.props.deleteUser(this.state.userId)
-                  .then(location.reload()) : alert('No se puede eliminar el unico usuario existente')}>Si</button>
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">No</button>
-              </div>
-            </div>
-          </div>
-        </div>
+<ModalUsers 
+location={this.props.location}
+history={this.props.history}
+userName={this.state.userName} 
+users={this.props.users} 
+userId={this.state.userId} />
 
         <div className='usersContainer'>
-          <ul className="list-group">
+          <ul className="list-group listedituser">
             <li id='listaUsuarios' className="list-group-item active titleListUsers">Usuarios:</li>
             {this.props.users.sort((a, b) => { return a.id - b.id }).map(user => {
               return (
@@ -54,14 +42,14 @@ class UsersContainer extends React.Component {
                     <strong className='titlesUsers'> Apellido:</strong> {user.apellido} <br />
                     <strong className='titlesUsers'> E-mail:</strong> {user.email} <br />
                     <strong className='titlesUsers'> Creado:</strong> {user.createdAt.slice(8, 10) + '-' + user.createdAt.slice(5, 8) + user.createdAt.slice(0, 4) + '  -  ' + user.createdAt.slice(11, 16)} <br />
-                    <strong className='titlesUsers'> Admin?:</strong> {user.isAdmin ? <img style={{maxWidth:'4%', marginBottom: '2.2%'}} className="ticks" src='/utils/checked.svg' /> : <img style={{maxWidth:'4%', marginBottom: '2.2%'}} className="ticks" src='/utils/unchecked.svg' />} <br />
+                    <strong className='titlesUsers'> Admin:</strong> {user.isAdmin ? <img style={{maxWidth:'5%', marginBottom: '1.7%'}} className="ticks" src='/utils/checked.svg' /> : <img style={{maxWidth:'4.1%', marginBottom: '0.8%'}} className="ticks" src='/utils/unchecked.svg' />} <br />
 
                   </div>
                   <div className="containerTrash">
-                  <Link to={`/usuarios/edit/${user.id}`}><img id='editUser' src="/utils/edit.svg"
+                  <Link to={`/usuarios/edit/${user.id}`}><img id='editUser' src= { user.genero == 'Masculino' ? "/utils/editmale.svg" : "/utils/editfemale.svg"}
                   // onClick={(e) => this.props.history.push(`/usuarios/edit/${user.id}`)}
                   ></img></Link>
-                    <img data-toggle="modal" data-target="#definiteModal" id='trashUser' src="/utils/garbage.svg" onClick={(e) => {
+                    <img data-toggle="modal" data-target="#definiteModal" id='deleteUser' src={ user.genero == 'Masculino' ? "/utils/deletemale.svg" : "/utils/deletefemale.svg"} onClick={(e) => {
                       this.setState({ userId: user.id, userName: user.nombre + ' ' + user.apellido });
                       // .then(()=> this.props.fetchUsers())
                     }}></img>
@@ -70,8 +58,8 @@ class UsersContainer extends React.Component {
               );
             })}
           </ul>
-        </div>
-      </div>
+          </div>
+      </div> : <Noautorizado/>
     );
   };
 };
@@ -85,7 +73,6 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   {
     fetchUsers: () => dispatch(fetchUsers()),
-    deleteUser: (id) => dispatch(deleteUser(id))
   }
 );
 
