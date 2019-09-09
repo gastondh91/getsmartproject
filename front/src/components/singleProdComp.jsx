@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React,{ useEffect} from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Stars from './starRating';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,23 @@ import { addToCart } from '../redux/action-creators/carrito-actions'
 import ModalConfirm from './ModalConfirm'
 
 const SingleProdComp = (props) => {
+
+// useEffect(()=>{
+//   var coll = document.getElementsByClassName("collapsible");
+//   var i;
+  
+//   for (i = 0; i < coll.length; i++) {
+//     coll[i].addEventListener("click", function() {
+//       this.classList.toggle("active");
+//       var content = this.nextElementSibling;
+//       if (content.style.display === "block") {
+//         content.style.display = "none";
+//       } else {
+//         content.style.display = "block";
+//       }
+//     });
+//   }
+// },[])
 
 
   const { producto, categorias, onClick } = props;
@@ -62,7 +79,7 @@ const SingleProdComp = (props) => {
       <div className="row">
         <div className="col-lg-6 col-xs-12">
           <h3><strong>Descripción : </strong></h3>
-          <h5>{producto.descripcion}</h5>
+          <h5 className='collapsible'>{producto.descripcion}</h5>
         </div>
       </div>
       <hr />

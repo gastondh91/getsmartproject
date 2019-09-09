@@ -64,21 +64,87 @@
 .header{
     border-bottom: 1px solid black;
     display: grid;
-    grid-template-columns: 0.3fr 0.3fr 1fr 1fr 0.5fr;
+    grid-template-columns: 0.2fr 0.2fr 1fr 1fr 0.5fr;
     align-items: center; 
 }
+
+.apart{
+    grid-template-columns: 0.3fr 0.2fr 1fr 1fr 0.5fr;    
+}
+
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+   /* .active, */
+   .collapsible:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+
 #logo{
+    margin-left: 14px;
     width: 150px;
     height: 70px;
 }
+
 #userLogIn{
-    width: 35px;
+    width: 40px;
 }
 #userLogOut{
-    width: 35px;
+    width: 40px;
     margin-left: 8px;
-  
+    margin-top: 3px;
 }
+
+.botonLogout{
+    cursor: pointer
+}
+
+.botonLogout:hover{
+    transform: scale(1.10);
+}
+
+.letraHead{
+    font-weight: 600;
+    font-variant: petite-caps
+
+}
+
+#avatar{
+    width: 40px;
+    margin-left: 8px;
+    margin-top: 3px;
+}
+
+.logoutIcon{
+    width: 2.6rem;
+    margin-left: 20px;
+    cursor: pointer
+}
+
+
+.hoverLog:hover{
+    transform: scale(1.09);
+}
+
 #singleProd{
     margin: 7%;
     border: 1px solid black;
@@ -620,7 +686,8 @@ a:hover{
 
 #linkLogOut{
     width: 35px;
-    margin-left: 26px;
+    margin-left: 15px;
+    margin-top: 6px;
 }
 #linkLogIn{
     width: 35px;
@@ -630,18 +697,23 @@ a:hover{
     width: 45px;
     margin-left: 125px;
 }
+
 .caption{
     width: 35px;
     height: 15px;
     color: black;
     font-size: 12px;
-    margin-left: 31px
+    margin-left: 40px
 }
+
 .caption2{
     width: 35px;
     height: 15px;
     color: black;
+    vertical-align: 3.5px;
     font-size: 12px;
+    margin-left: 18px;
+    margin-top: 1px;
   
 }
 

@@ -25,7 +25,7 @@ class MarkProductsContainer extends Component {
                 <div className="card-body">
                   <h5 className="card-title"> {mark.marca + ' ' + mark.modelo} </h5>
                   <strong><p className="card-text"> ${mark.precio} </p></strong>
-                  <p className="card-text"> {mark.descripcion} </p>
+                  <p className="card-text"> {mark.descripcion.slice(0, 90) + '...'} </p>
                 </div>
               </div>
             </div>

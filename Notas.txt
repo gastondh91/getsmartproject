@@ -1,5 +1,4 @@
 * En productos poner las categorias a la par de la descripcion
-* Arreglar navbar
 * Ver textos cuando hay hover
 * Modificar 'Hola ingresa tus datos'
 * Ver redirect
