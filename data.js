@@ -8,7 +8,7 @@ const usuarios =
       password: '5739gaston',
       genero: 'Masculino',
       isAdmin: true,
-      avatar: 'https://i.ibb.co/Wcc4wjy/Whats-App-Image-2019-05-16-at-13-30-39.jpg'
+      avatar: '/utils/gastonavatar.jpg'
     },
     {
       nombre: 'Juan Carlos',
@@ -17,6 +17,7 @@ const usuarios =
       domicilio: 'Salas y valdez 647',
       genero: 'Masculino',
       password: '123456',
+      avatar: '/utils/juancarlos.jpg',
       isAdmin: false
     },
     {
@@ -26,6 +27,7 @@ const usuarios =
       domicilio: 'Los Ceibos 635',
       genero: 'Femenino',
       password: '123456',
+      avatar: '/utils/Juliavatar.jpg',
       isAdmin: true
     },
     {
@@ -35,7 +37,8 @@ const usuarios =
       domicilio: 'West Avenue 458',
       genero: 'Masculino',
       password: '123456',
-      isAdmin: false
+      avatar: '/utils/billgates.jpg',
+      isAdmin: true
     },
     {
       nombre: 'Valentina',
@@ -44,6 +47,7 @@ const usuarios =
       domicilio: 'Lamadrid 529',
       genero: 'Femenino',
       password: '123456',
+      avatar: '/utils/valentinaavatar.jpg',
       isAdmin: false
     },
     {
@@ -53,7 +57,8 @@ const usuarios =
       domicilio: 'Av. Santa Fe 1238',
       genero: 'Masculino',
       password: '123456',
-      isAdmin: false
+      isAdmin: false,
+      avatar: '/utils/josemontiel.jpg'
     }
 
   ]

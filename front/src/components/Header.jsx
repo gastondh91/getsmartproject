@@ -56,7 +56,8 @@ import { setBusqueda } from '../redux/action-creators/action-creator'
             LOG OUT
           </button>
         </Link>
-        <img style={{width:'3.5rem',marginLeft:'2rem',borderRadius:'2rem'}} src="https://i.ibb.co/Wcc4wjy/Whats-App-Image-2019-05-16-at-13-30-39.jpg" id='userLogOut' alt="Avatar" className="avatar"></img>
+        {console.log('Props del header', !!props.usuario)}
+        <img style={{ cursor: 'pointer', objectFit: 'cover', width:'4rem', height:'3.9rem', marginLeft:'2rem',borderRadius:'2rem'}} onClick={()=> props.history.push(`/usuarios/edit/${props.usuario.id}`)} src={props.usuario.avatar} id='userLogOut' alt="Avatar" className="avatar"></img>
         <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
@@ -67,7 +68,6 @@ import { setBusqueda } from '../redux/action-creators/action-creator'
         }
         } />
         <Link to='/cart' id='linkCart'><img id='carrito' src="/utils/carrito.svg"></img></Link>
-
       </header>
   );
 };

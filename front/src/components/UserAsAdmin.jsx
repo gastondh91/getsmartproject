@@ -24,7 +24,6 @@ class UserAsAdmin extends React.Component {
 
   adminAvatar = (user) => {
 
-    // console.log(user)
     var resultado
 
     switch (user.genero) {
@@ -39,11 +38,11 @@ class UserAsAdmin extends React.Component {
   render() {
     return (
 
-      this.props.isAdmin ? <div><form style={{ gridTemplateRows: '1fr 1fr 1fr' }} className='userAsAdm' onSubmit={this.handleSubmit}>
-        <h1>Cambio de perfil de usuario</h1>
+       <div><form style={{ gridTemplateRows: '1fr 1fr 1fr' }} className='userAsAdm' onSubmit={this.handleSubmit}>
+        <h1>{this.props.usuario.isAdmin ? 'Cambio de perfil de usuario': 'Información sobre tu cuenta'}</h1>
         <div className='griduser'>
           <div style={{ float: 'left' }} >
-            <img className='editAvatar' src='https://i.ibb.co/cLFHB7d/Whats-App-Image-2019-05-16-at-13-30-39.jpg' />
+            <img style={{height: '8rem', objectFit: 'cover' }} className='editAvatar' src={this.props.selectedUser.avatar} />
           </div>
           <div style={{ float: 'right' }} className='boxUsers editbox'>
             <strong className='titlesUsers'> Nombre:</strong> {this.props.selectedUser.nombre} <br />
@@ -54,10 +53,10 @@ class UserAsAdmin extends React.Component {
           </div>
         </div>
         <div>
-          <img className='adminIcons' src={`/utils/${this.adminAvatar(this.props.selectedUser)}`}></img>
-          <button type='button' data-toggle="modal" data-target="#simpleModal" className='botonesAdm btn btn-success' onClick={this.handleSubmit} >{this.props.selectedUser.isAdmin ? 'Revocar Administrador' : 'Hacer Administrador'}</button>
-          <img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'deletemale.svg' : 'deletefemale.svg'}`}></img>
-          <button type='button' data-toggle="modal" data-target="#definiteModal" className='botonesAdm btn btn-danger'>Eliminar Usuario</button>
+        {this.props.usuario.isAdmin && <span><img className='adminIcons' src={`/utils/${this.adminAvatar(this.props.selectedUser)}`}></img>
+          <button type='button' data-toggle="modal" data-target="#simpleModal" className='botonesAdm btn btn-success' onClick={this.handleSubmit} >{this.props.selectedUser.isAdmin ? 'Revocar Administrador' : 'Hacer Administrador'}</button></span>}
+          <span><img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'deletemale.svg' : 'deletefemale.svg'}`}></img>
+          <button type='button' data-toggle="modal" data-target="#definiteModal" className='botonesAdm btn btn-danger'>{`Eliminar ${this.props.usuario.isAdmin ?'Usuario' : 'cuenta'}`}</button></span>
         </div>
 
       </form>
@@ -82,20 +81,21 @@ class UserAsAdmin extends React.Component {
           </div>
         </div>
         <div>
+          {console.log('props del comp',this.props)}
           <ModalConfirm
             funcion={this.props.deleteUser}
             encabezado={'¿Eliminar usuario?'}
             encabezadoInfo={'Usuario eliminado'}
-            confirmacion={'¿Confirma que desea eliminar'}
+            confirmacion={this.props.usuario.isAdmin ? '¿Confirma que desea eliminar' : '¿Estas seguro que deseas eliminar ' }
             history={this.props.history}
-            historypush={'/usuarios/all'}
-            nombre={'"' + this.props.selectedUser.nombre + ' ' + this.props.selectedUser.apellido + '"'}
+            historypush={this.props.usuario.isAdmin ? '/usuarios/all' : '/redirect'}
+            nombre={this.props.usuario.isAdmin ? '"' + this.props.selectedUser.nombre + ' ' + this.props.selectedUser.apellido + '"' : ''}
             parametro={this.props.selectedUser.id}
-            item={'al usuario'}
+            item={this.props.usuario.isAdmin ? 'al usuario' : 'tu cuenta'}
             accion={'Se eliminó'}
           />
         </div>
-      </div> : <Noautorizado />
+      </div>
 
     )
   }

@@ -50,19 +50,20 @@ class Main extends React.Component {
       </div>
         <div style={{ color: '#192a56', textAlign: 'center', fontSize: 'xx-large', fontFamily: 'serif' }}>Loading...</div></div>
         : <div id='main' className='container-fluid'>
-          <Route render={({ history, location, match }) => (<Header location={location} match={match} login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
+          <Route render={({ history, location, match }) => (<Header usuario={this.props.usuario} location={location} match={match} login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
           <NavbarContainer location={location} history={history} isAdmin={this.props.usuario.isAdmin} />
           <Switch>
             <Route exact path='/unauthorized' render={() => < Noautorizado usuario={this.props.usuario} />} />
             <Route exact path="/usuarios" render={() => (<HomeRL />)} />
+            <Route exact path="/redirect" render={() => (<Redirect to='/' />)} />
             <Route exact path="/usuarios/all" render={({ history,location }) => (<UsersContainer location={location} isAdmin={this.props.usuario.isAdmin} history={history} />)} />
             <Route exact path="/usuarios/registro" render={({ history }) => (<Registro history={history} />)} />
-            <Route exact path="/usuarios/login" render={({ history, location }) => (<Login history={history} location={location} />)} />
+            <Route exact path="/usuarios/login" render={({ history, location }) => (<Login login={this.props.usuario.id} history={history} location={location} />)} />
             <Route exact path='/' component={Home} />
             <Route exact path='/categorias/adm' render={({ history }) => (<CreateCat isAdmin={this.props.usuario.isAdmin} history={history} />)} />
             <Route exact path='/categorias/marcas/:marca' render={({ match }) => <MarkProductsContainer marca={match.params.marca} />} />
             <Route exact path='/productos' render={({ location }) => <ProductsContainer search={location.search} />} />
-            <Route exact path='/usuarios/edit/:id' render={({ history, match, location }) => (<UserAsAdmin location={this.props.location} isAdmin={this.props.usuario.isAdmin} history={history} userId={match.params.id} />)} />
+            <Route exact path='/usuarios/edit/:id' render={({ history, match, location }) => (<UserAsAdmin usuario={this.props.usuario} location={this.props.location} isAdmin={this.props.usuario.isAdmin} history={history} userId={match.params.id} />)} />
             <Route exact path='/productos/add' render={({ history }) => (<CrearProd isAdmin={this.props.usuario.isAdmin} history={history} />)} />
             <Route exact path='/productos/edit/:id' render={({ match, history }) => (<EditProd  isAdmin={this.props.usuario.isAdmin} history={history} prodId={match.params.id} />)} />
             <Route exact path="/productos/:id" render={({ match, history }) => <SingleProd history={history} prodId={match.params.id} isAdmin={this.props.usuario.isAdmin} />} />

@@ -18,6 +18,7 @@ class Registro extends React.Component {
       password: '',
       secondPassword: '',
       isAdmin: false,
+      genero: '',
       estado: ['Usuario registrado / Error', 'razon']
     };
 
@@ -34,27 +35,27 @@ class Registro extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.state.nombre || !this.state.apellido || !this.state.email || !this.state.domicilio) {
-      this.setState({ estado: ['Error', 'Debes completar todos los campos']})
+    if (!this.state.nombre || !this.state.apellido || !this.state.avatar || !this.state.genero || !this.state.email || !this.state.domicilio) {
+      this.setState({ estado: ['Error', 'Debes completar todos los campos'] })
     } else if (this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.com') === -1) {
-      this.setState({ estado: ['Error', 'Formato de E-mail invalido']})
+      this.setState({ estado: ['Error', 'Formato de E-mail invalido'] })
     } else if (this.state.password !== this.state.secondPassword) {
-      this.setState({ estado: ['Error', 'Las contraseñas ingresadas no coinciden']})
+      this.setState({ estado: ['Error', 'Las contraseñas ingresadas no coinciden'] })
     } else if (this.state.secondPassword.length < 6) {
-      this.setState({ estado: ['Error', 'La contraseña debe tener como minimo 6 caracteres']})
+      this.setState({ estado: ['Error', 'La contraseña debe tener como minimo 6 caracteres'] })
     } else {
       for (let i = 0; i < this.props.users.length; i += 1) {
         if (this.props.users[i].email === this.state.email) {
-          this.setState({ estado: ['Error', 'El E-mail ingresado ya se encuentra en uso']})
+          this.setState({ estado: ['Error', 'El E-mail ingresado ya se encuentra en uso'] })
           return;
         }
         if (this.props.users[i].nombre === this.state.nombre && this.props.users[i].apellido === this.state.apellido) {
-          this.setState({ estado: ['Error', 'La combinacion de nombre y apellido del usuario ya existen en la base de datos']})
+          this.setState({ estado: ['Error', 'La combinacion de nombre y apellido del usuario ya existen en la base de datos'] })
           return
         }
       }
       this.props.registerUser(this.state)
-      .then(()=> this.setState({ estado: ['Usuario registrado', null] }))
+        .then(() => this.setState({ estado: ['Usuario registrado', null] }))
     }
   }
 
@@ -91,6 +92,24 @@ class Registro extends React.Component {
                     {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
                     <input name='password' onChange={this.handleChange} type="password" className="form-control" id="inputPassword4" placeholder="Confirmar contraseña" />
                   </div>
+                  <div className="form-group col-md-6">
+                    {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
+                    <input name='avatar' onChange={this.handleChange} className="form-control" id="avatar" placeholder="Avatar URL" />
+                  </div>
+                  <div className="form-group col-md-6">
+                    {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
+                    <div style={{ alignItems: 'end', marginRight: '0' }} className="form-check form-check-inline">
+                      <p style={{ marginTop: '0.2%', fontSize: 'larger' }}>Genero: </p>
+                      <span className='generoIn'>
+                        <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
+                        <label className="form-check-label generoLabel" htmlFor="Masculino">Masculino</label>
+                      </span >
+                      <span className='generoIn'>
+                        <input id='Femenino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Femenino' />
+                        <label className="form-check-label generoLabel" htmlFor="Femenino">Femenino</label>
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <div className="form-row">
                 </div>
@@ -111,7 +130,7 @@ class Registro extends React.Component {
         <div>
           <ModalInfo
             encabezado={this.state.estado[0]}
-            accion={this.state.estado[0] == 'Error' ? this.state.estado[1] : 'Usuario registrado exitosamente.'}
+            accion={this.state.estado[0] == 'Error' ? this.state.estado[1] : 'Usuario registrado exitosamente'}
             history={this.props.history}
             historypush={this.state.estado[0] == 'Error' ? '/usuarios/registro' : '/usuarios/login'}
           />

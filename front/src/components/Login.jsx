@@ -3,7 +3,7 @@ import React from 'react';
 import { checkUserLogin } from '../redux/action-creators/action-creator';
 import { connect } from 'react-redux';
 import store from '../redux/store';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import ModalInfo from './ModalInfo'
 
 
@@ -13,7 +13,8 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      checkedUser: null
+      checkedUser: null,
+      userGender: ''
     };
   }
 
@@ -29,7 +30,8 @@ class Login extends React.Component {
     this.props.checkUserLogin(user)
       .then((data) => {
         if (data.usuario) {
-          this.setState({ checkedUser: data.usuario.nombre })
+          this.setState({ checkedUser: data.usuario.nombre });
+          this.setState({ userGender: data.usuario.genero })
         }
       })
       .catch(err => { this.setState({ checkedUser: false }) })
@@ -39,10 +41,11 @@ class Login extends React.Component {
   render() {
     return (
       <div>
+        {console.log(this.props)}
         <div className="login-contenedor">
           <div className='FRUsuarios'>
             <form onSubmit={this.handleSubmit} >
-              <h1 className="FRUstitle"> ¡Hola! Ingresa tu Email para seguir  </h1>
+              <h1 className="FRUstitle">¡Hola! Por favor ingresa tus datos para contnuar</h1>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label htmlFor="email">E-mail</label>
@@ -71,7 +74,7 @@ class Login extends React.Component {
         <div>
           <ModalInfo
             encabezado={this.state.checkedUser ? 'Usuario logueado' : 'Error'}
-            accion={this.state.checkedUser ? 'Bienvenido de vuelta': 'La combinación de usuario y contraseña son incorrectos'}
+            accion={this.state.checkedUser ? `Bienvenid${this.state.userGender == 'Masculino' ? 'o' : 'a'} de nuevo, `: 'La combinación de usuario y contraseña son incorrectos'}
             nombre={this.state.checkedUser ? this.state.checkedUser : ''}
             history={this.props.history}
             historypush={this.state.checkedUser ? '/' : '/usuarios/login'}
