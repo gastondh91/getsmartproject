@@ -45,7 +45,11 @@ const AdminProd = (props) =>{
 
     const handleSubmit = (e, categorias) => {
       e.preventDefault();
-      
+      if (!Marca || !Modelo || !Imagen || !Precio || !Stock || !Descripcion ) {
+        setEstado( Estado = ['Error', 'Debes completar los campos obligatorios (*)'])
+        return
+      }
+
       for(let i=0 ; i<Productos.length ; i+=1){
         if(Productos[i].modelo == Modelo) {
           setEstado( Estado = ['Error','Ya existe ese modelo de telefono'] )

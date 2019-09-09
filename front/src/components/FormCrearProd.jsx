@@ -9,7 +9,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
   <form className='formProdAm' onSubmit={(e) => onSubmit(e, categorias)} >
     <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Crear un Nuevo Producto</h1>
     <div className="row">
-      <h3>Marca: </h3>
+      <h3 style={{ marginLeft: '0.9rem'}}>* Marca: </h3>
       <div style={{marginTop:'0.8%'}} className="dropdown form-group col-lg-9 " >
         <div className="form-check form-check-inline">
           <input onChange={onChange} className="form-check-input" type="radio" name="Marca" id="iPhone" value="iPhone" />
@@ -42,9 +42,9 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
       <div id='modelo' className="form-group col-lg-12">
         <div className="input-group input-group-lg">
           <div className="input-group-prepend">
-            <span className="input-group-text" id="inputGroup-sizing-lg">Modelo</span>
+            <span className="input-group-text" id="inputGroup-sizing-lg">* Modelo</span>
           </div>
-          <input name='Modelo' onChange={onChange} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" required />
+          <input name='Modelo' onChange={onChange} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  />
         </div>
       </div>
 
@@ -52,28 +52,28 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
 
     <div className="input-group input-group-lg">
       <div className="input-group-prepend">
-        <span className="input-group-text" id="inputGroup-sizing-lg">URL Imagenes</span>
+        <span className="input-group-text" id="inputGroup-sizing-lg">* URL Imagenes</span>
       </div>
-      <input onChange={onChange} name="Imagen" type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" required />
+      <input onChange={onChange} name="Imagen" type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  />
     </div>
     <h6 style={{ marginTop: '10px' }}>* Separar las URL con coma (',')</h6>
 
     <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
       <div className="input-group-prepend">
-        <span className="input-group-text" id="inputGroup-sizing-lg">Precio</span>
+        <span className="input-group-text" id="inputGroup-sizing-lg">* Precio</span>
       </div>
-      <input name='Precio' onChange={onChange} type="text" className="form-control" id="inputAddress" required />
+      <input name='Precio' onChange={onChange} type="text" className="form-control" id="inputAddress"  />
     </div>
 
     <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
       <div className="input-group-prepend">
-        <span className="input-group-text" id="inputGroup-sizing-lg">Unidades</span>
+        <span className="input-group-text" id="inputGroup-sizing-lg">* Unidades</span>
       </div>
-      <input name='Stock' onChange={onChange} type="text" className="form-control" id="inputAddress" required />
+      <input name='Stock' onChange={onChange} type="text" className="form-control" id="inputAddress"  />
     </div>
 
     <div className="form-group selCat">
-      <h3 id='modelo' className="form-group"> * Seleccionar Categorias:</h3>
+      <h3 id='modelo' className="form-group"> Seleccionar Categorias:</h3>
 
       {array.map((categoria) => (
         <div key={categoria.id} className="form-check form-check-inline">
@@ -85,7 +85,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
     </div>
     <div className="form-group ">
       <label><h3>* Descripcion: </h3>
-        <textarea onChange={onChange} name='Descripcion' placeholder='Agrega una descripcion para el producto' style={{borderRadius: '0.4rem'}} rows="5" cols="78" required></textarea>
+        <textarea onChange={onChange} name='Descripcion' placeholder='Agrega una descripcion para el producto' style={{borderRadius: '0.4rem'}} rows="5" cols="78" ></textarea>
       </label>
     </div>
 

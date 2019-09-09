@@ -13,7 +13,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
         style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} <b>Editar producto: </b> <br /> {prodAEditar.marca}  {prodAEditar.modelo}  </h1>
       <div
         className="row">
-        <h3>Marca: </h3>
+        <h3 style={{ marginLeft: '0.9rem'}}>* Marca: </h3>
         {prodAEditar.marca && <div style={{marginTop:'0.8%'}} className="dropdown form-group col-lg-9 " >
           <div className="form-check form-check-inline">
             <input defaultChecked={prodAEditar.marca === 'iPhone'} onChange={onChange} className="form-check-input" type="radio" name="Marca" id="iPhone" value="iPhone" />
@@ -44,7 +44,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
         <div id='modelo' className="form-group col-lg-12">
           <div className="input-group input-group-lg">
             <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroup-sizing-lg">Modelo</span>
+              <span className="input-group-text" id="inputGroup-sizing-lg">* Modelo</span>
             </div>
             <input name='Modelo' defaultValue={prodAEditar.modelo} onChange={onChange} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
           </div>
@@ -52,7 +52,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
       </div>
       <div className="input-group input-group-lg">
         <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg">URL Imagenes</span>
+          <span className="input-group-text" id="inputGroup-sizing-lg">* URL Imagenes</span>
         </div>
         <input onChange={onChange} name="Imagen" defaultValue={prodAEditar.imagenes} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
       </div>
@@ -60,20 +60,20 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
 
       <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
         <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg">Precio</span>
+          <span className="input-group-text" id="inputGroup-sizing-lg">* Precio</span>
         </div>
         <input name='Precio' defaultValue={prodAEditar.precio} onChange={onChange} type="text" className="form-control" id="inputAddress" />
       </div>
 
       <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
         <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg">Unidades</span>
+          <span className="input-group-text" id="inputGroup-sizing-lg">* Unidades</span>
         </div>
         <input name='Stock' onChange={onChange} defaultValue={prodAEditar.stock} type="text" className="form-control" id="inputAddress" />
       </div>
 
       <div className="form-group selCat">
-        <h3 id='modelo' className="form-group"> * Seleccionar Categorias:</h3>
+        <h3 id='modelo' className="form-group"> Seleccionar Categorias:</h3>
         <div className="form-group"></div>
 
         {catDisponibles.map((categoria) => (
