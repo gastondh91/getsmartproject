@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React,{ useEffect} from 'react';
-import Carousel from 'react-bootstrap/Carousel';
 import Stars from './starRating';
 import { Link } from 'react-router-dom';
 import { borrarProd } from '../redux/action-creators/products-actions';
