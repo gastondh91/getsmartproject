@@ -10,13 +10,8 @@ class SingleProd extends React.Component {
     super();
   }
 
-  borrarProd = () => {
-    axios.delete(`/api/productos/${this.props.producto.id}`)
-    .then(()=>{
-      alert('Se elimino ' + this.props.producto.marca + ' ' + this.props.producto.modelo);
-      this.props.history.push('/productos');
-    })
-
+  borrarProd = (id) => {
+    axios.delete(`/api/productos/${id}`)
   }
 
   componentDidMount () {
@@ -28,7 +23,7 @@ class SingleProd extends React.Component {
     const product = this.props.producto;
     return (
       <div className="container" >
-        {product.id ? <SingleProdComp onClick={this.borrarProd} producto={product} adminInfo={this.props.isAdmin} categorias={this.props.categorias} /> : <h1>Este producto no existe</h1>}
+        {product.id ? <SingleProdComp history={this.props.history} borrarProd={this.borrarProd} producto={product} adminInfo={this.props.isAdmin} categorias={this.props.categorias} /> : <h1>Este producto no existe</h1>}
       </div>
     );
   }

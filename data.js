@@ -11,7 +11,7 @@ const usuarios =
       avatar: 'https://i.ibb.co/Wcc4wjy/Whats-App-Image-2019-05-16-at-13-30-39.jpg'
     },
     {
-      nombre: 'Juan carlos',
+      nombre: 'Juan Carlos',
       apellido: 'Araoz',
       email: 'juancarlos@gmail.com',
       domicilio: 'Salas y valdez 647',

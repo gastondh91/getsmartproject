@@ -94,7 +94,7 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
           <textarea onChange={onChange} defaultValue={prodAEditar.descripcion} placeholder='Agrega una descripcion para el producto' name='Descripcion' rows="5" cols="78" style={{borderRadius: '0.4rem'}}></textarea>
         </label>
       </div>}
-      <button onSubmit={(e) => onSubmit(e)} className='btn btn-lg btn-success'>SUBMIT</button>
+      <button data-toggle="modal" data-target="#infoModal" onSubmit={(e) => onSubmit(e)} className='btn btn-lg btn-success'>SUBMIT</button>
       <button style={{ marginLeft: '10px' }} onClick={() => history.push(`/productos/${prodAEditar.id}`)} className='btn btn-lg btn-danger'>CANCEL</button>
     </form >
   );

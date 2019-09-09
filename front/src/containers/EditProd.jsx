@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import FormEditProd from '../components/FormEditProd';
 import axios from 'axios';
 import Noautorizado from '../components/Noautorizado';
-
+import ModalInfo from '../components/ModalInfo'
 
 let arrCategorias = []
 
@@ -18,6 +18,7 @@ const AdminProd = (props) => {
   let [Imagen, setImagen] = useState()
   let [Descripcion, setDescripcion] = useState()
   let [Productos, setProductos] = useState([])
+  let [Estado, setEstado] = useState(['Error/Producto creado', 'Razon'])
 
   useEffect(() => {
 
@@ -91,7 +92,7 @@ const AdminProd = (props) => {
     e.preventDefault();
     for (let i = 0; i < Productos.length; i += 1) {
       if (Productos[i].modelo == Modelo) {
-        alert('Ya existe ese modelo de telefono')
+        setEstado( Estado = ['Error','Ya existe ese modelo de telefono'] )
         return
       }
     }
@@ -106,26 +107,36 @@ const AdminProd = (props) => {
       categorias: catsFinales
     })
       .then(() => {
-        alert('Se edito el producto ' + prodAEditar.marca + ' ' + prodAEditar.modelo);
-        props.history.push(`/productos/${props.prodId}`);
+        setEstado(Estado = ['Se editó el producto' + ' ' + prodAEditar.marca + ' ' + prodAEditar.modelo,null])
       });
   }
 
   return (
     <div>
       {props.isAdmin ?
-        <FormEditProd
-          catDisponibles={categoriasDisponibles}
-          prodAEditar={prodAEditar}
-          marca={Marca}
-          modelo={Modelo}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          history={props.history}
-          checked={checked}
-          arrCategorias={arrCategorias}
-          addCat={addCat}
-        /> : <Noautorizado/>}
+        <div>
+          <FormEditProd
+            catDisponibles={categoriasDisponibles}
+            prodAEditar={prodAEditar}
+            marca={Marca}
+            modelo={Modelo}
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            history={props.history}
+            checked={checked}
+            arrCategorias={arrCategorias}
+            addCat={addCat}
+          />
+        <div>
+          <ModalInfo
+            encabezado={Estado[0] == 'Error' ? Estado[0] : 'Producto editado'}
+            accion={Estado[0] == 'Error' ? Estado[1] : Estado[0]}
+            history={props.history}
+            historypush={Estado[0] != 'Error' ? `/productos/${prodAEditar.id}` : `/productos/edit/${prodAEditar.id}`}
+          />
+        </div>
+        </div>
+         : <Noautorizado />}
     </div>
   );
 }

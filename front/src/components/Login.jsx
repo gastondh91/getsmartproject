@@ -4,13 +4,16 @@ import { checkUserLogin } from '../redux/action-creators/action-creator';
 import { connect } from 'react-redux';
 import store from '../redux/store';
 import { withRouter, Link } from 'react-router-dom';
+import ModalInfo from './ModalInfo'
+
 
 class Login extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      checkedUser: null
     };
   }
 
@@ -21,48 +24,58 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     const user = this.state;
     this.props.checkUserLogin(user)
       .then((data) => {
-        if(data.usuario){
-          alert('Bienvenido de vuelta ' + data.usuario.nombre + ' '+ data.usuario.apellido );
-          this.props.history.push('/')
+        if (data.usuario) {
+          this.setState({ checkedUser: data.usuario.nombre })
         }
       })
-      .catch(err => err && alert('Usuario o contraseña incorrectos'))
-    ;
+      .catch(err => { this.setState({ checkedUser: false }) })
+      ;
   }
 
-  render () {
-    console.log(this.props)
+  render() {
     return (
-      <div className="login-contenedor">
-        <div className='FRUsuarios'>
-          <form onSubmit={this.handleSubmit} >
-            <h1 className="FRUstitle"> ¡Hola! Ingresa tu Email para seguir  </h1>
-            <div className="form-row">
-              <div className="form-group col-md-6">
-                <label htmlFor="email">E-mail</label>
-                <input name='email' onChange={this.handleChange} type="text" className="form-control" id="inputEmail4" placeholder="E-mail" />
+      <div>
+        <div className="login-contenedor">
+          <div className='FRUsuarios'>
+            <form onSubmit={this.handleSubmit} >
+              <h1 className="FRUstitle"> ¡Hola! Ingresa tu Email para seguir  </h1>
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <label htmlFor="email">E-mail</label>
+                  <input name='email' onChange={this.handleChange} type="text" className="form-control" id="inputEmail4" placeholder="E-mail" />
+                </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputPassword4">Password</label>
+                  <input name='password' onChange={this.handleChange} type="password" className="form-control" id="inputPassword4" placeholder="Password" />
+                </div>
               </div>
-              <div className="form-group col-md-6">
-                <label htmlFor="inputPassword4">Password</label>
-                <input name='password' onChange={this.handleChange} type="password" className="form-control" id="inputPassword4" placeholder="Password" />
+              <div className="form-row">
               </div>
-            </div>
-            <div className="form-row">
-            </div>
-            <div className="botones">
-              <button type="submit" onSubmit={this.handleSubmit} className="btn btn-primary">Login</button>
-              <a className="loginBtn loginBtn--facebook" href='/api/auth/facebook'>
-                Login with Facebook
+              <div className="botones">
+                <button type="submit" data-toggle="modal" data-target="#infoModal" onSubmit={this.handleSubmit} className="btn btn-primary">Login</button>
+                <a className="loginBtn loginBtn--facebook" href='/api/auth/facebook'>
+                  Login with Facebook
               </a>
 
-              <a className="loginBtn loginBtn--google" href='/api/auth/google'>
-                Login with Google
+                <a className="loginBtn loginBtn--google" href='/api/auth/google'>
+                  Login with Google
               </a>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div>
+          <ModalInfo
+            encabezado={this.state.checkedUser ? 'Usuario logueado' : 'Error'}
+            accion={this.state.checkedUser ? 'Bienvenido de vuelta': 'La combinación de usuario y contraseña son incorrectos'}
+            nombre={this.state.checkedUser ? this.state.checkedUser : ''}
+            history={this.props.history}
+            historypush={this.state.checkedUser ? '/' : '/usuarios/login'}
+          />
         </div>
       </div>
     );

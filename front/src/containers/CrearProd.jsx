@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import FormCrearProd from '../components/FormCrearProd';
 import axios from 'axios';
 import Noautorizado from '../components/Noautorizado';
+import ModalInfo from '../components/ModalInfo'
 
 const AdminProd = (props) =>{
       let [Marca, setMarca] = useState()
@@ -13,6 +14,8 @@ const AdminProd = (props) =>{
       let [Categorias, setCategorias] = useState([])
       let [Descripcion, setDescripcion] = useState()
       let [Productos, setProductos] = useState([])
+      let [Estado , setEstado] = useState(['Error/Producto creado', 'Razon'])
+      let [ProductoId , setProductoId] = useState('')
 
       useEffect(() => {
         axios.get('/api/categorias/get')
@@ -45,7 +48,7 @@ const AdminProd = (props) =>{
       
       for(let i=0 ; i<Productos.length ; i+=1){
         if(Productos[i].modelo == Modelo) {
-          alert('Ya existe ese modelo de telefono')
+          setEstado( Estado = ['Error','Ya existe ese modelo de telefono'] )
           return
         }
       }
@@ -58,21 +61,32 @@ const AdminProd = (props) =>{
         descripcion: Descripcion,
         categorias
       })
+        .then(producto => setProductoId( ProductoId = producto.data.id))
         .then(() => {
-          alert('Se creo el producto' + ' ' + Marca + ' ' + Modelo)
-          props.history.push(`/productos/${Productos.id}`);
+        setEstado(Estado = ['Se creo el producto' + ' ' + Marca + ' ' + Modelo,null])
         });
     }
 
     return (
       <div>
         {props.isAdmin ?
+        <div>
         <FormCrearProd
           array={Categorias}
           onSubmit={handleSubmit}
           onChange={handleChange}
           history={props.history}
-          /> : <Noautorizado/>}
+          />
+          <div>
+          <ModalInfo
+            encabezado={Estado[0] == 'Error' ? Estado[0] : 'Producto creado' }
+            accion={Estado[0] == 'Error' ? Estado[1] : Estado[0]}
+            history={props.history}
+            historypush={Estado[0] != 'Error' ? `/productos/${ProductoId}` : `/productos/add` }
+          />
+          </div>
+          </div>
+           : <Noautorizado/>}
       </div>
     );
   }

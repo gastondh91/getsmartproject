@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 import { borrarProd } from '../redux/action-creators/products-actions';
 import { connect } from 'react-redux';
 import { addToCart } from '../redux/action-creators/carrito-actions'
+import ModalConfirm from './ModalConfirm'
 
 const SingleProdComp = (props) => {
+
+
   const { producto, categorias, onClick } = props;
   return (
     <div id="singleProd">
-
       <div className="row">
 
         <div className="col-lg-6 col-xs-12">
@@ -32,7 +34,7 @@ const SingleProdComp = (props) => {
             <div className="col-lg-5 col-sm-12" id='editElim'>
               {props.adminInfo
                 ? <div> <Link to={`/productos/edit/${producto.id}`}> <button className="btn btn-lg btn-success" type="button" style={{ padding: '20px', margin: '7px' }} > EDITAR </button> </Link>
-                  <button onClick={props.onClick} className="btn btn-lg btn-danger" type="button" style={{ padding: '20px', margin: '7px' }} > ELIMINAR </button>
+                  <button data-toggle="modal" data-target="#definiteModal" className="btn btn-lg btn-danger" type="button" style={{ padding: '20px', margin: '7px' }} > ELIMINAR </button>
                 </div>
                 : <Link to={`/checkout/${producto.id}`}><button className="btn btn-lg btn-success" type="button" style={{ padding: '20px' }} > COMPRAR! </button> </Link>}
             </div>
@@ -79,7 +81,18 @@ const SingleProdComp = (props) => {
           <h6 className="col-lg-12"><strong>UsuarioX </strong>Dijo: Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum saepe, quos tempora perferendis repellendus in libero asperiores voluptatum deleniti voluptatem tenetur voluptatibus consequuntur animi architecto ratione quae maiores dignissimos.</h6>
         </div>
       </div>
-
+        <ModalConfirm
+          funcion={props.borrarProd}
+          parametro={producto.id}
+          encabezado={'¿Eliminar producto?'}
+          encabezadoInfo={'Producto eliminado'}
+          confirmacion={'¿Confirma que desea eliminar'}
+          history={props.history}
+          historypush={'/productos'}
+          nombre={'"' + producto.marca + ' ' + producto.modelo + '"' }
+          item={'el producto'}
+          accion={'Se eliminó'}
+        />
     </div>
   );
 };

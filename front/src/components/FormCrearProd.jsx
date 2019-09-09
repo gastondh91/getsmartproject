@@ -12,7 +12,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
       <h3>Marca: </h3>
       <div style={{marginTop:'0.8%'}} className="dropdown form-group col-lg-9 " >
         <div className="form-check form-check-inline">
-          <input onChange={onChange} className="form-check-input" type="radio" name="Marca" id="iPhone" value="iPhone" defaultChecked />
+          <input onChange={onChange} className="form-check-input" type="radio" name="Marca" id="iPhone" value="iPhone" />
           <label className="form-check-label" htmlFor="iPhone">iPhone</label>
         </div>
 
@@ -89,7 +89,7 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
       </label>
     </div>
 
-    <button onSubmit={onSubmit} className='btn btn-lg btn-success'>SUBMIT</button>
+    <button data-toggle="modal" data-target="#infoModal" onSubmit={onSubmit} className='btn btn-lg btn-success'>SUBMIT</button>
     <button style={{ marginLeft: '10px' }} onClick={()=> history.push('/')} className='btn btn-lg btn-danger'>CANCEL</button>
 
 
