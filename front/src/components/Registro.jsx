@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { registerUser } from '../redux/action-creators/action-creator';
 import { fetchUsers } from '../redux/action-creators/user-actions';
 import ModalInfo from './ModalInfo'
+import axios from 'axios'
 
 class Registro extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class Registro extends React.Component {
       password: '',
       secondPassword: '',
       isAdmin: false,
+      avatar: null,
+      file: null,
       genero: '',
       estado: ['Usuario registrado / Error', 'razon']
     };
@@ -28,6 +31,10 @@ class Registro extends React.Component {
     this.props.fetchUsers()
   }
 
+  onImageChange = (e) => {
+    this.setState({file : e.target.files[0]});
+  }
+
   handleChange = (e) => {
     this.setState(
       { [e.target.name]: e.target.value });
@@ -35,7 +42,7 @@ class Registro extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.state.nombre || !this.state.apellido || !this.state.avatar || !this.state.genero || !this.state.email || !this.state.domicilio) {
+    if (!this.state.nombre || !this.state.apellido || !this.state.genero || !this.state.email || !this.state.domicilio) {
       this.setState({ estado: ['Error', 'Debes completar todos los campos'] })
     } else if (this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.com') === -1) {
       this.setState({ estado: ['Error', 'Formato de E-mail invalido'] })
@@ -54,8 +61,24 @@ class Registro extends React.Component {
           return
         }
       }
+
+
       this.props.registerUser(this.state)
         .then(() => this.setState({ estado: ['Usuario registrado', null] }))
+        .then(() => {
+
+          const formData = new FormData();
+          formData.append('myImage', this.state.file, this.props.user.id);
+          const config = {
+            headers: {
+              'content-type': 'multipart/form-data',
+            }
+          };
+
+          axios.post("/api/imagenes/upload", formData, config)
+        }).catch((error) => {
+        });
+
     }
   }
 
@@ -66,6 +89,7 @@ class Registro extends React.Component {
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">
               <h3 className="FRUstitle"> Completa tus datos... </h3>
+              <img className='avatarVacio' src='/utils/avatar.svg' />
               <div className='FRUsuarios'>
                 <div className="form-row">
                   <div className="form-group col-md-6">
@@ -94,7 +118,7 @@ class Registro extends React.Component {
                   </div>
                   <div className="form-group col-md-6">
                     {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
-                    <input name='avatar' onChange={this.handleChange} className="form-control" id="avatar" placeholder="Avatar URL" />
+                    <input type="file" name="myImage" onChange={this.onImageChange} style={{ width: '317px' }} />
                   </div>
                   <div className="form-group col-md-6">
                     {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}

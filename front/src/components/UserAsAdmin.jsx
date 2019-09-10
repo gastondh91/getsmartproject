@@ -4,18 +4,42 @@ import { connect } from 'react-redux'
 import Noautorizado from '../components/Noautorizado';
 import ModalConfirm from './ModalConfirm'
 import { deleteUser } from '../redux/action-creators/user-actions';
+import axios from 'axios'
 
 
 
 class UserAsAdmin extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      file: null
+    }
   }
 
   componentDidMount() {
     this.props.fetchOneUser(this.props.userId)
   }
 
+  setAvatar = () => {
+    const formData = new FormData();
+    formData.append('myImage', this.state.file, this.props.selectedUser.id);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      }
+    };
+    axios.post("/api/imagenes/upload", formData, config)
+      .then(() => location.reload())
+      .catch(() => {
+        alert('El formato del archivo es incorrecto')
+      });
+  }
+
+
+  onImageChange = (e) => {
+    this.setState({ file: e.target.files[0] }, this.setAvatar);
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -38,11 +62,12 @@ class UserAsAdmin extends React.Component {
   render() {
     return (
 
-       <div><form style={{ gridTemplateRows: '1fr 1fr 1fr' }} className='userAsAdm' onSubmit={this.handleSubmit}>
-        <h1>{this.props.usuario.isAdmin ? 'Cambio de perfil de usuario': 'Información sobre tu cuenta'}</h1>
+      <div><form style={{ gridTemplateRows: '1fr 1fr 1fr' }} className='userAsAdm' onSubmit={this.handleSubmit}>
+        <h1>{this.props.usuario.isAdmin ? 'Cambio de perfil de usuario' : 'Información sobre tu cuenta'}</h1>
         <div className='griduser'>
           <div style={{ float: 'left' }} >
-            <img style={{height: '8rem', objectFit: 'cover' }} className='editAvatar' src={this.props.selectedUser.avatar} />
+            <img onClick={() =>{ this.props.selectedUser.id == this.props.usuario.id ? this.refs.fileUploader.click() : null }} title={this.props.selectedUser.id == this.props.usuario.id ? 'Cambiar avatar' : null} style={{ height: '8rem', objectFit: 'cover', cursor: this.props.selectedUser.id == this.props.usuario.id ? 'pointer' : 'auto' }} className='editAvatar' src={this.props.selectedUser.avatar} />
+            {this.props.selectedUser.id == this.props.usuario.id && <input onChange={this.onImageChange} type="file" ref="fileUploader" id="FileUpload" style={{ display: 'none' }} />}
           </div>
           <div style={{ float: 'right' }} className='boxUsers editbox'>
             <strong className='titlesUsers'> Nombre:</strong> {this.props.selectedUser.nombre} <br />
@@ -53,10 +78,10 @@ class UserAsAdmin extends React.Component {
           </div>
         </div>
         <div>
-        {this.props.usuario.isAdmin && <span><img className='adminIcons' src={`/utils/${this.adminAvatar(this.props.selectedUser)}`}></img>
-          <button type='button' data-toggle="modal" data-target="#simpleModal" className='botonesAdm btn btn-success' onClick={this.handleSubmit} >{this.props.selectedUser.isAdmin ? 'Revocar Administrador' : 'Hacer Administrador'}</button></span>}
+          {this.props.usuario.isAdmin && <span><img className='adminIcons' src={`/utils/${this.adminAvatar(this.props.selectedUser)}`}></img>
+            <button type='button' data-toggle="modal" data-target="#simpleModal" className='botonesAdm btn btn-success' onClick={this.handleSubmit} >{this.props.selectedUser.isAdmin ? 'Revocar Administrador' : 'Hacer Administrador'}</button></span>}
           <span><img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'deletemale.svg' : 'deletefemale.svg'}`}></img>
-          <button type='button' data-toggle="modal" data-target="#definiteModal" className='botonesAdm btn btn-danger'>{`Eliminar ${this.props.usuario.isAdmin ?'Usuario' : 'cuenta'}`}</button></span>
+            <button type='button' data-toggle="modal" data-target="#definiteModal" className='botonesAdm btn btn-danger'>{`Eliminar ${this.props.usuario.isAdmin ? 'Usuario' : 'cuenta'}`}</button></span>
         </div>
 
       </form>
@@ -74,19 +99,19 @@ class UserAsAdmin extends React.Component {
                   <p>{this.props.selectedUser.isAdmin ? 'El usuario fue revocado como administrador' : 'El usuario fue nombrado administrador'}</p>
                 </div>
                 <div className="modal-footer">
-                  <button onClick={()=> location.reload()} type="button" className="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                  <button onClick={() => location.reload()} type="button" className="btn btn-primary" data-dismiss="modal">Aceptar</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div>
-          {console.log('props del comp',this.props)}
+          {console.log('props del comp', this.props)}
           <ModalConfirm
             funcion={this.props.deleteUser}
             encabezado={'¿Eliminar usuario?'}
             encabezadoInfo={'Usuario eliminado'}
-            confirmacion={this.props.usuario.isAdmin ? '¿Confirma que desea eliminar' : '¿Estas seguro que deseas eliminar ' }
+            confirmacion={this.props.usuario.isAdmin ? '¿Confirma que desea eliminar' : '¿Estas seguro que deseas eliminar '}
             history={this.props.history}
             historypush={this.props.usuario.isAdmin ? '/usuarios/all' : '/redirect'}
             nombre={this.props.usuario.isAdmin ? '"' + this.props.selectedUser.nombre + ' ' + this.props.selectedUser.apellido + '"' : ''}

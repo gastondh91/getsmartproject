@@ -72,6 +72,15 @@
     grid-template-columns: 0.3fr 0.2fr 1fr 1fr 0.5fr;    
 }
 
+.avatarVacio{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8rem;
+    height: 8rem;
+    object-fit: contain
+}
+
 .collapsible {
     background-color: #eee;
     color: #444;

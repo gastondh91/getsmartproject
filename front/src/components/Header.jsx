@@ -63,8 +63,8 @@ const Header = (props) => {
             </span>
           </div>
         </div>
-        <img style={{ cursor: 'pointer', objectFit: 'cover', width: '4rem', height: '3.9rem', borderRadius: '2rem' }} onClick={() => props.history.push(`/usuarios/edit/${props.usuario.id}`)} src={props.usuario.avatar} id='avatar' alt="Avatar" className="avatar"></img>
-        <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco.jpg"></img></Link>
+        <img style={{ cursor: 'pointer', objectFit: 'cover', width: '4rem', height: '3.9rem', borderRadius: '2rem' }} onClick={() => props.history.push(`/usuarios/edit/${props.usuario.id}`)} src={props.usuario.avatar} title='Perfil' id='avatar' alt="Avatar" className="avatar"></img>
+        <Link to='/' id='linkLogo' ><img id='logo' title='Inicio' src="/utils/logoBlanco.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
             <form>
@@ -73,7 +73,7 @@ const Header = (props) => {
           );
         }
         } />
-        <Link to='/cart' id='linkCart'><img id='carrito' src="/utils/carrito.svg"></img></Link>
+        <Link to='/cart' title='Ver carrito' id='linkCart'><img id='carrito' src="/utils/carrito.svg"></img></Link>
       </header>
   );
 };

@@ -24,6 +24,7 @@ import TarjetaDeCredito from '../components/TarjetaDeCredito';
 import Noautorizado from '../components/Noautorizado';
 import UsersContainer from './UsersContainer';
 import CarritoContainer from './CarritoContainer';
+import Subirimg from '../components/Subirimg'
 
 class Main extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Main extends React.Component {
             <Route exact path='/unauthorized' render={() => < Noautorizado usuario={this.props.usuario} />} />
             <Route exact path="/usuarios" render={() => (<HomeRL />)} />
             <Route exact path="/redirect" render={() => (<Redirect to='/' />)} />
+            <Route exact path="/subirimagen" render={() => (<Subirimg usuario={this.props.usuario} />)} />
             <Route exact path="/usuarios/all" render={({ history,location }) => (<UsersContainer location={location} isAdmin={this.props.usuario.isAdmin} history={history} />)} />
             <Route exact path="/usuarios/registro" render={({ history }) => (<Registro history={history} />)} />
             <Route exact path="/usuarios/login" render={({ history, location }) => (<Login login={this.props.usuario.id} history={history} location={location} />)} />

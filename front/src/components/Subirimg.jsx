@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios'
 
 const Subirimg = (props) => {
- var [file, setFile] = useState(null)
+ var [files, setFile] = useState(null)
 
 
   const onImageChange = (e) => {
-    setFile(file = e.target.files[0]);
+    setFile(files = e.target.files[0]);
   }
 
   const onFormSubmit = (e) => {
@@ -14,7 +14,6 @@ const Subirimg = (props) => {
     console.log('ejecutado')
     const formData = new FormData();
     formData.append('myImage', file);
-    console.log(file)
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
