@@ -21,6 +21,7 @@ class Registro extends React.Component {
       isAdmin: false,
       avatar: null,
       file: null,
+      fileName: '',
       genero: '',
       estado: ['Usuario registrado / Error', 'razon']
     };
@@ -31,9 +32,25 @@ class Registro extends React.Component {
     this.props.fetchUsers()
   }
 
-  onImageChange = (e) => {
-    this.setState({file : e.target.files[0]});
+  setAvatar = () => {
+    const formData = new FormData();
+    formData.append('myImage', this.state.file);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      }
+    };
+    axios.post("/api/imagenes/tempUpload", formData, config)
+    .then(path => this.setState({ fileName: path.data.slice(11)}))
+      .catch(() => {
+        alert('El formato del archivo es incorrecto')
+      });
   }
+
+  onImageChange = (e) => {
+    this.setState({file : e.target.files[0]},this.setAvatar);
+  }
+
 
   handleChange = (e) => {
     this.setState(
@@ -82,14 +99,34 @@ class Registro extends React.Component {
     }
   }
 
+  format(){
+    var archivo = this.state.file.name
+
+    if(archivo.includes('.jpg')) return '.jpg'
+    if(archivo.includes('.png')) return '.png'
+    if(archivo.includes('.jpeg')) return '.jpeg'
+    if(archivo.includes('.gif')) return '.gif'
+    if(archivo.includes('.tiff')) return '.tiff'
+  }
+
   render() {
     return (
       <div>
+        {console.log(this.state.file)}
         <div>
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">
               <h3 className="FRUstitle"> Completa tus datos... </h3>
-              <img className='avatarVacio' src='/utils/avatar.svg' />
+              <img title='Subir foto de perfil' style={{ cursor:'pointer',borderStyle: 'initial', height: '10rem'}} onClick={() => this.refs.fileUploader.click()} className='editAvatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
+              <input onChange={this.onImageChange} type="file" ref="fileUploader" style={{ display: 'none' }} />
+              <div style={{ marginLeft: '18rem', marginRight: '16rem'}} className="form-check form-check-inline">
+                        <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
+                        <label className="form-check-label generoLabel" htmlFor="Masculino">Masculino</label>
+                      <span className='generoIn'>
+                        <input id='Femenino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Femenino' />
+                        <label className="form-check-label generoLabel" htmlFor="Femenino">Femenino</label>
+                      </span>
+                    </div>
               <div className='FRUsuarios'>
                 <div className="form-row">
                   <div className="form-group col-md-6">
@@ -118,21 +155,6 @@ class Registro extends React.Component {
                   </div>
                   <div className="form-group col-md-6">
                     {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
-                    <input type="file" name="myImage" onChange={this.onImageChange} style={{ width: '317px' }} />
-                  </div>
-                  <div className="form-group col-md-6">
-                    {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
-                    <div style={{ alignItems: 'end', marginRight: '0' }} className="form-check form-check-inline">
-                      <p style={{ marginTop: '0.2%', fontSize: 'larger' }}>Genero: </p>
-                      <span className='generoIn'>
-                        <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
-                        <label className="form-check-label generoLabel" htmlFor="Masculino">Masculino</label>
-                      </span >
-                      <span className='generoIn'>
-                        <input id='Femenino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Femenino' />
-                        <label className="form-check-label generoLabel" htmlFor="Femenino">Femenino</label>
-                      </span>
-                    </div>
                   </div>
                 </div>
                 <div className="form-row">

@@ -30,6 +30,7 @@
     "cheerio": "^1.0.0-rc.2",
     "connect-session-sequelize": "^6.0.0",
     "cookie-parser": "^1.4.4",
+    "del": "^5.1.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
@@ -52,7 +53,9 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "request": "^2.88.0",
-    "sequelize": "^4.43.0"
+    "rimraf": "^3.0.0",
+    "sequelize": "^4.43.0",
+    "tmp": "^0.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

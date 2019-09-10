@@ -72,13 +72,13 @@
     grid-template-columns: 0.3fr 0.2fr 1fr 1fr 0.5fr;    
 }
 
-.avatarVacio{
+#avatarVacio{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 8rem;
-    height: 8rem;
-    object-fit: contain
+    width: 10rem;
+    height: 10rem;
+    object-fit: contain;
 }
 
 .collapsible {
@@ -1069,9 +1069,7 @@ margin-left: 160px;
 }
 
 .generoIn {
-    margin-top: 1px;
     margin-left: 10px;
-    margin-top: 4.6px
 }
 
 

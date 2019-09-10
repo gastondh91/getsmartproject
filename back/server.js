@@ -1,4 +1,5 @@
-// require('dotenv').config();
+const fs = require('fs');
+var rmdir = require('rimraf')
 const express = require('express');
 const app = express();
 var cookieParser = require('cookie-parser');
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 8080;
 const { usuarios, productos, categorias, iPhone, samsung } = require('../data')
 
 
+
 app.use(cookieParser());
 app.use(
   session({
@@ -30,7 +32,14 @@ app.use(
   })
 );
 
+
+
 // ESTRATEGIAS DE LOGIN
+var rimraf = require("rimraf");
+rimraf("back/public/temp", ()=> {} );
+
+// fs.rmdir('/back/public/temp')
+
 
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -137,6 +146,8 @@ passport.use(new GoogleStrategy(
   }
 ));
 
+
+
 // /* TODAS LAS RUTAS DE USUARIO */
 
 // app.get('/api/auth/facebook',
@@ -197,6 +208,8 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
+
+ 
 
 sessionStore.sync()
   .then(() => {
