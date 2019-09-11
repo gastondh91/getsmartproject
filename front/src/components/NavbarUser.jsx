@@ -12,12 +12,12 @@ export default class NavbarContainer extends Component {
             <div id='navbar3' className="navbar2">
       
               <ul>
-                <li ><Link onClick={()=> (this.props.location.pathname == '/productos') && this.props.history.push('/productos')} to='/productos'>iPhone</Link></li>
-                <li style={{width: 'min-content'}}><Link  to='/productos/add' onClick = { this.handleClick }>Samsung</Link></li>
-                <li ><Link to='/adm/purchaseOrders' style={{width: '6rem'}} onClick={this.handleClick}>Motorola</Link></li>
-                <li><Link to='/categorias/adm' style={{width: '7rem'}} onClick={this.handleClick}>LG</Link></li>
-                <li ><Link to='/usuarios/all' style={{width: '7rem'}} onClick={this.handleClick}>Huawei</Link></li>
-                <li ><Link to='/usuarios/all' style={{width: '7rem'}} onClick={this.handleClick}>Xiaomi</Link></li>
+                <li ><Link to='/categorias/marcas/iPhone' >iPhone</Link></li>
+                <li ><Link  to='/categorias/marcas/Samsung'>Samsung</Link></li>
+                <li ><Link to='/categorias/marcas/Motorola' >Motorola</Link></li>
+                <li><Link to='/categorias/marcas/Lg'>LG</Link></li>
+                <li ><Link to='/categorias/marcas/Huawei'>Huawei</Link></li>
+                <li ><Link to='/categorias/marcas/Xiaomi'>Xiaomi</Link></li>
               </ul>
             </div>
             </div> 

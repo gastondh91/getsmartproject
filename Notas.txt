@@ -3,3 +3,4 @@
 * Modificar 'Hola ingresa tus datos'
 * Ver redirect
 * Hacer que cuando cierre sesion permanezca en el mismo lugar de la pagina.
+* revisar estilos cuando se cliquea en una marca en particular

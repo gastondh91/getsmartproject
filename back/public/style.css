@@ -107,8 +107,9 @@
     transition: all 0.4s ease 0s;
     }
 
-
-
+.mark{
+    background: white;
+}
 
   
   /* Style the collapsible content. Note: hidden by default */
