@@ -1,33 +1,33 @@
 /* eslint-disable no-unused-vars */
-import React,{ useEffect} from 'react';
+import React, { useEffect } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 import Stars from './starRating';
 import { Link } from 'react-router-dom';
-import { borrarProd } from '../redux/action-creators/products-actions';
 import { connect } from 'react-redux';
 import { addToCart } from '../redux/action-creators/carrito-actions'
 import ModalConfirm from './ModalConfirm'
 
 const SingleProdComp = (props) => {
 
-// useEffect(()=>{
-//   var coll = document.getElementsByClassName("collapsible");
-//   var i;
-  
-//   for (i = 0; i < coll.length; i++) {
-//     coll[i].addEventListener("click", function() {
-//       this.classList.toggle("active");
-//       var content = this.nextElementSibling;
-//       if (content.style.display === "block") {
-//         content.style.display = "none";
-//       } else {
-//         content.style.display = "block";
-//       }
-//     });
-//   }
-// },[])
+  // useEffect(()=>{
+  //   var coll = document.getElementsByClassName("collapsible");
+  //   var i;
+
+  //   for (i = 0; i < coll.length; i++) {
+  //     coll[i].addEventListener("click", function() {
+  //       this.classList.toggle("active");
+  //       var content = this.nextElementSibling;
+  //       if (content.style.display === "block") {
+  //         content.style.display = "none";
+  //       } else {
+  //         content.style.display = "block";
+  //       }
+  //     });
+  //   }
+  // },[])
 
 
-  const { producto, categorias, onClick } = props;
+  const { producto, borrarProd, categorias, onClick } = props;
   return (
     <div id="singleProd">
       <div className="row">
@@ -45,16 +45,6 @@ const SingleProdComp = (props) => {
             <h3>Puntuación :  </h3>
             <h2 style={{ margin: '0 auto' }}>  <Stars rating={producto.puntuación} /></h2>
           </div>
-
-          <div className="row" style={{ marginTop: '60px' }}>
-            <div className="col-lg-5 col-sm-12" id='editElim'>
-              {props.adminInfo
-                ? <div> <Link to={`/productos/edit/${producto.id}`}> <button className="btn btn-lg btn-success" type="button" style={{ padding: '20px', margin: '7px' }} > EDITAR </button> </Link>
-                  <button data-toggle="modal" data-target="#definiteModal" className="btn btn-lg btn-danger" type="button" style={{ padding: '20px', margin: '7px' }} > ELIMINAR </button>
-                </div>
-                : <Link to={`/checkout/${producto.id}`}><button className="btn btn-lg btn-success" type="button" style={{ padding: '20px' }} > COMPRAR! </button> </Link>}
-            </div>
-          </div>
         </div>
 
         <div className="col-lg-6 col-xs-12">
@@ -67,11 +57,34 @@ const SingleProdComp = (props) => {
                   alt="photos"
                   id="imgProdCarr"
                 />
-                
+
               </Carousel.Item>
             ))}
           </Carousel>
-          <button onClick={() => props.addToCart(props.producto.id, props.usuario.id)} className="btn btn-lg" id='cartbutton' type="button" style={{ marginLeft: '20%', color: 'black', borderColor: '#476694', padding: '20px' }}>Agregar al Carrito</button>
+
+          {/* <div className="button_cont" align="center"><a className="example_b" href="add-website-here" target="_blank" rel="nofollow noopener">Add Call to Action</a></div> */}
+
+
+          <button
+            onClick={() => props.adminInfo ? props.history.push(`/productos/edit/${producto.id}`) : props.addToCart(props.producto.id, props.usuario.id)}
+            className="example_b"
+            rel="nofollow noopener"
+            id='cartbutton'
+            type="button"
+            style={{ marginLeft: props.adminInfo ? '4.7rem' : '1.9rem', width: props.adminInfo &&'7.6rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+          >{!props.adminInfo ? 'Agregar al Carrito' : 'Editar' }
+          </button>
+          <button
+            data-toggle={props.adminInfo && "modal"} 
+            data-target={props.adminInfo && "#definiteModal"}
+            className="example_c"
+            rel="nofollow noopener"
+            id='cartbutton'
+            type="button"
+            onClick={()=> props.adminInfo && borrarProd(producto.id)}
+            style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+          >{!props.adminInfo ? 'Comprar' : 'Eliminar'}
+            </button>
         </div>
       </div>
 
@@ -97,18 +110,18 @@ const SingleProdComp = (props) => {
           <h6 className="col-lg-12"><strong>UsuarioX </strong>Dijo: Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum saepe, quos tempora perferendis repellendus in libero asperiores voluptatum deleniti voluptatem tenetur voluptatibus consequuntur animi architecto ratione quae maiores dignissimos.</h6>
         </div>
       </div>
-        <ModalConfirm
-          funcion={props.borrarProd}
-          parametro={producto.id}
-          encabezado={'¿Eliminar producto?'}
-          encabezadoInfo={'Producto eliminado'}
-          confirmacion={'¿Confirma que desea eliminar'}
-          history={props.history}
-          historypush={'/productos'}
-          nombre={'"' + producto.marca + ' ' + producto.modelo + '"' }
-          item={'el producto'}
-          accion={'Se eliminó'}
-        />
+      <ModalConfirm
+        funcion={borrarProd}
+        parametro={producto.id}
+        encabezado={'¿Eliminar producto?'}
+        encabezadoInfo={'Producto eliminado'}
+        confirmacion={'¿Confirma que desea eliminar'}
+        history={props.history}
+        historypush={'/productos'}
+        nombre={'"' + producto.marca + ' ' + producto.modelo + '"'}
+        item={'el producto'}
+        accion={'Se eliminó'}
+      />
     </div>
   );
 };

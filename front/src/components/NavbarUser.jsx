@@ -5,41 +5,22 @@ import { connect } from 'react-redux';
 
 export default class NavbarContainer extends Component {
   render () {
+
+    
     return (
-      <div className="navbar-light" id= 'navbar-light'>
-        <div className="row">
-          <div className="col-sm-2 nav-link marg ">
-            <div className='col-lg-12 '>
-              <Link to = '/categorias/marcas/iPhone' > iPhone </Link>
+       <div>
+            <div id='navbar3' className="navbar2">
+      
+              <ul>
+                <li ><Link onClick={()=> (this.props.location.pathname == '/productos') && this.props.history.push('/productos')} to='/productos'>iPhone</Link></li>
+                <li style={{width: 'min-content'}}><Link  to='/productos/add' onClick = { this.handleClick }>Samsung</Link></li>
+                <li ><Link to='/adm/purchaseOrders' style={{width: '6rem'}} onClick={this.handleClick}>Motorola</Link></li>
+                <li><Link to='/categorias/adm' style={{width: '7rem'}} onClick={this.handleClick}>LG</Link></li>
+                <li ><Link to='/usuarios/all' style={{width: '7rem'}} onClick={this.handleClick}>Huawei</Link></li>
+                <li ><Link to='/usuarios/all' style={{width: '7rem'}} onClick={this.handleClick}>Xiaomi</Link></li>
+              </ul>
             </div>
-          </div>
-          <div className="col-sm-2 nav-link marg">
-            <div className='col-lg-12'>
-              <Link to = '/categorias/marcas/Samsung' > Samsung </Link>
-            </div>
-          </div>
-          <div className="col-sm-2 nav-link marg">
-            <div className='col-lg-12 '>
-              <Link to = '/categorias/marcas/Motorola' > Motorola </Link>
-            </div>
-          </div>
-          <div className="col-sm-2 nav-link marg">
-            <div className='col-lg-12 '>
-              <Link to = '/categorias/marcas/Xiaomi' > Xiaomi </Link>
-            </div>
-          </div>
-          <div className="col-sm-2 nav-link marg">
-            <div className='col-lg-12 '>
-              <Link to = '/categorias/marcas/LG' > LG </Link>
-            </div>
-          </div>
-          <div className="col-sm-2 nav-link marg">
-            <div className='col-lg-12'>
-              <Link to = '/categorias/marcas/Huawei' > Huawei </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div> 
     );
   }
 };

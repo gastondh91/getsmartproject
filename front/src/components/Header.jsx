@@ -4,6 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { setBusqueda } from '../redux/action-creators/action-creator'
+// import "./style.scss";
 
 
 const Header = (props) => {
@@ -39,9 +40,11 @@ const Header = (props) => {
         <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
+
             <form >
               <input onChange={handleChange} name='modelo' placeholder='  Busca tu producto 🔎' id='input' />
             </form>
+
           );
         }
         } />
@@ -67,9 +70,11 @@ const Header = (props) => {
         <Link to='/' id='linkLogo' ><img id='logo' title='Inicio' src="/utils/logoBlanco.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
+            <div>
             <form>
               <input onChange={handleChange} name='modelo' placeholder='  Busca tu producto 🔎' id='input' />
             </form>
+            </div>
           );
         }
         } />

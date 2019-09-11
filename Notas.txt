@@ -2,3 +2,4 @@
 * Ver textos cuando hay hover
 * Modificar 'Hola ingresa tus datos'
 * Ver redirect
+* Hacer que cuando cierre sesion permanezca en el mismo lugar de la pagina.
