@@ -10,19 +10,16 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
       {/* Modal */}
       <div className="modal fade" id="definiteModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Eliminar Categoria</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <div className="modal-content modalBord2">
+            <div className="modal-header borderModal">
+              <h5 className="modal-title" id="exampleModalLabel">¿Eliminar Categoria?</h5>
             </div>
-            <div className="modal-body">
-              <p>{`¿Confirma que desea eliminar la categoria "${categoria.nombre}" ?`}</p>
+            <div style={{ width: 'fit-content' }} className="modal-body">
+              <p style={{ fontWeight: '600' }}>{`¿Confirma que desea eliminar la categoría "${categoria.nombre}"?`}</p>
             </div>
             <div className="modal-footer">
-              <button data-toggle="modal" data-target="#simpleModal" type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => handleClick(categoria.id)}>Si</button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">No</button>
+              <button id='cartbutton' style={{ background: 'steelblue', height: '37px', padding: '7px', width: '70px', textTransform: 'none' }} type="button" data-toggle="modal" data-target="#simpleModal" className="example_b" data-dismiss="modal" onClick={() => handleClick(categoria.id)}>Si</button>
+              <button id='cartbutton' style={{ height: '37px', padding: '7px', width: '70px', textTransform: 'none' }} type="button" className="example_b greyButton" data-dismiss="modal">No</button>
             </div>
           </div>
         </div>
@@ -30,18 +27,15 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
 
       <div className="modal fade" id="simpleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div style={{ width: '21rem' }} className="modal-content modalBord2">
+            <div className="modal-header borderModal">
               <h5 className="modal-title" id="exampleModalLabel">{'Categoría eliminada'}</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
             </div>
-            <div className="modal-body">
-              <p>{`Se eliminó la categoría "${categoria.nombre}"`}</p>
+            <div style={{height: 'fit-content'}} id='pModal' className="modal-body">
+              <p style={{textAlign: 'center', fontWeight: '600'}}className='pMargin'>{`Se eliminó la categoría "${categoria.nombre}"`}</p>
             </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            <div style={{ padding: '10px',height: 'fit-content' }} className="modal-footer">
+              <button style={{textTransform: 'none', background:'steelblue'}} className="example_b logBut" id='cartbutton'  type="button" data-dismiss="modal">Aceptar</button>
             </div>
           </div>
         </div>

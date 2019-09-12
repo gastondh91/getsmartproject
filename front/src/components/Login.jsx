@@ -54,7 +54,7 @@ class Login extends React.Component {
                 <div className="form-group col-md-6">
                   <label htmlFor="inputPassword4">Password</label>
                   <input name='password' onChange={this.handleChange} type="password" className="form-control" id="inputPassword4" placeholder="Password" />
-                </div>
+                </div>  
               </div>
               <div className="form-row">
               </div>

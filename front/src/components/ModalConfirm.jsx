@@ -10,19 +10,16 @@ const ModalConfirm = ({encabezado, confirmacion, encabezadoInfo, accion, paramet
     <div>
       <div className="modal fade" id="definiteModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div className="modal-content modalBord2">
+            <div className="modal-header borderModal">
               <h5 className="modal-title" id="exampleModalLabel">{encabezado}</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
             </div>
-            <div className="modal-body">
-              <p>{`${confirmacion} ${item ? item : ''} ${nombre ? nombre : ''}?`}</p>
+            <div style={{width: 'fit-content'}} className="modal-body">
+              <p style={{ fontWeight: '600'}}>{`${confirmacion} ${item ? item : ''} ${nombre ? nombre : ''}?`}</p>
             </div>
-            <div className="modal-footer">
-              <button type="button" data-toggle="modal" data-target="#infoModal" className="btn btn-primary" data-dismiss="modal" onClick={()=> funcion(parametro)} >Si</button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">No</button>
+            <div style={{height: 'fit-content'}} className="modal-footer">
+              <button id='cartbutton' style={{ background:'steelblue', height: '37px', padding: '7px', width: '70px',textTransform: 'none'}} type="button" data-toggle="modal" data-target="#infoModal" className="example_b" data-dismiss="modal" onClick={()=> funcion(parametro)} >Si</button>
+              <button id='cartbutton' style={{ height: '37px', padding: '7px', width: '70px',textTransform: 'none'}} type="button" className="example_b greyButton" data-dismiss="modal">No</button>
             </div>
           </div>
         </div>

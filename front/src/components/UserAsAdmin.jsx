@@ -63,10 +63,10 @@ class UserAsAdmin extends React.Component {
     return (
 
       <div><form style={{ gridTemplateRows: '1fr 1fr 1fr' }} className='userAsAdm' onSubmit={this.handleSubmit}>
-        <h1>{this.props.usuario.isAdmin ? 'Cambio de perfil de usuario' : 'Información sobre tu cuenta'}</h1>
+        <h1>{this.props.usuario.isAdmin ? 'Opciones de usuario' : 'Información sobre tu cuenta'}</h1>
         <div className='griduser'>
           <div style={{ float: 'left' }} >
-            <img onClick={() =>{ this.props.selectedUser.id == this.props.usuario.id ? this.refs.fileUploader.click() : null }} title={this.props.selectedUser.id == this.props.usuario.id ? 'Cambiar avatar' : null} style={{ height: '8rem', objectFit: 'cover', cursor: this.props.selectedUser.id == this.props.usuario.id ? 'pointer' : 'auto' }} className='editAvatar' src={this.props.selectedUser.avatar} />
+            <img onClick={() => { this.props.selectedUser.id == this.props.usuario.id ? this.refs.fileUploader.click() : null }} title={this.props.selectedUser.id == this.props.usuario.id ? 'Cambiar avatar' : null} style={{ height: '8rem', objectFit: 'cover', cursor: this.props.selectedUser.id == this.props.usuario.id ? 'pointer' : 'auto' }} className='editAvatar' src={this.props.selectedUser.avatar} />
             {this.props.selectedUser.id == this.props.usuario.id && <input onChange={this.onImageChange} type="file" ref="fileUploader" id="FileUpload" style={{ display: 'none' }} />}
           </div>
           <div style={{ float: 'right' }} className='boxUsers editbox'>
@@ -78,28 +78,47 @@ class UserAsAdmin extends React.Component {
           </div>
         </div>
         <div>
-          {this.props.usuario.isAdmin && <span><img className='adminIcons' src={`/utils/${this.adminAvatar(this.props.selectedUser)}`}></img>
-            <button type='button' data-toggle="modal" data-target="#simpleModal" className='botonesAdm btn btn-success' onClick={this.handleSubmit} >{this.props.selectedUser.isAdmin ? 'Revocar Administrador' : 'Hacer Administrador'}</button></span>}
-          <span><img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'deletemale.svg' : 'deletefemale.svg'}`}></img>
-            <button type='button' data-toggle="modal" data-target="#definiteModal" className='botonesAdm btn btn-danger'>{`Eliminar ${this.props.usuario.isAdmin ? 'Usuario' : 'cuenta'}`}</button></span>
+          {this.props.usuario.isAdmin && <span>
+            <img className='adminIcons' src={`/utils/${this.adminAvatar(this.props.selectedUser)}`}></img>
+            <button
+              // style={{ background: '#10ac84', borderColor: '#10ac84' }}
+              type='button'
+              data-toggle="modal"
+              data-target="#simpleModal"
+              className='example_c btnUserAdmin'
+              id='cartbutton'
+              onClick={this.handleSubmit}
+            >{this.props.selectedUser.isAdmin ? 'Revocar Administrador' : 'Nombrar Administrador'}
+            </button>
+          </span>}
+          <span>
+            <img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'deletemale.svg' : 'deletefemale.svg'}`}></img>
+            <button
+              // style={{ background: '#dc143c', borderColor: '#dc143c' }}
+              type='button'
+              data-toggle="modal"
+              data-target="#definiteModal"
+              className='example_b example_d btnUserAdmin'
+              id='cartbutton'
+            >
+              {`Eliminar ${this.props.usuario.isAdmin ? 'Usuario' : 'cuenta'}`}
+            </button>
+          </span>
         </div>
 
       </form>
         <div>
           <div className="modal fade" id="simpleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
+              <div style={{width: '24rem'}} className="modal-content modalBord2">
+                <div className="modal-header borderModal">
                   <h5 className="modal-title" id="exampleModalLabel">{'Permisos de usuario modificados'}</h5>
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                 </div>
                 <div className="modal-body">
-                  <p>{this.props.selectedUser.isAdmin ? 'El usuario fue revocado como administrador' : 'El usuario fue nombrado administrador'}</p>
+                  <p style={{ fontWeight: '600'}}>{`El usuario "${this.props.selectedUser.nombre + ' '+ this.props.selectedUser.apellido}" ` + `${this.props.selectedUser.isAdmin ? 'ahora solo posee permisos de usuario.' : 'ahora posee permisos de administrador.'}`}</p>
                 </div>
-                <div className="modal-footer">
-                  <button onClick={() => location.reload()} type="button" className="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                <div style={{ padding: '10px',height: 'fit-content' }} className="modal-footer">
+                  <button style={{textTransform: 'none', background:'steelblue'}} className="example_b logBut" id='cartbutton' onClick={() => location.reload()} type="button" data-dismiss="modal">Aceptar</button>
                 </div>
               </div>
             </div>
@@ -116,7 +135,7 @@ class UserAsAdmin extends React.Component {
             historypush={this.props.usuario.isAdmin ? '/usuarios/all' : '/redirect'}
             nombre={this.props.usuario.isAdmin ? '"' + this.props.selectedUser.nombre + ' ' + this.props.selectedUser.apellido + '"' : ''}
             parametro={this.props.selectedUser.id}
-            item={this.props.usuario.isAdmin ? 'al usuario' : 'tu cuenta'}
+            item={this.props.usuario.isAdmin ? 'el usuario' : 'tu cuenta'}
             accion={'Se eliminó'}
           />
         </div>

@@ -81,6 +81,7 @@
     object-fit: contain;
 }
 
+
 .example_b {
     color: #fff !important;
     text-transform: uppercase;
@@ -93,6 +94,7 @@
     border: none;
     transition: all 0.4s ease 0s;
     }
+    
 
 .example_c {
     color: #fff !important;
@@ -105,6 +107,17 @@
     display: inline-block;
     border: none;
     transition: all 0.4s ease 0s;
+    }
+
+    .example_d{
+    background: #DC143C;
+    }
+
+    #example_sino {
+        text-transform: none;
+        width: 52px;
+        padding:7px;
+        height: 36px;
     }
 
 .mark{
@@ -262,7 +275,6 @@ margin-right: 10px;
 #editUser{
     width: 4.1rem;
     cursor: pointer;
-    margin-bottom: 10%;
 }
 
 #editUser:hover{
@@ -441,6 +453,67 @@ a:hover{
 #newCategory{
     padding-bottom: 3%;
     padding-top: 4%
+}
+
+.modal-header{
+    background: #2B4F81
+}
+
+.modal-title{
+    color: azure;
+    font-weight: bold;
+    font-size: 23px;
+    font-variant: petite-caps;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-content{
+    border-top-left-radius: 17px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-text-stroke-width: thin
+
+}
+
+.pMargin{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.logBut{
+    background: steelblue;
+    padding: 9px
+
+}
+
+.greyButton{
+    background: #708090;
+}
+
+.modalBord2{
+    border-top-right-radius: 18px
+}
+
+
+
+.modal-body{
+    height: 75px
+}
+
+.borderModal{
+    border-top-left-radius: 14px;
+    padding:3px;
+    border-top-right-radius: 14px
+}
+
+.modal-footer{
+    height: 75px
 }
 
 #eliminar{
@@ -769,6 +842,12 @@ text-shadow:0px 2px 1px grey;
     border-radius: 70px;
     color: #2B4F81;
     border-color: #2B4F81;
+}
+
+.btnUserAdmin{
+    font-size: 15px;
+    padding:11px;
+    text-transform: none
 }
 
 .btn-outline-primary:hover{
@@ -1149,9 +1228,11 @@ margin-left: 160px;
 .listItem:hover{
     border: solid rgb(36, 36, 36) 1px
 }
-.containerTrash{
+.containerUser{
     float: right;
-    margin: 15% 10% 7%
+    margin: 15% 10% 7%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .generoIn {
@@ -1162,7 +1243,9 @@ margin-left: 160px;
 #listaUsuarios{
     background-color: #2B4F81;
     border-color: #2B4F81;
-    width: 85%
+    width: 85%;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
 }
 
 .list-group{
@@ -1286,49 +1369,4 @@ margin-left: 160px;
     opacity: 0;
     transform: translate(-50%, -50%) scale(1);
     transition: opacity 1s, transform 0.5s;
-}
-
-/* Hover, Focus */
-.pure-material-button-contained:hover,
-.pure-material-button-contained:focus {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.pure-material-button-contained:hover::before {
-    opacity: 0.08;
-}
-
-.pure-material-button-contained:focus::before {
-    opacity: 0.24;
-}
-
-.pure-material-button-contained:hover:focus::before {
-    opacity: 0.3;
-}
-
-/* Active */
-.pure-material-button-contained:active {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.pure-material-button-contained:active::after {
-    opacity: 0.32;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0s;
-}
-
-/* Disabled */
-.pure-material-button-contained:disabled {
-    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
-    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.12);
-    box-shadow: none;
-    cursor: initial;
-}
-
-.pure-material-button-contained:disabled::before {
-    opacity: 0;
-}
-
-.pure-material-button-contained:disabled::after {
-    opacity: 0;
 }

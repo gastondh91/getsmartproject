@@ -39,7 +39,7 @@ class CarritoContainer extends React.Component {
                     <label>Cantidad:</label>
                     <input type="number" name={producto.id} id='cantidadProd' defaultValue={1} onChange={this.handleChange}/>
                   </div>
-                  <div className="containerTrash">
+                  <div className="containerUser">
                     <img id='trashUser' src="/utils/garbage.svg"></img>
                   </div>
                   <hr />

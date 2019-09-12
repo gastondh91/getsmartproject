@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const Producto = require('../models/Producto');
 const { Usuarios } = require('../models/Usuario')
 
 // const accepted_extensions = ['jpg', 'png', 'gif','png','jpeg'];
@@ -32,6 +33,35 @@ console.log(req.file)
       return res.send(req.file.path)
 
   })
+})
+
+router.post('/prodImage', (req, res) => {
+
+  var storage = multer.diskStorage({
+    destination: `./back/public/temp`,
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname));
+    }
+  });
+
+  var upload = multer({
+    storage: storage,
+    limits: { fileSize: 1000000 },
+
+  }).array("myImage",10);
+
+  upload(req, res, (err) => {
+
+console.log(req.file)
+Producto.findByPk(Number(req.file.originalname))
+.then(producto => producto.update({ imagenes: req.file}))
+
+
+    if (!err)
+      return res.send(req.file.path)
+
+  })
+  .catch(err => console.log(err))
 })
 
 router.post('/upload', (req, res) => {

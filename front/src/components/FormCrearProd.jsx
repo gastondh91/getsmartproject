@@ -4,7 +4,7 @@ const categorias = [];
 const addCat = (cat) => {
   categorias.push(cat);
 };
-const Formulario = ({ onChange, onSubmit, title, array, history }) => (
+const Formulario = ({ onChange, onImageChange, onSubmit, title, array, history }) => (
 
   <form className='formProdAm' onSubmit={(e) => onSubmit(e, categorias)} >
     <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Crear un Nuevo Producto</h1>
@@ -50,13 +50,8 @@ const Formulario = ({ onChange, onSubmit, title, array, history }) => (
 
     </div>
 
-    <div className="input-group input-group-lg">
-      <div className="input-group-prepend">
-        <span className="input-group-text" id="inputGroup-sizing-lg">* URL Imagenes</span>
-      </div>
-      <input onChange={onChange} name="Imagen" type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  />
-    </div>
-    <h6 style={{ marginTop: '10px' }}>* Separar las URL con coma (',')</h6>
+    <input type="file" name="myImage" onChange={onImageChange} style={{ width: '317px' }} />
+
 
     <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
       <div className="input-group-prepend">

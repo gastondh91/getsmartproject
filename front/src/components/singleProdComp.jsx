@@ -67,7 +67,7 @@ const SingleProdComp = (props) => {
 
           <button
             onClick={() => props.adminInfo ? props.history.push(`/productos/edit/${producto.id}`) : props.addToCart(props.producto.id, props.usuario.id)}
-            className="example_b"
+            className="example_c"
             rel="nofollow noopener"
             id='cartbutton'
             type="button"
@@ -77,11 +77,10 @@ const SingleProdComp = (props) => {
           <button
             data-toggle={props.adminInfo && "modal"} 
             data-target={props.adminInfo && "#definiteModal"}
-            className="example_c"
+            className="example_b example_d"
             rel="nofollow noopener"
             id='cartbutton'
             type="button"
-            onClick={()=> props.adminInfo && borrarProd(producto.id)}
             style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
           >{!props.adminInfo ? 'Comprar' : 'Eliminar'}
             </button>

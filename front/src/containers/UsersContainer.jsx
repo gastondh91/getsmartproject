@@ -36,7 +36,7 @@ class UsersContainer extends React.Component {
           historypush={'/usuarios/all'}
           nombre={'"' + this.state.userName + '"'}
           accion={'Se eliminó'}
-          item={'al usuario'}
+          item={'el usuario'}
         />
 
         <div className='usersContainer'>
@@ -53,7 +53,7 @@ class UsersContainer extends React.Component {
                     <strong className='titlesUsers'> Admin:</strong> {user.isAdmin ? <img style={{ maxWidth: '5%', marginBottom: '1.7%' }} className="ticks" src='/utils/checked.svg' /> : <img style={{ maxWidth: '4.1%', marginBottom: '0.8%' }} className="ticks" src='/utils/unchecked.svg' />} <br />
 
                   </div>
-                  <div className="containerTrash">
+                  <div className="containerUser">
                     <Link to={`/usuarios/edit/${user.id}`}><img id='editUser' src={user.genero == 'Masculino' ? "/utils/editmale.svg" : "/utils/editfemale.svg"}
                     ></img></Link>
                     <img data-toggle="modal" data-target="#definiteModal" id='deleteUser' src={user.genero == 'Masculino' ? "/utils/deletemale.svg" : "/utils/deletefemale.svg"} onClick={(e) => {

@@ -49,7 +49,7 @@ class Main extends React.Component {
         <div className="cssload-inner cssload-two"></div>
         <div className="cssload-inner cssload-three"></div>
       </div>
-        <div style={{ color: '#192a56', textAlign: 'center', fontSize: 'xx-large', fontFamily: 'serif' }}>Loading...</div></div>
+        <div style={{ color: '#2B4F81', textAlign: 'center', fontSize: 'xx-large', fontFamily: 'serif' }}>Cargando...</div></div>
         : <div id='main' className='container-fluid'>
           <Route render={({ history, location, match }) => (<Header usuario={this.props.usuario} location={location} match={match} login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
           <NavbarContainer location={location} history={history} isAdmin={this.props.usuario.isAdmin} />

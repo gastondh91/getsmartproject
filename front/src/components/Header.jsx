@@ -37,7 +37,7 @@ const Header = (props) => {
           <Link to='/usuarios/login' id='linkLogOut'><img id='userLogOut' src="/utils/log.svg"></img>
             <div className='caption2'>Ingresar</div></Link>
         </span>
-        <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco.jpg"></img></Link>
+        <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco3.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
 
@@ -67,7 +67,7 @@ const Header = (props) => {
           </div>
         </div>
         <img style={{ cursor: 'pointer', objectFit: 'cover', width: '4rem', height: '3.9rem', borderRadius: '2rem' }} onClick={() => props.history.push(`/usuarios/edit/${props.usuario.id}`)} src={props.usuario.avatar} title='Perfil' id='avatar' alt="Avatar" className="avatar"></img>
-        <Link to='/' id='linkLogo' ><img id='logo' title='Inicio' src="/utils/logoBlanco.jpg"></img></Link>
+        <Link to='/' id='linkLogo' ><img id='logo' title='Inicio' src="/utils/logoBlanco3.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
             <div>
