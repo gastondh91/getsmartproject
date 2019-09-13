@@ -8,7 +8,6 @@ import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import ProductsContainer from './ProductsContainer';
 import CrearProd from './CrearProd';
 import HomeRL from './HomeRL';
-import MarkProductsContainer from './MarkProductsContainer';
 import Registro from '../components/Registro';
 import Login from '../components/Login';
 import Home from '../components/Home';
@@ -52,7 +51,7 @@ class Main extends React.Component {
         <div style={{ color: '#2B4F81', textAlign: 'center', fontSize: 'xx-large', fontFamily: 'serif' }}>Cargando...</div></div>
         : <div id='main' className='container-fluid'>
           <Route render={({ history, location, match }) => (<Header usuario={this.props.usuario} location={location} match={match} login={this.props.usuario.id} history={history} fetchUser={this.props.fetchUser} />)} />
-          <NavbarContainer location={location} history={history} isAdmin={this.props.usuario.isAdmin} />
+          <NavbarContainer location={location} history={this.props.history} isAdmin={this.props.usuario.isAdmin} />
           <Switch>
             <Route exact path='/unauthorized' render={() => < Noautorizado usuario={this.props.usuario} />} />
             <Route exact path="/usuarios" render={() => (<HomeRL />)} />
@@ -63,7 +62,6 @@ class Main extends React.Component {
             <Route exact path="/usuarios/login" render={({ history, location }) => (<Login login={this.props.usuario.id} history={history} location={location} />)} />
             <Route exact path='/' component={Home} />
             <Route exact path='/categorias/adm' render={({ history }) => (<CreateCat isAdmin={this.props.usuario.isAdmin} history={history} />)} />
-            <Route exact path='/categorias/marcas/:marca' render={({ match }) => <MarkProductsContainer marca={match.params.marca} />} />
             <Route exact path='/productos' render={({ location }) => <ProductsContainer search={location.search} />} />
             <Route exact path='/usuarios/edit/:id' render={({ history, match, location }) => (<UserAsAdmin usuario={this.props.usuario} location={this.props.location} isAdmin={this.props.usuario.isAdmin} history={history} userId={match.params.id} />)} />
             <Route exact path='/productos/add' render={({ history }) => (<CrearProd isAdmin={this.props.usuario.isAdmin} history={history} />)} />

@@ -2,25 +2,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { setBusqueda } from '../redux/action-creators/action-creator'
 
-export default class NavbarContainer extends Component {
-  render () {
+var productos = ['iPhone', 'Samsung', 'Motorola', 'Xiaomi', 'Huawei', 'LG']
 
-    
+class NavbarContainer extends Component {
+  render() {
+
+
     return (
-       <div>
-            <div id='navbar3' className="navbar2">
-      
-              <ul>
-                <li ><Link to='/categorias/marcas/iPhone' >iPhone</Link></li>
-                <li ><Link  to='/categorias/marcas/Samsung'>Samsung</Link></li>
-                <li ><Link to='/categorias/marcas/Motorola' >Motorola</Link></li>
-                <li><Link to='/categorias/marcas/Lg'>LG</Link></li>
-                <li ><Link to='/categorias/marcas/Huawei'>Huawei</Link></li>
-                <li ><Link to='/categorias/marcas/Xiaomi'>Xiaomi</Link></li>
-              </ul>
-            </div>
-            </div> 
+      <div>
+        <div id='navbar3' className="navbar2">
+
+          <ul>
+            {productos.map((producto, index) => {
+              { console.log(producto) }
+              return (<li key={index++} onClick={() => {
+                this.props.setBusqueda(producto)
+                this.props.history.push('/productos')
+              }} ><a style={{ cursor: 'pointer', color: 'white' }}>{producto}</a></li>
+              )}
+            )}
+          </ul>
+        </div>
+      </div>
     );
   }
 };
+
+const mapStateToProps = (state) => ({
+  // marcas: state.marcas
+  savedBusqueda: state.savedBusqueda
+});
+const mapDispatchToProps = (dispatch) => ({
+  // buscarMarcas: (marca) => dispatch(buscarMarcas(marca));
+  setBusqueda: (busqueda) => dispatch(setBusqueda(busqueda))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);

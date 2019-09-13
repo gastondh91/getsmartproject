@@ -36,8 +36,6 @@ app.use(
 var rimraf = require("rimraf");
 rimraf("back/public/temp", ()=> {} );
 
-// fs.rmdir('/back/public/temp')
-
 
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -211,9 +209,25 @@ app.get('/*', function (req, res) {
 
 sessionStore.sync()
   .then(() => {
-    db.sync({ force: false }).then((con) => {
+    db.sync({ force:false }).then((con) => {
       console.log(`${con.options.dialect} database ${con.config.database} connected at ${con.config.host}:${con.config.port}`);
       app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
+    });
+  })
+  // Para detener el seedeo de la base de datos borrar o comentar las lineas que estan mas abajo
+  .then(()=>{
+
+    var copydir = require('copy-dir');
+ 
+    copydir.sync('back/public/utils/Test/Telefonos', 'back/public/utils/Telefonos', {
+      utimes: true,  // keep add time and modify time
+      mode: true,    // keep file mode
+      cover: true    // cover file when exists, default is true
+    });
+    copydir.sync('back/public/utils/Test/Usuarios', 'back/public/utils/Usuarios', {
+      utimes: true,  // keep add time and modify time
+      mode: true,    // keep file mode
+      cover: true    // cover file when exists, default is true
     });
   })
   .then(() => {
