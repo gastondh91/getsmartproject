@@ -41,7 +41,6 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.props)}
         <div className="login-contenedor">
           <div className='FRUsuarios'>
             <form onSubmit={this.handleSubmit} >

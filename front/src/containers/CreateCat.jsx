@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import FormCreatCat from '../components/FormCreatCat';
 import { getAllCat } from '../redux/action-creators/products-actions'
 import axios from 'axios';
-import Noautorizado from '../components/Noautorizado';
 import ModalInfo from '../components/ModalInfo'
+import { Redirect } from 'react-router-dom'
 
 
 const AdminProd = (props) => {
@@ -46,16 +46,17 @@ const AdminProd = (props) => {
     let catNames = props.allCategories.map(categorias => categorias.name)
 
     if (catNames.includes(newCategory)) {
-      setEstado(Estado = ['Error','Ya existe la categoría ' + '\"' + newCategory + '\"']);
+      setEstado(Estado = ['Error', 'Ya existe la categoría ' + '\"' + newCategory + '\"']);
     }
     else if (!newCategory) {
-       setEstado(Estado = ['Error','Debe ingresar una categoria']) }
+      setEstado(Estado = ['Error', 'Debe ingresar una categoria'])
+    }
     else {
       axios.post('/api/categorias/add', {
         name: newCategory
       })
         .then(categoria => {
-          setEstado( Estado = ['Se creo la categoría ' + '\"' + categoria.data.name + '\"',null ]);
+          setEstado(Estado = ['Se creo la categoría ' + '\"' + categoria.data.name + '\"', null]);
         })
         .then(() => props.getAllCat())
     }
@@ -65,24 +66,24 @@ const AdminProd = (props) => {
   return (
     <div>
       {props.isAdmin ?
-      <div>
-         <FormCreatCat
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        Active={Active}
-        toggleClass={toggleClass}
-        categorias={props.allCategories}
-        handleClick={handleClick}
-      />
         <div>
-          <ModalInfo
-            encabezado={Estado[0] == 'Error' ? Estado[0] : 'Categoria creada'}
-            accion={Estado[0] == 'Error' ? Estado[1] : Estado[0]}
-            history={props.history}
+          <FormCreatCat
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            Active={Active}
+            toggleClass={toggleClass}
+            categorias={props.allCategories}
+            handleClick={handleClick}
           />
+          <div>
+            <ModalInfo
+              encabezado={Estado[0] == 'Error' ? Estado[0] : 'Categoria creada'}
+              accion={Estado[0] == 'Error' ? Estado[1] : Estado[0]}
+              history={props.history}
+            />
+          </div>
         </div>
-        </div>
-      : <Noautorizado />}
+        : <Redirect to='/unauthorized' />}
     </div >
   );
 }

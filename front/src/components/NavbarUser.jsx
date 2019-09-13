@@ -16,7 +16,6 @@ class NavbarContainer extends Component {
 
           <ul>
             {productos.map((producto, index) => {
-              { console.log(producto) }
               return (<li key={index++} onClick={() => {
                 this.props.setBusqueda(producto)
                 this.props.history.push('/productos')
@@ -31,11 +30,9 @@ class NavbarContainer extends Component {
 };
 
 const mapStateToProps = (state) => ({
-  // marcas: state.marcas
   savedBusqueda: state.savedBusqueda
 });
 const mapDispatchToProps = (dispatch) => ({
-  // buscarMarcas: (marca) => dispatch(buscarMarcas(marca));
   setBusqueda: (busqueda) => dispatch(setBusqueda(busqueda))
 });
 

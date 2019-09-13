@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import FormEditProd from '../components/FormEditProd';
 import axios from 'axios';
-import Noautorizado from '../components/Noautorizado';
 import ModalInfo from '../components/ModalInfo'
+import { Redirect } from 'react-router-dom'
 
 let arrCategorias = []
 
@@ -165,7 +165,7 @@ const AdminProd = (props) => {
             />
           </div>
         </div>
-        : <Noautorizado />}
+        : <Redirect to='/unauthorized' />}
     </div>
   );
 }

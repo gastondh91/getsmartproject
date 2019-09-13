@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import FormCrearProd from '../components/FormCrearProd';
 import axios from 'axios';
-import Noautorizado from '../components/Noautorizado';
 import ModalInfo from '../components/ModalInfo'
+import { Redirect } from 'react-router-dom'
 
 const AdminProd = (props) => {
   let [Marca, setMarca] = useState()
@@ -118,7 +118,7 @@ const AdminProd = (props) => {
             />
           </div>
         </div>
-        : <Noautorizado />}
+        : <Redirect to='/unauthorized' />}
     </div>
   );
 }

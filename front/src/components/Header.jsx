@@ -4,8 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { setBusqueda } from '../redux/action-creators/action-creator'
-// import "./style.scss";
-
+import { Redirect } from 'react-router-dom'
 
 const Header = (props) => {
 
@@ -52,10 +51,11 @@ const Header = (props) => {
 
       </header>
       : <header className='header apart'>
+        {console.log(props)}
         <div onClick={() => {
           axios.get('/api/usuarios/logOut')
             .then(data => props.fetchUser(data.data));
-          return props.history.push('/');
+          return <Redirect to={location.pathname} />;
         }} className='botonLogout'>
           <img className='logoutIcon' src='/utils/logout.png'>
           </img>

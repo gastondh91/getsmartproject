@@ -3,9 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../redux/action-creators/user-actions';
-import Noautorizado from '../components/Noautorizado';
 import ModalConfirm from '../components/ModalConfirm'
 import { deleteUser } from '../redux/action-creators/user-actions';
+import { Redirect } from 'react-router-dom'
 
 class UsersContainer extends React.Component {
   constructor(props) {
@@ -19,9 +19,6 @@ class UsersContainer extends React.Component {
     this.props.fetchUsers();
   }
 
-  // componentDidUpdate (prevProps) {
-  //   if (prevProps.users.length !== this.props.usershis.length) this.props.fetchUsers();
-  // }
   render() {
     return (
       this.props.isAdmin ? <div>
@@ -65,7 +62,7 @@ class UsersContainer extends React.Component {
             })}
           </ul>
         </div>
-      </div> : <Noautorizado />
+      </div> : <Redirect to='/unauthorized' />
     );
   };
 };
