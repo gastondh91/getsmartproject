@@ -2,16 +2,18 @@ const express = require('express');
 const router = express.Router();
 const { Usuarios } = require('../models/Usuario');
 const passport = require('passport');
+var rimraf = require("rimraf");
 
 router.post('/esAdm/:id', (req, res) => {
   Usuarios.findByPk(req.params.id)
-  .then(data => {if(data.isAdmin) { return data.update({ isAdmin: false }, { where: { isAdmin: true }})}
-    else { return data.update({ isAdmin: true }, { where: { isAdmin: false }})}
-  // .then(data => {
-    //   return data.update({ isAdmin: true }, { where: { isAdmin: false } });
-    // })
-  })
-  .catch(err => console.log(err))
+    .then(data => {
+      if (data.isAdmin) { return data.update({ isAdmin: false }, { where: { isAdmin: true } }) }
+      else { return data.update({ isAdmin: true }, { where: { isAdmin: false } }) }
+      // .then(data => {
+      //   return data.update({ isAdmin: true }, { where: { isAdmin: false } });
+      // })
+    })
+    .catch(err => console.log(err))
 })
 
 router.get('/todos', (req, res) => {
@@ -35,7 +37,7 @@ router.get('/user', (req, res) => {
 
 router.get('/user/:id', (req, res) => {
   Usuarios.findByPk(req.params.id)
-  .then(usuario => res.send(usuario))
+    .then(usuario => res.send(usuario))
 });
 
 router.get('/logOut', (req, res) => {
@@ -55,8 +57,11 @@ router.get('/all', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  Usuarios.destroy({ where: { id: req.params.id } })
-    .then( (ok) => res.sendStatus(200))
-});
-
+  Usuarios.findByPk(req.params.id)
+    .then(usuario => rimraf(`back/public/utils/Usuarios/${usuario.email}`, () => { }))
+    .then(() => {
+      Usuarios.destroy({ where: { id: req.params.id } })
+        .then((ok) => res.sendStatus(200))
+    })
+})
 module.exports = router;

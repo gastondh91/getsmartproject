@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React,{ useRef } from 'react';
 
 
-const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, checked, onSubmit, title, catDisponibles }) => {
+const Formulario = ({ prodAEditar, onImageChange, arrCategorias, onChange, addCat, history, checked, onSubmit, title, catDisponibles }) => {
 
-
+  const inputRef = useRef(null)
   return (
     <form
       className='formProdAm'
@@ -50,20 +50,14 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
           </div>
         </div>
       </div>
-      <div className="input-group input-group-lg">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="inputGroup-sizing-lg">* URL Imagenes</span>
-        </div>
-        <input onChange={onChange} name="Imagen" defaultValue={prodAEditar.imagenes} type="text" className="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
-      </div>
-      <h6 style={{ marginTop: '10px' }}>* Separar las URL con coma (',')</h6>
 
-      <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
+      <div className="input-group input-group-lg" >
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-lg">* Precio</span>
         </div>
         <input name='Precio' defaultValue={prodAEditar.precio} onChange={onChange} type="text" className="form-control" id="inputAddress" />
       </div>
+
 
       <div className="input-group input-group-lg" style={{ margin: '15px 0' }}>
         <div className="input-group-prepend">
@@ -71,8 +65,15 @@ const Formulario = ({ prodAEditar, arrCategorias, onChange, addCat, history, che
         </div>
         <input name='Stock' onChange={onChange} defaultValue={prodAEditar.stock} type="text" className="form-control" id="inputAddress" />
       </div>
-
-      <div className="form-group selCat">
+      <button
+          type='button'
+          className='example_b btnUserAdmin'
+          id='cartbutton'
+          onClick={() => inputRef.current.click()}
+        > Cargar imagenes
+            </button>
+        <input ref={inputRef} type="file" encType="multipart/form-data" multiple name="myImage" onChange={(e) => onImageChange(e)} style={{ width: '317px', display: 'none' }} />
+      <div  style={{ marginTop: '1rem' }} className="form-group selCat">
         <h3 id='modelo' className="form-group"> Seleccionar Categorias:</h3>
         <div className="form-group"></div>
 

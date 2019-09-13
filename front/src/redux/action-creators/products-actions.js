@@ -33,7 +33,7 @@ const buscarMarca = (marca) => ({
 });
 
 export const getProducts = searchProduct => dispatch => {
-  return axios.get(`/api/productos${searchProduct}`)
+  return axios.get(`/api/productos/${searchProduct}`)
     .then(res => {
       dispatch(setProducts(res.data));
     });

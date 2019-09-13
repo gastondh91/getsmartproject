@@ -1,5 +1,3 @@
-const fs = require('fs');
-var rmdir = require('rimraf')
 const express = require('express');
 const app = express();
 var cookieParser = require('cookie-parser');

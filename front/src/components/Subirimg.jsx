@@ -6,6 +6,7 @@ const Subirimg = (props) => {
 
 
   const onImageChange = (e) => {
+    console.log(e.target)
     setFile(files = e.target.files[0]);
   }
 
@@ -13,7 +14,7 @@ const Subirimg = (props) => {
     e.preventDefault();
     console.log('ejecutado')
     const formData = new FormData();
-    formData.append('myImage', file);
+    formData.append('myImage', files);
     const config = {
       headers: {
         'content-type': 'multipart/form-data',

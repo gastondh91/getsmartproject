@@ -14,8 +14,8 @@ const AdminProd = (props) => {
   let [Marca, setMarca] = useState()
   let [Modelo, setModelo] = useState()
   let [Stock, setStock] = useState()
+  var [files, setFiles] = useState(null)
   let [Precio, setPrecio] = useState()
-  let [Imagen, setImagen] = useState()
   let [Descripcion, setDescripcion] = useState()
   let [Productos, setProductos] = useState([])
   let [Estado, setEstado] = useState(['Error/Producto creado', 'Razon'])
@@ -31,6 +31,10 @@ const AdminProd = (props) => {
 
   }, [])
 
+
+  const onImageChange = (e) => {
+    setFiles(files = e.target.files);
+  }
 
   const quitarCategorias = (arr, value) => {
 
@@ -81,8 +85,6 @@ const AdminProd = (props) => {
         break;
       case 'Precio': setPrecio(Precio = e.target.value);
         break;
-      case 'Imagen': setImagen(Imagen = e.target.value);
-        break;
       case 'Descripcion': setDescripcion(Descripcion = e.target.value);
         break;
     }
@@ -90,14 +92,14 @@ const AdminProd = (props) => {
 
   const handleSubmit = (e, catsFinales) => {
     e.preventDefault();
-    if (!Marca || !Modelo || !Imagen || !Precio || !Stock || !Descripcion ) {
-      setEstado( Estado = ['Error', 'Debes completar los campos obligatorios (*)'])
+    if ( Marca == '' || Modelo == '' || Precio == '' || Stock == '' || Descripcion == '') {
+      setEstado(Estado = ['Error', 'Debes completar los campos obligatorios (*)'])
       return
     }
-    
+
     for (let i = 0; i < Productos.length; i += 1) {
       if (Productos[i].modelo == Modelo) {
-        setEstado( Estado = ['Error','Ya existe ese modelo de telefono'] )
+        setEstado(Estado = ['Error', 'Ya existe ese modelo de telefono'])
         return
       }
     }
@@ -107,12 +109,33 @@ const AdminProd = (props) => {
       modelo: Modelo,
       stock: Stock,
       precio: Precio,
-      imagenes: Imagen && Imagen.split(','),
       descripcion: Descripcion,
       categorias: catsFinales
     })
       .then(() => {
-        setEstado(Estado = ['Se editó el producto' + ' ' + prodAEditar.marca + ' ' + prodAEditar.modelo,null])
+        axios.post('/api/imagenes/defRuta', {
+          marca: prodAEditar.marca,
+          modelo: prodAEditar.modelo,
+          producto: prodAEditar.id
+        })
+      })
+      .then(() => {
+        if (files) {
+          const formData = new FormData();
+          for (var x = 0; x < files.length; x++) {
+            formData.append('myImage', files[x], prodAEditar.id)
+          }
+          const config = {
+            headers: {
+              'content-type': 'multipart/form-data',
+            }
+          };
+          axios.post("/api/imagenes/prodImage", formData, config)
+        }
+      })
+
+      .then(() => {
+        setEstado(Estado = ['Se editó el producto' + ' ' + prodAEditar.marca + ' ' + prodAEditar.modelo, null])
       });
   }
 
@@ -121,6 +144,7 @@ const AdminProd = (props) => {
       {props.isAdmin ?
         <div>
           <FormEditProd
+            onImageChange={onImageChange}
             catDisponibles={categoriasDisponibles}
             prodAEditar={prodAEditar}
             marca={Marca}
@@ -132,16 +156,16 @@ const AdminProd = (props) => {
             arrCategorias={arrCategorias}
             addCat={addCat}
           />
-        <div>
-          <ModalInfo
-            encabezado={Estado[0] == 'Error' ? Estado[0] : 'Producto editado'}
-            accion={Estado[0] == 'Error' ? Estado[1] : Estado[0]}
-            history={props.history}
-            historypush={Estado[0] != 'Error' ? `/productos/${prodAEditar.id}` : `/productos/edit/${prodAEditar.id}`}
-          />
+          <div>
+            <ModalInfo
+              encabezado={Estado[0] == 'Error' ? Estado[0] : 'Producto editado'}
+              accion={Estado[0] == 'Error' ? Estado[1] : Estado[0]}
+              history={props.history}
+              historypush={Estado[0] != 'Error' ? `/productos/${prodAEditar.id}` : `/productos/edit/${prodAEditar.id}`}
+            />
+          </div>
         </div>
-        </div>
-         : <Noautorizado />}
+        : <Noautorizado />}
     </div>
   );
 }

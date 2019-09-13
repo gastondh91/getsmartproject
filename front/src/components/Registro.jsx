@@ -83,6 +83,11 @@ class Registro extends React.Component {
       this.props.registerUser(this.state)
         .then(() => this.setState({ estado: ['Usuario registrado', null] }))
         .then(() => {
+          axios.post('/api/imagenes/defRutaUsuarios', {
+            email: this.state.email,
+          })
+        })
+        .then(() => {
 
           const formData = new FormData();
           formData.append('myImage', this.state.file, this.props.user.id);

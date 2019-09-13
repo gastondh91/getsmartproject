@@ -30,6 +30,7 @@ const Producto = db.define('productos', {
   },
   imagenes: {
     type: S.ARRAY(S.TEXT),
+    // type: S.STRING,
     allowNull: true
   }
 });
@@ -55,6 +56,7 @@ Producto.addHook('beforeCreate', (producto) => {
 Producto.addHook('beforeUpdate', (producto) => {
   mayusculas(producto)
 })
+
 
 
 module.exports = Producto;

@@ -28,7 +28,8 @@ const Products = ({ products,savedBusqueda }) => {
       <Link to={`/productos/${product.id}`} key={product.id}>
         <div className="product" >
           <div className="card">
-            <img style={{ objectFit: 'contain' }} src={`${product.imagenes[0]}`}
+            <img style={{ objectFit: 'contain' }} src={`${product.imagenes[0]
+          }`}
               className="card-img-top imgproduct" />
             <div className="card-body">
               <h5 className="card-title last"> {product.marca + ' ' + product.modelo} </h5>

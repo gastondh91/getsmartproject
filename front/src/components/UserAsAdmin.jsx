@@ -1,7 +1,6 @@
 import React from 'react'
 import { giveadmAccess, fetchOneUser } from '../redux/action-creators/action-creator'
 import { connect } from 'react-redux'
-import Noautorizado from '../components/Noautorizado';
 import ModalConfirm from './ModalConfirm'
 import { deleteUser } from '../redux/action-creators/user-actions';
 import axios from 'axios'

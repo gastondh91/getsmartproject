@@ -8,7 +8,7 @@ const usuarios =
       password: '5739gaston',
       genero: 'Masculino',
       isAdmin: true,
-      avatar: '/utils/gastonavatar.jpg'
+      avatar: '/utils/Usuarios/gastondh91@gmail.com/gastonavatar.jpg'
     },
     {
       nombre: 'Juan Carlos',
@@ -17,7 +17,7 @@ const usuarios =
       domicilio: 'Salas y valdez 647',
       genero: 'Masculino',
       password: '123456',
-      avatar: '/utils/juancarlos.jpg',
+      avatar: '/utils/Usuarios/juancarlos@gmail.com/juancarlos.jpg',
       isAdmin: false
     },
     {
@@ -27,7 +27,7 @@ const usuarios =
       domicilio: 'Los Ceibos 635',
       genero: 'Femenino',
       password: '123456',
-      avatar: '/utils/Juliavatar.jpg',
+      avatar: '/utils/Usuarios/julisilva@gmail.com/Juliavatar.jpg',
       isAdmin: true
     },
     {
@@ -37,7 +37,7 @@ const usuarios =
       domicilio: 'West Avenue 458',
       genero: 'Masculino',
       password: '123456',
-      avatar: '/utils/billgates.jpg',
+      avatar: '/utils/Usuarios/billgates@gmail.com/billgates.jpg',
       isAdmin: true
     },
     {
@@ -47,7 +47,7 @@ const usuarios =
       domicilio: 'Lamadrid 529',
       genero: 'Femenino',
       password: '123456',
-      avatar: '/utils/valentinaavatar.jpg',
+      avatar: '/utils/Usuarios/valeruiz@gmail.com/valentinaavatar.jpg',
       isAdmin: false
     },
     {
@@ -58,7 +58,7 @@ const usuarios =
       genero: 'Masculino',
       password: '123456',
       isAdmin: false,
-      avatar: '/utils/josemontiel.jpg'
+      avatar: '/utils/Usuarios/josemontiel@gmail.com/josemontiel.jpg'
     }
 
   ]
@@ -88,8 +88,8 @@ const productos = [
     descripcion: 'El Huawei P20 Pro es el primer smartphone de Huawei con cámara triple. Con tres lentes de 40 MP, 20 MP y 8 MP provistos por Leica, el Huawei P20 Pro apunta a dominar la fotografía en el campo de los smartphones. El resto de las características incluye una pantalla Full HD+ de 6.1 pulgadas, procesador octa-core, 6GB de RAM y 128GB de almacenamiento, y Android 8.0 Oreo.',
     precio: '45.000',
     imagenes: ['/utils/Telefonos/huawei1.jpg','/utils/Telefonos/huawei2.jpg','/utils/Telefonos/huawei3.jpg']
-  },
-  {
+  }
+  ,{
     marca: 'LG',
     modelo: 'G7 ThinQ',
     stock: 8,

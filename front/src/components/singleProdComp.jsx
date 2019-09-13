@@ -4,11 +4,28 @@ import Carousel from 'react-bootstrap/Carousel';
 import Stars from './starRating';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { buscarProducto } from '../redux/action-creators/products-actions';
 import { addToCart } from '../redux/action-creators/carrito-actions'
 import ModalConfirm from './ModalConfirm'
 
-const SingleProdComp = (props) => {
 
+const SingleProdComp = (props) => {
+  
+  useEffect (()=>{
+    buscarProducto(props.productoId)
+  })
+
+  const transfArray = ()=>{
+    var arrImagenFinal = props.producto.imagenes
+
+    if(props.producto.imagenes.includes('}')){
+    arrImagenFinal = arrImagenFinal.substring(0,arrImagenFinal.length-1)
+    arrImagenFinal = arrImagenFinal.slice(1)
+    arrImagenFinal = arrImagenFinal.split(',')
+    return arrImagenFinal
+    }
+    else return props.producto.imagenes
+  }
   // useEffect(()=>{
   //   var coll = document.getElementsByClassName("collapsible");
   //   var i;
@@ -27,30 +44,33 @@ const SingleProdComp = (props) => {
   // },[])
 
 
-  const { producto, borrarProd, categorias, onClick } = props;
+  const { borrarProd, categorias, onClick } = props;
   return (
     <div id="singleProd">
+      {console.log(props.producto)}
       <div className="row">
 
         <div className="col-lg-6 col-xs-12">
 
-          <h1 style={{ textAlign: 'center', marginBottom: '10px', borderBottom: '1px solid black', paddingBottom: '7px' }}>{producto.marca} {producto.modelo}</h1>
+          <h1 style={{ textAlign: 'center', marginBottom: '10px', borderBottom: '1px solid black', paddingBottom: '7px' }}>{props.producto.marca} {props.producto.modelo}</h1>
 
           <div className="row" style={{ marginTop: '20px' }}>
-            <div className="col-lg-6 col-xs-12"><h1 style={{ textAlign: 'center' }}>$ {producto.precio} </h1></div>
-            <div style={{ textAlign: 'center', marginTop: '9px' }} className="col-lg-6 col-xs-12">{producto.stock > 5 ? <h4>Disponible</h4> : <h4>Últimas {producto.stock} unidades</h4>}</div>
+            <div className="col-lg-6 col-xs-12"><h1 style={{ textAlign: 'center' }}>$ {props.producto.precio} </h1></div>
+            <div style={{ textAlign: 'center', marginTop: '9px' }} className="col-lg-6 col-xs-12">{props.producto.stock > 5 ? <h4>Disponible</h4> : <h4>Últimas {props.producto.stock} unidades</h4>}</div>
           </div>
 
           <div id="puntuacion" className="row">
             <h3>Puntuación :  </h3>
-            <h2 style={{ margin: '0 auto' }}>  <Stars rating={producto.puntuación} /></h2>
+            <h2 style={{ margin: '0 auto' }}>  <Stars rating={props.producto.puntuación} /></h2>
           </div>
         </div>
 
         <div className="col-lg-6 col-xs-12">
           <Carousel >
-            {producto.imagenes.map((imagen, index = 0) => (
-              <Carousel.Item key={index++}>
+            {transfArray().map((imagen, index = 0) => (
+              <Carousel.Item 
+                key={index++}
+                >
                 <img
                   className="d-block w-100"
                   src={imagen}
@@ -59,14 +79,12 @@ const SingleProdComp = (props) => {
                 />
 
               </Carousel.Item>
-            ))}
+             ))} 
           </Carousel>
-
-          {/* <div className="button_cont" align="center"><a className="example_b" href="add-website-here" target="_blank" rel="nofollow noopener">Add Call to Action</a></div> */}
 
 
           <button
-            onClick={() => props.adminInfo ? props.history.push(`/productos/edit/${producto.id}`) : props.addToCart(props.producto.id, props.usuario.id)}
+            onClick={() => props.adminInfo ? props.history.push(`/productos/edit/${props.producto.id}`) : props.addToCart(props.props.producto.id, props.usuario.id)}
             className="example_c"
             rel="nofollow noopener"
             id='cartbutton'
@@ -90,7 +108,7 @@ const SingleProdComp = (props) => {
       <div className="row">
         <div className="col-lg-6 col-xs-12">
           <h3><strong>Descripción : </strong></h3>
-          <h5 className='collapsible'>{producto.descripcion}</h5>
+          <h5 className='collapsible'>{props.producto.descripcion}</h5>
         </div>
       </div>
       <hr />
@@ -111,13 +129,13 @@ const SingleProdComp = (props) => {
       </div>
       <ModalConfirm
         funcion={borrarProd}
-        parametro={producto.id}
+        parametro={props.producto.id}
         encabezado={'¿Eliminar producto?'}
         encabezadoInfo={'Producto eliminado'}
         confirmacion={'¿Confirma que desea eliminar'}
         history={props.history}
         historypush={'/productos'}
-        nombre={'"' + producto.marca + ' ' + producto.modelo + '"'}
+        nombre={'"' + props.producto.marca + ' ' + props.producto.modelo + '"'}
         item={'el producto'}
         accion={'Se eliminó'}
       />
@@ -134,7 +152,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (idProducto, idUsuario) => dispatch(addToCart(idProducto, idUsuario))
+  addToCart: (idProducto, idUsuario) => dispatch(addToCart(idProducto, idUsuario)),
+  buscarProducto: (prodID) => dispatch(buscarProducto(prodID))
 });
 
 

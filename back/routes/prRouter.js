@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const Categorias = require('../models/Categorias');
 const modelos = require('../models/index').modelos;
+var rimraf = require("rimraf");
 
 router.post('/add', (req, res, next) => {
   modelos.Productos.create(req.body)
@@ -48,7 +49,11 @@ router.get('/:id', (req, res) => {
 
 
 router.delete(('/:id'), (req, res, next) => {
-  modelos.Productos.destroy({ where: { id: req.params.id } })
+  modelos.Productos.findByPk(req.params.id)
+    .then(producto => rimraf(`back/public/utils/Telefonos/${producto.marca}/${producto.modelo}`, ()=> {} ))
+    .then(()=>{
+      modelos.Productos.destroy({ where: { id: req.params.id } })
+    })
     .then( () => res.sendStatus(200))
     .catch(err => console.log(err));
 });
