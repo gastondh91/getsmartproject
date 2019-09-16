@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ModalInfo = ({ encabezado, item, history, accion, historypush, nombre})=>{
+const ModalInfo = ({ encabezado, show, item, history, accion, historypush, nombre})=>{
 
 
 return(
 
-<div className="modal fade"  id="infoModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id="infoModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div className="modal-dialog" role="document">
   <div style={{width: '21rem'}} className="modal-content modalBord2">
     <div className="modal-header borderModal">

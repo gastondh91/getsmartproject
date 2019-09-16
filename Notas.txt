@@ -2,3 +2,5 @@
 * Ver textos cuando hay hover
 * Modificar 'Hola ingresa tus datos'
 * sort de agregar categorias no esta bien
+* cambiar iniciar sesion por desplegable
+* Hacer que cuando inicie sesion me redireccione a donde estaba

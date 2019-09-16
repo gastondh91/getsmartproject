@@ -7,6 +7,7 @@ module.exports = {
     path: __dirname,
     filename: './back/public/bundle.js'
   },
+  
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -23,7 +24,8 @@ module.exports = {
             '@babel/env'
           ]
         }
-      }
+      },
+      
     ]
   },
   devtool: 'source-map'

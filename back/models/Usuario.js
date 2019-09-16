@@ -18,7 +18,7 @@ const Usuarios = db.define('usuario', {
   },
   genero: {
     type: S.ENUM,
-    values: ['Masculino', 'Femenino']
+    values: ['Masculino', 'Femenino', 'No especificado']
   },
   email: {
     type: S.STRING,
@@ -38,10 +38,15 @@ const Usuarios = db.define('usuario', {
   isAdmin: {
     type: S.BOOLEAN
   },
-    avatar: {
-      type: S.STRING
-    }
-});
+  avatar: {
+    type: S.STRING
+  },
+  fbid:{
+    type: S.BIGINT,
+    constraints: false
+  }
+}
+);
 
 // Usuario.belongsTo(OrdenCompra, { as: 'owner' });
 
@@ -49,29 +54,31 @@ var mayusculasNombre = (usuario) => {
 
   if (usuario.nombre.includes(' ') || usuario.nombre[0] === usuario.nombre[0].toLowerCase()) {
     newUsuario = usuario.nombre.split('')
-  
-    if(newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
-    
+
+    if (newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
+
     for (i = 0; i < newUsuario.length; i++) {
       if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
     }
     usuario.nombre = newUsuario.join('')
-  
-  }}
 
-  var mayusculasApellido = (usuario) => {
+  }
+}
 
-    if (usuario.apellido.includes(' ') || usuario.apellido[0] === usuario.apellido[0].toLowerCase()) {
-      newUsuario = usuario.apellido.split('')
-    
-      if(newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
-      
-      for (i = 0; i < newUsuario.length; i++) {
-        if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
-      }
-      usuario.apellido = newUsuario.join('')
-    
-    }}
+var mayusculasApellido = (usuario) => {
+
+  if (usuario.apellido.includes(' ') || usuario.apellido[0] === usuario.apellido[0].toLowerCase()) {
+    newUsuario = usuario.apellido.split('')
+
+    if (newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
+
+    for (i = 0; i < newUsuario.length; i++) {
+      if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
+    }
+    usuario.apellido = newUsuario.join('')
+
+  }
+}
 
 Usuarios.addHook('beforeCreate', (usuario) => {
   usuario.salt = crypto.randomBytes(20).toString('hex');

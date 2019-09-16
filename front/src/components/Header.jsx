@@ -36,7 +36,7 @@ const Header = (props) => {
           <Link to='/usuarios/login' id='linkLogOut'><img id='userLogOut' src="/utils/log.svg"></img>
             <div className='caption2'>Ingresar</div></Link>
         </span>
-        <Link to='/' id='linkLogo' ><img id='logo' src="/utils/logoBlanco3.jpg"></img></Link>
+        <Link to='/' id='linkLogo' ><img id='logo' title='Inicio' src="/utils/logoBlanco3.jpg"></img></Link>
         <Route render={({ history }) => {
           return (
 
@@ -47,7 +47,7 @@ const Header = (props) => {
           );
         }
         } />
-        <Link to='/cart' id='linkCart'><img id='carrito' src="/utils/carrito.svg"></img></Link>
+        <Link to='/cart' title='Ver carrito' id='linkCart'><img id='carrito' src="/utils/carrito.svg"></img></Link>
 
       </header>
       : <header className='header apart'>

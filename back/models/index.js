@@ -3,12 +3,14 @@ const Categorias = require('./Categorias');
 const Carrito = require('./Carrito')
 const OrdenCompra = require('./OrdenCompra');
 const Usuarios = require('./Usuario').Usuarios;
+const { Facebook } = require('./Facebook')
 
 const modelos = {
   Categorias,
   Productos,
   Carrito,
-  Usuarios
+  Usuarios,
+  Facebook
 };
 
 Categorias.belongsToMany(Productos, { through: 'categorias_productos' });
@@ -25,6 +27,9 @@ const ordenes = {
 
 OrdenCompra.belongsToMany(Productos, { through: 'orden_productos' });
 Productos.belongsToMany(OrdenCompra, { through: 'orden_productos' });
+
+Facebook.belongsTo(Usuarios, { as: 'userid', constraints: false })
+Usuarios.belongsTo(Facebook, { foreignKey: 'fbid', constraints: false })
 
 module.exports = {
   modelos,
