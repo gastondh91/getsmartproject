@@ -1,6 +1,10 @@
 * En productos poner las categorias a la par de la descripcion
-* Ver textos cuando hay hover
 * Modificar 'Hola ingresa tus datos'
 * sort de agregar categorias no esta bien
 * cambiar iniciar sesion por desplegable
-* Hacer que cuando inicie sesion me redireccione a donde estaba
+* Cambiar condicionales por findorcreate en los oauth
+* Manejar loadings en los componentes
+* cambiar los seeds por findorcreate
+* Remodelar categorias
+* Poner un fondo
+* Hacer README

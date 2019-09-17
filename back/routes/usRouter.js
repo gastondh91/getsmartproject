@@ -65,21 +65,22 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-// Redirect the user to Facebook for authentication.  When complete,
-// Facebook will redirect the user back to the application at
-//     /auth/facebook/callback
-router.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['email']}));
+router.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['email']},));
 
-// Facebook will redirect the user to this URL after approval.  Finish the
-// authentication process by attempting to obtain an access token.  If
-// access was granted, the user will be logged in.  Otherwise,
-// authentication has failed.
 router.get('/auth/facebook/callback',passport.authenticate('facebook'), (req,res)=>{
   if (req.isAuthenticated()) {
-    // console.log(req.user);
     res.redirect('/')
-    // if(req.user) res.redirect('/')
-    // else(res.redirect('/login'))
+  }
+});
+
+
+router.get('/auth/google', passport.authenticate('google',{
+  scope: ['profile','email']
+}))
+
+router.get('/auth/google/callback',passport.authenticate('google'), (req,res)=>{
+  if (req.isAuthenticated()) {
+    res.redirect('/')
   }
 });
 

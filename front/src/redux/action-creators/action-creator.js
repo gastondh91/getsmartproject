@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_BUSQ, GET_SELUSER, CHECK_USER, ADD_USER, ADM_ACCESS, GET_USER } from '../constants';
+import { SET_BUSQ, SET_CURRENTLOCATION, GET_SELUSER, CHECK_USER, ADD_USER, ADM_ACCESS, GET_USER } from '../constants';
 
 export const addUser = (user) => ({
   type: ADD_USER,
@@ -10,6 +10,11 @@ export const setBusqueda = (busqueda) => ({
   type: SET_BUSQ,
   busqueda
 });
+
+export const setCurrentLocation = (currentLocation) =>({
+  type: SET_CURRENTLOCATION,
+  currentLocation
+})
 
 export const checkUser = (data) => ({
   type: CHECK_USER,

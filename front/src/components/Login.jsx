@@ -63,7 +63,7 @@ class Login extends React.Component {
               <div className="botones">
                 <button style={{marginTop: '1px',padding: '8.4px', width: '5rem', textTransform:'none'}}type="submit" data-toggle="modal" data-target="#infoModal" onSubmit={this.handleSubmit} className="example_b general">Login</button>
                 <a  className='faceLog' style={{cursor: 'pointer'}} href='http://localhost:8080/api/usuarios/auth/facebook'></a>
-                <a className= "googlesign" data-width="300" data-height="200" data-longtitle="true"href='/api/auth/google'>
+                <a className= "googlesign" data-width="300" data-height="200" data-longtitle="true" href='http://localhost:8080/api/usuarios/auth/google'>
                   Login with Google
               </a>
               </div>
@@ -78,7 +78,8 @@ class Login extends React.Component {
             accion={this.state.checkedUser ? `Bienvenid${this.state.userGender == 'Masculino' ? 'o' : 'a'} de nuevo, ` : 'La combinación de usuario y contraseña son incorrectos'}
             nombre={this.state.checkedUser ? this.state.checkedUser : ''}
             history={this.props.history}
-            historypush={this.state.checkedUser ? '/' : '/usuarios/login'}
+            location={this.props.location}
+            historypush={this.state.checkedUser ? this.props.currentLocation : '/usuarios/login'}
           />
         </div>
       </div>
@@ -88,7 +89,8 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  userCheck: state.userCheck
+  userCheck: state.userCheck,
+  currentLocation: state.currentLocation
 });
 const mapDispatchToProps = (dispatch) => ({
   checkUserLogin: (user) => dispatch((checkUserLogin(user)))

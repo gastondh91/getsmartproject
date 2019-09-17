@@ -4,13 +4,15 @@ const Carrito = require('./Carrito')
 const OrdenCompra = require('./OrdenCompra');
 const Usuarios = require('./Usuario').Usuarios;
 const { Facebook } = require('./Facebook')
+const { Google } = require('./Google')
 
 const modelos = {
   Categorias,
   Productos,
   Carrito,
   Usuarios,
-  Facebook
+  Facebook,
+  Google
 };
 
 Categorias.belongsToMany(Productos, { through: 'categorias_productos' });
@@ -30,6 +32,9 @@ Productos.belongsToMany(OrdenCompra, { through: 'orden_productos' });
 
 Facebook.belongsTo(Usuarios, { as: 'userid', constraints: false })
 Usuarios.belongsTo(Facebook, { foreignKey: 'fbid', constraints: false })
+
+Google.belongsTo(Usuarios, { as: 'userid', constraints: false })
+Usuarios.belongsTo(Google, { foreignKey: 'googleid', constraints: false })
 
 module.exports = {
   modelos,

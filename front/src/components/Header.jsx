@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import { setBusqueda } from '../redux/action-creators/action-creator'
+import { setBusqueda, setCurrentLocation } from '../redux/action-creators/action-creator'
 import { Redirect } from 'react-router-dom'
 
 const Header = (props) => {
@@ -11,6 +11,11 @@ const Header = (props) => {
   useEffect(() => {
     { props.location.pathname != '/productos' && cancelCourse() }
   }, [props.location.pathname])
+
+  useEffect(() => {
+    (props.location.pathname!= '/usuarios/login' && props.location.pathname!= '/unauthorized') && props.setCurrentLocation(props.location.pathname)
+  }, [props.location.pathname])
+
 
   const handleChange = (e) => {
     props.setBusqueda(e.target.value)
@@ -88,7 +93,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setBusqueda: (busqueda) => dispatch(setBusqueda(busqueda))
+  setBusqueda: (busqueda) => dispatch(setBusqueda(busqueda)),
+  setCurrentLocation: (currentLocation) => dispatch(setCurrentLocation(currentLocation))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

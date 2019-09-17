@@ -42,7 +42,11 @@ const Usuarios = db.define('usuario', {
     type: S.STRING
   },
   fbid:{
-    type: S.BIGINT,
+    type: S.DECIMAL,
+    constraints: false
+  },
+  googleid:{
+    type: S.DECIMAL,
     constraints: false
   }
 }

@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -16,6 +16,7 @@ const chalk = require('chalk')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sessionStore = new SequelizeStore({ db });
 var fs = require('fs');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var https = require('https');
 const PORT = process.env.PORT || 8080;
 
@@ -50,7 +51,7 @@ app.use(passport.session()); /* esta idem */
 app.use(morgan('dev'));
 app.use('/api', apiRoutes);
 
-app.use(cors());
+// app.use(cors());
 
 
 
@@ -84,6 +85,54 @@ passport.use(new LocalStrategy(
       .catch(done);
   }
 ));
+
+passport.use(new GoogleStrategy({
+  clientID: '841605176109-ms2j7va58semk3kakb7kremgvl2o7fhf.apps.googleusercontent.com',
+  clientSecret: 'ZcDHUJAQ8o5xE2JT2djLjYjj',
+  callbackURL: "/api/usuarios/auth/google/callback",
+  profileFields: ['id', 'displayName', 'gender', 'photos', 'emails']
+},
+  (accessToken, refreshToken, profile, done) => {
+    var { id, picture, gender, email, name } = profile;
+    console.log('profile ', profile)
+    // console.log('todos los prof fields ',profileFields)
+    // []
+   var gender = ()=>{
+     if(gender == 'male') return 'Masculino'
+     if(gender == 'female') return 'Femenino'
+     else return 'No especificado'
+   }
+
+
+    Usuarios.findOne({ where: { email: email } })
+      .then(user => {
+        if (user) {
+          user.setGoogle([id])
+            .then(user => {
+              return done(null, user)
+            })
+        }
+        else {
+          Usuarios.create({
+            nombre: name.givenName,
+            apellido: name.familyName,
+            domicilio: 'No especificado',
+            genero: gender ? gender() : 'No especificado',
+            email: email,
+            password: accessToken,
+            avatar: picture
+          })
+            .then(user => {
+              user.setGoogle([id])
+                .then(user => {
+
+                  return done(null, user)
+                })
+            })
+          }
+      })
+    })
+)
 
 passport.use(new FacebookStrategy({
   clientID: '620838298442887',
@@ -134,7 +183,6 @@ passport.use(new FacebookStrategy({
       })
     })
 )
-
 
 
 

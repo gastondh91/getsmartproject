@@ -65,7 +65,7 @@ const Formulario = ({ onChange, onSubmit, title, handleClick, Active, categorias
 
       <div className='formProdAm' id='showCat'>
         <h1 style={{ textAlign: 'center', marginBottom: '50px', borderBottom: '1px solid black', paddingBottom: '20px' }}>{title} Categorías: </h1>
-        {categorias.map((categoria) => (
+        {categorias.sort((a, b) => { return a.id - b.id }).map((categoria) => (
           <div key={categoria.id} style={{ cursor: 'pointer' }} className="list-group">
             <button id='eliminar' data-toggle="modal" data-target="#definiteModal" type="button" value={categoria.id}
               onClick={(e) => {
