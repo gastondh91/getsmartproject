@@ -19,6 +19,7 @@ import { getUser, checkUserLogin, fetchUser } from '../redux/action-creators/act
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Checkout from '../components/Checkout';
+import UserEdit from '../components/UserEdit'
 import TarjetaDeCredito from '../components/TarjetaDeCredito';
 import Noautorizado from '../components/Noautorizado';
 import UsersContainer from './UsersContainer';
@@ -54,6 +55,7 @@ class Main extends React.Component {
           <NavbarContainer location={location} history={this.props.history} isAdmin={this.props.usuario.isAdmin} />
           <Switch>
             <Route exact path='/unauthorized' render={() => < Noautorizado usuario={this.props.usuario} />} />
+            <Route exact path='/usuarios/edit/:id/editdata/:id' render={({ history, match }) => < UserEdit history={history} userId={match.params.id} usuario={this.props.usuario} />} />
             <Route exact path="/usuarios" render={() => (<HomeRL />)} />
             <Route exact path="/redirect" render={() => (<Redirect to='/' />)} />
             <Route exact path="/subirimagen" render={() => (<Subirimg usuario={this.props.usuario} />)} />

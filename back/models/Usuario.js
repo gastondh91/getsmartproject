@@ -92,6 +92,14 @@ Usuarios.addHook('beforeCreate', (usuario) => {
   mayusculasApellido(usuario)
 });
 
+Usuarios.addHook('beforeUpdate', (usuario) => {
+  usuario.salt = crypto.randomBytes(20).toString('hex');
+  usuario.password = usuario.hashPassword(usuario.password);
+  usuario.email = usuario.email.toLowerCase()
+  mayusculasNombre(usuario)
+  mayusculasApellido(usuario)
+});
+
 
 Usuarios.prototype.hashPassword = function (password) {
   return crypto.createHmac('sha1', this.salt).update(password).digest('hex');

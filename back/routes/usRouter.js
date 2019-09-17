@@ -73,6 +73,14 @@ router.get('/auth/facebook/callback',passport.authenticate('facebook'), (req,res
   }
 });
 
+router.put('/edit/:id', (req, res, next) => {
+  Usuarios.findByPk(req.params.id)
+  // .then(usuario => console.log(usuario))
+    .then(usuario => usuario.update(req.body))
+    .then(update => res.send(update))
+    .catch(err => console.log(err));
+});
+
 
 router.get('/auth/google', passport.authenticate('google',{
   scope: ['profile','email']

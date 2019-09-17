@@ -38,7 +38,9 @@ router.post('/tempUpload', (req, res) => {
 
 
 router.post('/defRutaUsuarios', (req, res) => {
-  rutaUsuarios = `utils/Usuarios/${req.body.email}`
+  console.log('BODYYYYYYY',req.body)
+  rutaUsuarios = `/utils/Usuarios/${req.body.email}`;
+   res.sendStatus(200)
 })
 
 router.post('/defRuta', (req, res) => {
@@ -114,9 +116,9 @@ router.post('/upload', (req, res) => {
   }).single("myImage");
 
   upload(req, res, (err) => {
-
+    console.log(req.file)
     Usuarios.findByPk(Number(req.file.originalname))
-      .then(usuario => usuario.update({ avatar: `/${rutaUsuarios}/${req.file.filename}` }))
+      .then(usuario => usuario.update({ avatar: `${rutaUsuarios}/${req.file.filename}` }))
     if (!err)
       return res.sendStatus(200).end();
 

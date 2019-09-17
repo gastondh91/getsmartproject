@@ -73,10 +73,6 @@ class Registro extends React.Component {
           this.setState({ estado: ['Error', 'El E-mail ingresado ya se encuentra en uso'] })
           return;
         }
-        if (this.props.users[i].nombre === this.state.nombre && this.props.users[i].apellido === this.state.apellido) {
-          this.setState({ estado: ['Error', 'La combinacion de nombre y apellido del usuario ya existen en la base de datos'] })
-          return
-        }
       }
 
 
@@ -117,7 +113,6 @@ class Registro extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state.file)}
         <div>
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">

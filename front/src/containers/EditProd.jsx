@@ -104,7 +104,7 @@ const AdminProd = (props) => {
       }
     }
     catsFinales = arrCategorias
-    axios.put(`/api/productos/edit/${prodAEditar.id}`, {
+    axios.put(`/api/usuarios/edit/${userId}`, {
       marca: Marca,
       modelo: Modelo,
       stock: Stock,
