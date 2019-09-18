@@ -50,7 +50,7 @@ const SingleProdComp = (props) => {
       {console.log(props.producto)}
       <div className="row">
 
-        <div className="col-lg-6 col-xs-12">
+        <div style={{height: 'fit-content'}}className="col-lg-6 col-xs-12">
 
           <h1 style={{ textAlign: 'center', marginBottom: '10px', borderBottom: '1px solid black', paddingBottom: '7px' }}>{props.producto.marca} {props.producto.modelo}</h1>
 
@@ -63,6 +63,12 @@ const SingleProdComp = (props) => {
             <h3>Puntuación :  </h3>
             <h2 style={{ margin: '0 auto' }}>  <Stars rating={props.producto.puntuación} /></h2>
           </div>
+          <div className="row">
+        <div style={{minWidth: 'fit-content'}} className="col-lg-6 col-xs-12">
+          <h3 style={{marginTop: '2rem'}}><strong>Descripción : </strong></h3>
+          <h5 className='collapsible'>{props.producto.descripcion}</h5>
+        </div>
+      </div>
         </div>
 
         <div className="col-lg-6 col-xs-12">
@@ -105,12 +111,7 @@ const SingleProdComp = (props) => {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-lg-6 col-xs-12">
-          <h3><strong>Descripción : </strong></h3>
-          <h5 className='collapsible'>{props.producto.descripcion}</h5>
-        </div>
-      </div>
+
       <hr />
       <div className="row" >
         <div className="col-lg-6 col-xs-12">

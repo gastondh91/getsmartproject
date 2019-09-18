@@ -145,6 +145,11 @@
     background: white;
 }
 
+.collapsible{
+    margin-top: 1.5rem;
+    font-size: 0.85rem
+}
+
   
   /* Style the collapsible content. Note: hidden by default */
   .content {
@@ -203,6 +208,8 @@
 
 #singleProd{
     margin: 7%;
+    margin-left: 2%;
+    margin-right: 2%;
     border: 1px solid black;
     border-radius: 20px;
     padding: 50px;
