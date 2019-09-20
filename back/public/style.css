@@ -564,7 +564,8 @@ a:hover{
 }
 
 .modalBord2{
-    border-top-right-radius: 18px
+    border-top-right-radius: 18px;
+    max-width: 21rem;
 }
 
 
@@ -573,9 +574,10 @@ a:hover{
     text-align: center;
     height: 75px;
     text-size-adjust: auto;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-bottom: 0
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-bottom: 0;
+    max-width: 20.5rem
 }
 
 .borderModal{

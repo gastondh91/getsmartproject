@@ -14,3 +14,5 @@
 * Acomodar mas arriba el cuadrado que engloba a los usuarios en userasadmin
 * Poder actualizar puntaje
 * Seguir seedeando base de datos.
+* Preguntar a facu sobre el error de asincronia en promiseAll.
+* Quitar los include de productos.

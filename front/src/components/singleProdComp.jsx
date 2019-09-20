@@ -9,13 +9,21 @@ import ModalConfirm from './ModalConfirm'
 import StarsRating from '../components/StarsRating'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import axios from 'axios'
+
+
 
 
 const SingleProdComp = (props) => {
 
+  var [thisPuntajes, setthisPuntajes] = useState()
+
   useEffect(() => {
     buscarProducto(props.productoId)
-  })
+
+    axios.get(`/api/puntajes/getPuntajes/${props.productoId}`)
+    .then( puntajes => setthisPuntajes(thisPuntajes = puntajes.data))
+  },[])
 
 
   const transfArray = () => {
@@ -57,7 +65,7 @@ const SingleProdComp = (props) => {
   const { borrarProd, categorias, onClick } = props;
   return (
     <div id="singleProd">
-      {console.log(props.producto)}
+      {console.log(thisPuntajes)}
       <div className="row">
         <div style={{ height: 'fit-content' }} className="col-lg-6 col-xs-12">
 
@@ -138,16 +146,16 @@ const SingleProdComp = (props) => {
         <div>
           <h4 style={{ textAlign: 'center' }}><strong>Reviews :</strong></h4>
           <div className='Stars'>
-            {!!props.producto.puntajes.length && <Carousel >
-              {props.producto.puntajes.map((puntaje) => (
+            {thisPuntajes && <Carousel >
+              {thisPuntajes.map((puntaje) => (
                 <Carousel.Item
-                  key={puntaje.review && puntaje.review.id}
+                  key={puntaje.id}
                 >
-                  {puntaje.usuario && <Link style={{ color: 'royalblue', fontWeight: '600' }} to={`/usuarios/edit/${puntaje.usuario.id}`}>
+                  <Link style={{ color: 'royalblue', fontWeight: '600' }} to={`/usuarios/edit/${puntaje.usuario.id}`}>
                     <div style={{ fontSize: '1.5rem' }}>
                       {puntaje.usuario.Nickname}
                     </div>
-                  </Link>}
+                  </Link>
                   <div ><Rater total={5} interactive={false} rating={puntaje.Puntaje} /></div>
                   <div style={{ fontFamily: 'sans-serif' }} >{puntaje.Puntaje} / 5</div>
                   <p

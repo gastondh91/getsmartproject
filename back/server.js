@@ -12,6 +12,8 @@ const apiRoutes = require('./routes');
 const { Usuarios } = require('./models/Usuario');
 const Productos = require('./models/Producto')
 const Categorias = require('./models/Categorias')
+const Puntajes = require('./models/Puntajes')
+const Reviews = require('./models/Reviews')
 const chalk = require('chalk')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sessionStore = new SequelizeStore({ db });
@@ -97,11 +99,11 @@ passport.use(new GoogleStrategy({
     console.log('profile ', profile)
     // console.log('todos los prof fields ',profileFields)
     // []
-   var gender = ()=>{
-     if(gender == 'male') return 'Masculino'
-     if(gender == 'female') return 'Femenino'
-     else return 'No especificado'
-   }
+    var gender = () => {
+      if (gender == 'male') return 'Masculino'
+      if (gender == 'female') return 'Femenino'
+      else return 'No especificado'
+    }
 
 
     Usuarios.findOne({ where: { email: email } })
@@ -129,9 +131,9 @@ passport.use(new GoogleStrategy({
                   return done(null, user)
                 })
             })
-          }
+        }
       })
-    })
+  })
 )
 
 passport.use(new FacebookStrategy({
@@ -147,11 +149,11 @@ passport.use(new FacebookStrategy({
     console.log('profile ', profile)
     // console.log('todos los prof fields ',profileFields)
     // []
-   var gender = ()=>{
-     if(gender == 'male') return 'Masculino'
-     if(gender == 'female') return 'Femenino'
-     else return 'No especificado'
-   }
+    var gender = () => {
+      if (gender == 'male') return 'Masculino'
+      if (gender == 'female') return 'Femenino'
+      else return 'No especificado'
+    }
 
 
     Usuarios.findOne({ where: { email: emailMap } })
@@ -179,33 +181,33 @@ passport.use(new FacebookStrategy({
                   return done(null, user)
                 })
             })
-          }
+        }
       })
-    })
+  })
 )
 
 
 
-    app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, 'public')));
 
-    app.get('/*', function (req, res) {
-      res.sendFile(path.join(__dirname, './public/index.html'));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
+
+sessionStore.sync()
+  .then(() => {
+    db.sync({ force: false }).then((con) => {
+      console.log(`${con.options.dialect} database ${con.config.database} connected at ${con.config.host}:${con.config.port}`);
+
+      // https.createServer({
+      //   key: fs.readFileSync('back/cert.key'),
+      //   cert: fs.readFileSync('back/cert.crt')
+      // }, app).listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
+      app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT))
     });
-
-
-
-    sessionStore.sync()
-      .then(() => {
-        db.sync({ force: false }).then((con) => {
-          console.log(`${con.options.dialect} database ${con.config.database} connected at ${con.config.host}:${con.config.port}`);
-
-          // https.createServer({
-          //   key: fs.readFileSync('back/cert.key'),
-          //   cert: fs.readFileSync('back/cert.crt')
-          // }, app).listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
-          app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT))
-        });
-      })
+  })
   // Para detener el seedeo de la base de datos borrar o comentar las lineas que estan mas abajo
   // .then(()=>{
 
@@ -229,7 +231,31 @@ passport.use(new FacebookStrategy({
   //     .then(producto => producto.setCategorias([3, 4, 6]))
   //   Productos.bulkCreate(productos, { individualHooks: true })
   //   Usuarios.bulkCreate(usuarios, { individualHooks: true });
-  //   Categorias.bulkCreate(categorias, { individualHooks: true });
+  //   Categorias.bulkCreate(categorias, { individualHooks: true })
+
+  //   .then(() => console.log('Base de datos Seedeada con exito'))
+  //   .catch(err => console.log(err)) 
   // })
-  // .then(() => console.log('Base de datos Seedeada con exito'))
-  // .catch(err => console.log(err)) 
+
+
+  // .then(() => {
+  //   Promise.all([
+  //     Usuarios.bulkCreate(usuarios, { individualHooks: true }),
+  //     Categorias.bulkCreate(categorias, { individualHooks: true }),
+  //     Productos.create(iPhone, { individualHooks: true }).then(producto => {
+  //       producto.setCategorias([3, 5, 7])
+  //       producto.update({ calificacion: 4 })
+  //     }),
+  //     Puntajes.create({ Puntaje: 4 })
+  //       .then(puntaje => {
+  //         puntaje.setProducto(1);
+  //         puntaje.setUsuario(1)
+  //       }),
+  //     Reviews.create({ Review: 'Muy buen telefono, me gustaria que la bateria dure mas pero en todo lo demas es excelente' })
+  //       .then(review => review.setPuntaje(1)),
+  //   ])
+  //     .then(() => {
+  //       Puntajes.findByPk(1)
+  //         .then(puntaje => puntaje.setReview(1))
+  //     })
+  // })

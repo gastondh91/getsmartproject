@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Puntajes = require('../models/Puntajes')
 const Producto = require('../models/Producto')
-const Usuario = require('../models/Usuario')
+const { Usuarios } = require('../models/Usuario')
 const Reviews = require('../models/Reviews')
 
 
@@ -33,6 +33,14 @@ router.post(`/reviews`, (req, res) => {
         })
     })
 })
+
+router.get(`/getPuntajes/:id`,(req,res)=> {
+  Puntajes.findAll({ where: { productoId : req.params.id }, include: [Reviews, Usuarios]})
+  .then( puntajes => res.send(puntajes))
+})
+
+
+
 
 router.post(`/getPuntaje/:id`, (req, res) => {
   Puntajes.findOne({ where: { productoId: req.params.id, usuarioId: req.body.userId } })
