@@ -7,23 +7,25 @@ import { buscarProducto } from '../redux/action-creators/products-actions';
 import { addToCart } from '../redux/action-creators/carrito-actions'
 import ModalConfirm from './ModalConfirm'
 import StarsRating from '../components/StarsRating'
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 
 
 const SingleProdComp = (props) => {
-  
-  useEffect (()=>{
+
+  useEffect(() => {
     buscarProducto(props.productoId)
   })
-  
-  
-  const transfArray = ()=>{
+
+
+  const transfArray = () => {
     var arrImagenFinal = props.producto.imagenes
 
-    if(props.producto.imagenes.includes('}')){
-    arrImagenFinal = arrImagenFinal.substring(0,arrImagenFinal.length-1)
-    arrImagenFinal = arrImagenFinal.slice(1)
-    arrImagenFinal = arrImagenFinal.split(',')
-    return arrImagenFinal
+    if (props.producto.imagenes.includes('}')) {
+      arrImagenFinal = arrImagenFinal.substring(0, arrImagenFinal.length - 1)
+      arrImagenFinal = arrImagenFinal.slice(1)
+      arrImagenFinal = arrImagenFinal.split(',')
+      return arrImagenFinal
     }
     else return props.producto.imagenes
   }
@@ -50,7 +52,7 @@ const SingleProdComp = (props) => {
     <div id="singleProd">
       {console.log(props.producto)}
       <div className="row">
-        <div style={{height: 'fit-content'}}className="col-lg-6 col-xs-12">
+        <div style={{ height: 'fit-content' }} className="col-lg-6 col-xs-12">
 
           <h1 style={{ textAlign: 'center', marginBottom: '10px', borderBottom: '1px solid black', paddingBottom: '7px' }}>{props.producto.marca} {props.producto.modelo}</h1>
 
@@ -61,24 +63,27 @@ const SingleProdComp = (props) => {
 
           <div id="puntuacion" className="row">
             <h3>Puntuación :  </h3>
-            <h2 style={{ margin: '0 auto' }}> 
-             <StarsRating ratings={props.producto.calificacion} userId={props.usuario.id} prodId={props.productoId} />
-             </h2>
+            <h2 style={{ margin: '0 auto' }}>
+              <StarsRating ratings={props.producto.calificacion} userId={props.usuario.id} prodId={props.productoId} />
+              < span style={{marginLeft: '1rem'}}>
+                {props.producto.calificacion.toString().length > 3 ? props.producto.calificacion.toString().slice(0, 3) : props.producto.calificacion.toString()}
+              </span>
+            </h2>
           </div>
           <div className="row">
-        <div style={{minWidth: 'fit-content'}} className="col-lg-6 col-xs-12">
-          <h3 style={{marginTop: '2rem'}}><strong>Descripción : </strong></h3>
-          <h5 className='collapsible'>{props.producto.descripcion}</h5>
-        </div>
-      </div>
+            <div style={{ minWidth: 'fit-content' }} className="col-lg-6 col-xs-12">
+              <h3 style={{ marginTop: '2rem' }}><strong>Descripción : </strong></h3>
+              <h5 className='collapsible'>{props.producto.descripcion}</h5>
+            </div>
+          </div>
         </div>
 
-        <div style={{marginTop: '15px'}} className="col-lg-6 col-xs-12">
+        <div style={{ marginTop: '15px' }} className="col-lg-6 col-xs-12">
           <Carousel >
             {transfArray().map((imagen, index = 0) => (
-              <Carousel.Item 
+              <Carousel.Item
                 key={index++}
-                >
+              >
                 <img
                   className="d-block w-100"
                   src={imagen}
@@ -87,7 +92,7 @@ const SingleProdComp = (props) => {
                 />
 
               </Carousel.Item>
-             ))} 
+            ))}
           </Carousel>
 
 
@@ -97,11 +102,11 @@ const SingleProdComp = (props) => {
             rel="nofollow noopener"
             id='cartbutton'
             type="button"
-            style={{ marginLeft: props.adminInfo ? '4.7rem' : '1.9rem', width: props.adminInfo &&'7.6rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
-          >{!props.adminInfo ? 'Agregar al Carrito' : 'Editar' }
+            style={{ marginLeft: props.adminInfo ? '4.7rem' : '1.9rem', width: props.adminInfo && '7.6rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+          >{!props.adminInfo ? 'Agregar al Carrito' : 'Editar'}
           </button>
           <button
-            data-toggle={props.adminInfo && "modal"} 
+            data-toggle={props.adminInfo && "modal"}
             data-target={props.adminInfo && "#definiteModal"}
             className="example_b example_d"
             rel="nofollow noopener"
@@ -109,41 +114,48 @@ const SingleProdComp = (props) => {
             type="button"
             style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
           >{!props.adminInfo ? 'Comprar' : 'Eliminar'}
-            </button>
+          </button>
         </div>
       </div>
 
 
       <hr />
-      <div className="row" >
-        <div className="col-lg-6 col-xs-12">
-          <h4><strong>Categorias :</strong></h4>
-          <ul><h6>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} >
+        <div><h4><strong>Categorias :</strong></h4>
+          <ul style={{ listStylePosition: 'inside' }}><h6>
             {categorias && categorias.map((obj) => {
               return <li key={obj.id}>{obj.name}</li>;
             })}
           </h6></ul>
-
         </div>
-        <div className="col-lg-6 col-xs-12">
-          <h4><strong>Reviews :</strong></h4>
-          {(!!props.producto.puntajes.length && props.producto.puntajes[0].review) && <Carousel >
-            {props.producto.puntajes.map((puntaje) => (
-              <Carousel.Item 
-                key={puntaje.review.id}
+        <div>
+          <h4 style={{ textAlign: 'center' }}><strong>Reviews :</strong></h4>
+          <div className='Stars'>
+            {!!props.producto.puntajes.length && <Carousel >
+              {props.producto.puntajes.map((puntaje) => (
+                <Carousel.Item
+                  key={puntaje.review && puntaje.review.id}
                 >
-                <p
-                  className="d-block w-100"
-                  
-                  alt="reviews"
-                  id="reviewsId"
-                >
-                {puntaje.review.Review}
+                  <Link style={{ color: 'royalblue', fontWeight: '600' }} to={`/usuarios/edit/${puntaje.usuario.id}`}>
+                    <div style={{ fontSize: '1.5rem' }}>
+                      {puntaje.usuario.nombre + ' ' + puntaje.usuario.apellido + ':'}
+                    </div>
+                  </Link>
+                  <div ><Rater total={5} interactive={false} rating={puntaje.Puntaje} /></div>
+                  <div style={{ fontFamily: 'sans-serif' }} >{puntaje.Puntaje} / 5</div>
+                  <p
+                    className="revCarrousel"
+
+                    alt="reviews"
+                    id="reviewsId"
+                  >
+                    " {puntaje.review && puntaje.review.Review} "
                 </p>
 
-              </Carousel.Item>
-             ))} 
-          </Carousel>}
+                </Carousel.Item>
+              ))}
+            </Carousel>}
+          </div>
         </div>
       </div>
       <ModalConfirm

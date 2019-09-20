@@ -23,11 +23,33 @@
     object-fit: cover
 }
 
+.Stars{
+    font-size: 2rem;
+    text-align: center
+}
+
+.revCarrousel{
+    padding-left: 15%;
+    padding-right:15%;
+    text-align: center;
+    height: 14rem;
+    font-size: 1.4rem;
+    text-size-adjust: auto;
+    font-variant: titling-caps;
+    font-style: oblique;
+    font-family: initial;
+    font-weight: 500;
+}
+
 .general:hover{
     background-color: #2B4F81;
     color: black;
     font-weight: bold
     /* -webkit-text-stroke: medium */
+}
+
+.textAlign{
+    text-align: center
 }
 
 .modalTextarea{
@@ -226,6 +248,7 @@
     border: 1px solid black;
     border-radius: 20px;
     padding: 50px;
+    height: 55rem;
 }
 #input{
     border-radius: 25px;

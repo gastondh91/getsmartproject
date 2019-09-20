@@ -31,7 +31,6 @@ const ordenes = {
   Productos
 };
 
-Reviews.belongsTo(Usuarios, { constraints: false } )
 
 Puntajes.belongsTo(Reviews, { constraints: false } )
 Reviews.belongsTo(Puntajes, { constraints: false } )
