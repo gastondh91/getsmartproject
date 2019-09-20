@@ -5,6 +5,8 @@ const OrdenCompra = require('./OrdenCompra');
 const Usuarios = require('./Usuario').Usuarios;
 const { Facebook } = require('./Facebook')
 const { Google } = require('./Google')
+const Puntajes = require('./Puntajes')
+const Reviews = require('./Reviews')
 
 const modelos = {
   Categorias,
@@ -12,7 +14,9 @@ const modelos = {
   Carrito,
   Usuarios,
   Facebook,
-  Google
+  Google,
+  Puntajes,
+  Reviews
 };
 
 Categorias.belongsToMany(Productos, { through: 'categorias_productos' });
@@ -27,8 +31,18 @@ const ordenes = {
   Productos
 };
 
+Reviews.belongsTo(Usuarios, { constraints: false } )
+
+Puntajes.belongsTo(Reviews, { constraints: false } )
+Reviews.belongsTo(Puntajes, { constraints: false } )
+
 OrdenCompra.belongsToMany(Productos, { through: 'orden_productos' });
 Productos.belongsToMany(OrdenCompra, { through: 'orden_productos' });
+
+Puntajes.belongsTo(Productos, { as: 'producto', constraints: false})
+Productos.belongsToMany(Puntajes, { through: 'puntajes_productos'})
+Puntajes.belongsTo(Usuarios, { constraints: false })
+
 
 Facebook.belongsTo(Usuarios, { as: 'userid', constraints: false })
 Usuarios.belongsTo(Facebook, { foreignKey: 'fbid', constraints: false })

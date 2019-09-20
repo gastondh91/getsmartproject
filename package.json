@@ -48,6 +48,9 @@
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.8.3",
     "react-icons": "^3.7.0",
+    "react-motion": "^0.5.2",
+    "react-rater": "^5.1.1",
+    "react-ratings-declarative": "^3.4.1",
     "react-redux": "^5.1.1",
     "react-request": "^3.1.2",
     "react-router": "^4.3.1",
@@ -66,6 +69,7 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "css-loader": "^3.2.0",
     "eslint": "^5.15.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
@@ -76,6 +80,7 @@
     "node-sass": "^4.12.0",
     "nodemon": "^1.18.10",
     "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3"
   }

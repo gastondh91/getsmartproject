@@ -30,6 +30,19 @@
     /* -webkit-text-stroke: medium */
 }
 
+.modalTextarea{
+    margin-top: 1.2rem;
+    border-radius: 0.5rem;
+
+}
+
+.general:hover{
+    background-color: #2B4F81;
+    color: black;
+    font-weight: bold
+    /* -webkit-text-stroke: medium */
+}
+
 #cartbutton:hover{
     background-color: #2B4F81;
     color: black;
@@ -504,13 +517,12 @@ a:hover{
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    -webkit-text-stroke-width: thin
-
 }
 
 .pMargin{
     margin-top: auto;
     margin-bottom: auto;
+    -webkit-text-stroke-width: thin;
 }
 
 
@@ -944,6 +956,10 @@ text-shadow:0px 2px 1px grey;
 .w-100{
     margin-bottom: 15px
 }
+
+/* .modal-footer{
+    all: initial
+} */
 
 .carousel-caption{
     width: 100%;
