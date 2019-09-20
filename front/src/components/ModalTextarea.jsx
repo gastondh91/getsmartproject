@@ -5,7 +5,7 @@ import { buscarProducto } from '../redux/action-creators/products-actions';
 
 
 const ModalTextarea = (props) => {
-  
+
   var [Comentarios, setComentarios] = useState()
 
 
@@ -14,16 +14,18 @@ const ModalTextarea = (props) => {
   }
 
   const handleSubmitText = () => {
-    axios.post(`/api/puntajes/getPuntaje/${props.prodId}`,{
-      userId: props.userId
-    })
-    .then(puntaje =>{
-      axios.post(`/api/puntajes/reviews`, {
-        Comentarios,
-        PuntajeId: puntaje.data.id
+    if (Comentarios) {
+      axios.post(`/api/puntajes/getPuntaje/${props.prodId}`, {
+        userId: props.userId
       })
-      .then(()=> props.buscarProducto(props.prodId))
-    })
+        .then(puntaje => {
+          axios.post(`/api/puntajes/reviews`, {
+            Comentarios,
+            PuntajeId: puntaje.data.id
+          })
+            .then(() => props.buscarProducto(props.prodId))
+        })
+    }
   }
 
   return (
@@ -37,7 +39,7 @@ const ModalTextarea = (props) => {
             <p style={{ textAlign: 'center', fontWeight: '600' }} className='pMargin'>{`${props.textBody}`} {props.textBody == '¿Deseas agregar una reseña?' && <textarea onChange={handleText} className='modalTextarea' name="Review" id="" cols="28" rows="5"></textarea>}</p>
           </div>
           <div style={{ padding: '10px', height: 'fit-content' }} className="modal-footer">
-            <button style={{ fontSize: '1.15rem', textTransform: 'none' }} className="example_b logBut general" onClick={handleSubmitText} type="button" data-dismiss="modal">Guardar</button>
+            <button style={{ fontSize: '1.15rem', textTransform: 'none' }} className="example_b logBut general" onClick={handleSubmitText} type="button" data-dismiss="modal">{Comentarios ? 'Guardar' : 'Omitir'}</button>
           </div>
         </div>
       </div>

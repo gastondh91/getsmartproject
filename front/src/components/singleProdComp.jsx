@@ -46,6 +46,13 @@ const SingleProdComp = (props) => {
   //   }
   // },[])
 
+  const califExist = (calificacion) => {
+    if (calificacion){
+      if(calificacion.toString().length > 3) return calificacion.toString().slice(0, 3)
+      else return calificacion.toString()
+    }
+}
+
 
   const { borrarProd, categorias, onClick } = props;
   return (
@@ -65,8 +72,8 @@ const SingleProdComp = (props) => {
             <h3>Puntuación :  </h3>
             <h2 style={{ margin: '0 auto' }}>
               <StarsRating ratings={props.producto.calificacion} userId={props.usuario.id} prodId={props.productoId} />
-              < span style={{marginLeft: '1rem'}}>
-                {props.producto.calificacion.toString().length > 3 ? props.producto.calificacion.toString().slice(0, 3) : props.producto.calificacion.toString()}
+              < span style={{ marginLeft: '1rem' }}>
+                {califExist(props.producto.calificacion)}
               </span>
             </h2>
           </div>
