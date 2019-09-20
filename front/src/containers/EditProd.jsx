@@ -104,7 +104,7 @@ const AdminProd = (props) => {
       }
     }
     catsFinales = arrCategorias
-    axios.put(`/api/usuarios/edit/${userId}`, {
+    axios.put(`/api/productos/edit/${props.prodId}`, {
       marca: Marca,
       modelo: Modelo,
       stock: Stock,
@@ -135,7 +135,7 @@ const AdminProd = (props) => {
       })
 
       .then(() => {
-        setEstado(Estado = ['Se editó el producto' + ' ' + prodAEditar.marca + ' ' + prodAEditar.modelo, null])
+        setEstado(Estado = ['Se editó el producto ' + '"' + prodAEditar.marca + ' '+ prodAEditar.modelo + '"', null])
       });
   }
 

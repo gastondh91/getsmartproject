@@ -18,8 +18,8 @@ const ModalConfirm = ({encabezado, confirmacion, encabezadoInfo, accion, paramet
               <p style={{ fontWeight: '600'}}>{`${confirmacion} ${item ? item : ''} ${nombre ? nombre : ''}?`}</p>
             </div>
             <div style={{height: 'fit-content'}} className="modal-footer">
-              <button id='cartbutton' style={{ background:'steelblue', height: '37px', padding: '7px', width: '70px',textTransform: 'none'}} type="button" data-toggle="modal" data-target="#infoModal" className="example_b" data-dismiss="modal" onClick={()=> funcion(parametro)} >Si</button>
-              <button id='cartbutton' style={{ height: '37px', padding: '7px', width: '70px',textTransform: 'none'}} type="button" className="example_b greyButton" data-dismiss="modal">No</button>
+              <button style={{ height: '37px', padding: '7px', width: '70px',textTransform: 'none'}} type="button" data-toggle="modal" data-target="#infoModal" className="example_b general" data-dismiss="modal" onClick={()=> funcion(parametro)} >Si</button>
+              <button style={{ height: '37px', padding: '7px', width: '70px',textTransform: 'none'}} type="button" className="example_b greyButton general" data-dismiss="modal">No</button>
             </div>
           </div>
         </div>

@@ -32,8 +32,8 @@ class UsersContainer extends React.Component {
           history={this.props.history}
           historypush={'/usuarios/all'}
           nombre={'"' + this.state.userName + '"'}
-          accion={'Se eliminó'}
-          item={'el usuario'}
+          accion={'Se eliminó '}
+          item={'el usuario '}
         />
 
         <div className='usersContainer'>
@@ -54,7 +54,7 @@ class UsersContainer extends React.Component {
                     <Link to={`/usuarios/edit/${user.id}`}><img id='editUser' src={user.genero == 'Masculino' ? "/utils/editmale.svg" : "/utils/editfemale.svg"}
                     ></img></Link>
                     <img data-toggle="modal" data-target="#definiteModal" id='deleteUser' src={user.genero == 'Masculino' ? "/utils/deletemale.svg" : "/utils/deletefemale.svg"} onClick={(e) => {
-                      this.setState({ userId: user.id, userName: user.nombre + ' ' + user.apellido });
+                      this.setState({ userId: user.id, userName: user.Nickname });
                     }}></img>
                   </div>
                 </li>

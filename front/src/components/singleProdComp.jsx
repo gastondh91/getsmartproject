@@ -143,11 +143,11 @@ const SingleProdComp = (props) => {
                 <Carousel.Item
                   key={puntaje.review && puntaje.review.id}
                 >
-                  <Link style={{ color: 'royalblue', fontWeight: '600' }} to={`/usuarios/edit/${puntaje.usuario.id}`}>
+                  {puntaje.usuario && <Link style={{ color: 'royalblue', fontWeight: '600' }} to={`/usuarios/edit/${puntaje.usuario.id}`}>
                     <div style={{ fontSize: '1.5rem' }}>
-                      {puntaje.usuario.nombre + ' ' + puntaje.usuario.apellido + ':'}
+                      {puntaje.usuario.Nickname}
                     </div>
-                  </Link>
+                  </Link>}
                   <div ><Rater total={5} interactive={false} rating={puntaje.Puntaje} /></div>
                   <div style={{ fontFamily: 'sans-serif' }} >{puntaje.Puntaje} / 5</div>
                   <p
@@ -156,7 +156,7 @@ const SingleProdComp = (props) => {
                     alt="reviews"
                     id="reviewsId"
                   >
-                    " {puntaje.review && puntaje.review.Review} "
+                     {puntaje.review && `" ${puntaje.review.Review} "`} 
                 </p>
 
                 </Carousel.Item>
@@ -174,8 +174,8 @@ const SingleProdComp = (props) => {
         history={props.history}
         historypush={'/productos'}
         nombre={'"' + props.producto.marca + ' ' + props.producto.modelo + '"'}
-        item={'el producto'}
-        accion={'Se eliminó'}
+        item={'el producto '}
+        accion={'Se eliminó '}
       />
     </div>
   );

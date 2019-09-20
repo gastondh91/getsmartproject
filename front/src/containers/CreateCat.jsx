@@ -56,7 +56,7 @@ const AdminProd = (props) => {
         name: newCategory
       })
         .then(categoria => {
-          setEstado(Estado = ['Se creo la categoría ' + '\"' + categoria.data.name + '\"', null]);
+          setEstado(Estado = ['Se creó la categoría ' + '\"' + categoria.data.name + '\"', null]);
         })
         .then(() => props.getAllCat())
     }

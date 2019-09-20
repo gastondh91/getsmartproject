@@ -24,7 +24,7 @@ class UserAsAdmin extends React.Component {
   adminTicks = () => {
     if (this.props.usuario.isAdmin) {
       return (<span>
-        <strong className='titlesUsers'> Admin:</strong>{this.props.selectedUser.isAdmin ? <img style={{ maxWidth: '8%', marginBottom: '2.8%' }} className="ticks" src='/utils/checked.svg' /> : <img style={{ maxWidth: '7%', marginBottom: '0.2rem' }} className="ticks" src='/utils/unchecked.svg' />} <br />
+        <strong className='titlesUsers'> Admin:</strong>{this.props.selectedUser.isAdmin ? <img style={{ maxWidth: '8%', marginBottom: '2.8%' }} className="ticks" src='/utils/checked.svg' /> : <img style={{ marginLeft: '2px' , maxWidth: '7%', marginBottom: '0.2rem' }} className="ticks" src='/utils/unchecked.svg' />} <br />
       </span>)
     }
   }
@@ -77,7 +77,7 @@ class UserAsAdmin extends React.Component {
   render() {
     if (Object.keys(this.props.selectedUser).length) return (
       this.props.usuario.isAdmin || (this.props.usuario.id == this.props.selectedUser.id) ? <div><form style={{ gridTemplateRows: '1fr 1fr 1fr' }} className='userAsAdm' onSubmit={this.handleSubmit}>
-        <h1>{this.props.usuario.isAdmin ? 'Opciones de usuario' : 'Información sobre tu cuenta'}</h1>
+        <h1>{this.props.usuario.isAdmin ? 'Perfil del usuario' : 'Información sobre tu cuenta'}</h1>
         <div className='griduser'>
           <div style={{ float: 'left' }} >
             <img onClick={() => { this.props.selectedUser.id == this.props.usuario.id ? this.refs.fileUploader.click() : null }} title={this.props.selectedUser.id == this.props.usuario.id ? 'Cambiar avatar' : null} style={{ height: '8rem', objectFit: 'cover', cursor: this.props.selectedUser.id == this.props.usuario.id ? 'pointer' : 'auto' }} className='editAvatar' src={this.props.selectedUser.avatar} />
@@ -139,7 +139,7 @@ class UserAsAdmin extends React.Component {
                   <h5 className="modal-title" id="exampleModalLabel">{'Permisos de usuario modificados'}</h5>
                 </div>
                 <div className="modal-body">
-                  <p style={{ fontWeight: '600' }}>{`El usuario "${this.props.selectedUser.nombre + ' ' + this.props.selectedUser.apellido}" ` + `${this.props.selectedUser.isAdmin ? 'ahora solo posee permisos de usuario.' : 'ahora posee permisos de administrador.'}`}</p>
+                  <p style={{ fontWeight: '600' }}>{`El usuario ${'"'+this.props.selectedUser.Nickname+'"'} ` + `${this.props.selectedUser.isAdmin ? 'ahora solo posee permisos de usuario.' : 'ahora posee permisos de administrador.'}`}</p>
                 </div>
                 <div style={{ padding: '10px', height: 'fit-content' }} className="modal-footer">
                   <button style={{ textTransform: 'none', background: 'steelblue' }} className="example_b logBut" id='cartbutton' onClick={() => location.reload()} type="button" data-dismiss="modal">Aceptar</button>
@@ -159,7 +159,7 @@ class UserAsAdmin extends React.Component {
             historypush={this.props.usuario.isAdmin ? '/usuarios/all' : '/redirect'}
             nombre={this.props.usuario.isAdmin ? '"' + this.props.selectedUser.nombre + ' ' + this.props.selectedUser.apellido + '"' : ''}
             parametro={this.props.selectedUser.id}
-            item={this.props.usuario.isAdmin ? 'el usuario' : 'tu cuenta'}
+            item={this.props.usuario.isAdmin ? 'al usuario' : 'tu cuenta'}
             accion={'Se eliminó'}
           />
         </div>

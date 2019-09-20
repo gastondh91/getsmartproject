@@ -13,6 +13,7 @@ class Registro extends React.Component {
 
     this.state = {
       nombre: '',
+      Nickname: '',
       apellido: '',
       domicilio: '',
       email: '',
@@ -41,14 +42,14 @@ class Registro extends React.Component {
       }
     };
     axios.post("/api/imagenes/tempUpload", formData, config)
-    .then(path => this.setState({ fileName: path.data.slice(11)}))
+      .then(path => this.setState({ fileName: path.data.slice(11) }))
       .catch(() => {
         alert('El formato del archivo es incorrecto')
       });
   }
 
   onImageChange = (e) => {
-    this.setState({file : e.target.files[0]},this.setAvatar);
+    this.setState({ file: e.target.files[0] }, this.setAvatar);
   }
 
 
@@ -75,39 +76,49 @@ class Registro extends React.Component {
         }
       }
 
-
-      this.props.registerUser(this.state)
-        .then(() => this.setState({ estado: ['Usuario registrado', null] }))
+      this.NicknamePromise()
         .then(() => {
-          axios.post('/api/imagenes/defRutaUsuarios', {
-            email: this.state.email,
-          })
+          this.props.registerUser(this.state)
+            .then(() => this.setState({ estado: ['Usuario registrado', null] }))
+            .then(() => {
+              axios.post('/api/imagenes/defRutaUsuarios', {
+                email: this.state.email,
+              })
+            })
+            .then(() => {
+              console.log('EL ESTADO', this.state)
+
+              const formData = new FormData();
+              formData.append('myImage', this.state.file, this.props.user.id);
+              const config = {
+                headers: {
+                  'content-type': 'multipart/form-data',
+                }
+              };
+
+              axios.post("/api/imagenes/upload", formData, config)
+            }).catch((error) => {
+            });
         })
-        .then(() => {
-
-          const formData = new FormData();
-          formData.append('myImage', this.state.file, this.props.user.id);
-          const config = {
-            headers: {
-              'content-type': 'multipart/form-data',
-            }
-          };
-
-          axios.post("/api/imagenes/upload", formData, config)
-        }).catch((error) => {
-        });
 
     }
   }
 
-  format(){
+  NicknamePromise = () => {
+    return new Promise((resolve, reject) => {
+      this.setState({ Nickname: '@' + this.state.email.split('@')[0] })
+      resolve('ok')
+    })
+  }
+
+  format() {
     var archivo = this.state.file.name
 
-    if(archivo.includes('.jpg')) return '.jpg'
-    if(archivo.includes('.png')) return '.png'
-    if(archivo.includes('.jpeg')) return '.jpeg'
-    if(archivo.includes('.gif')) return '.gif'
-    if(archivo.includes('.tiff')) return '.tiff'
+    if (archivo.includes('.jpg')) return '.jpg'
+    if (archivo.includes('.png')) return '.png'
+    if (archivo.includes('.jpeg')) return '.jpeg'
+    if (archivo.includes('.gif')) return '.gif'
+    if (archivo.includes('.tiff')) return '.tiff'
   }
 
   render() {
@@ -117,16 +128,16 @@ class Registro extends React.Component {
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">
               <h3 className="FRUstitle"> Completa tus datos... </h3>
-              <img title='Subir foto de perfil' style={{ cursor:'pointer',borderStyle: 'initial', height: '10rem'}} onClick={() => this.refs.fileUploader.click()} className='editAvatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
+              <img title='Subir foto de perfil' style={{ cursor: 'pointer', borderStyle: 'initial', height: '10rem' }} onClick={() => this.refs.fileUploader.click()} className='editAvatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
               <input onChange={this.onImageChange} type="file" ref="fileUploader" style={{ display: 'none' }} />
-              <div style={{ marginLeft: '18rem', marginRight: '16rem'}} className="form-check form-check-inline">
-                        <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
-                        <label className="form-check-label generoLabel" htmlFor="Masculino">Masculino</label>
-                      <span className='generoIn'>
-                        <input id='Femenino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Femenino' />
-                        <label className="form-check-label generoLabel" htmlFor="Femenino">Femenino</label>
-                      </span>
-                    </div>
+              <div style={{ marginLeft: '18rem', marginRight: '16rem' }} className="form-check form-check-inline">
+                <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
+                <label className="form-check-label generoLabel" htmlFor="Masculino">Masculino</label>
+                <span className='generoIn'>
+                  <input id='Femenino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Femenino' />
+                  <label className="form-check-label generoLabel" htmlFor="Femenino">Femenino</label>
+                </span>
+              </div>
               <div className='FRUsuarios'>
                 <div className="form-row">
                   <div className="form-group col-md-6">

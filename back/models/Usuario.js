@@ -41,6 +41,10 @@ const Usuarios = db.define('usuario', {
   avatar: {
     type: S.STRING
   },
+  Nickname:{
+    type: S.STRING,
+    allowNull: true
+  },
   fbid:{
     type: S.DECIMAL,
     constraints: false
@@ -48,6 +52,10 @@ const Usuarios = db.define('usuario', {
   googleid:{
     type: S.DECIMAL,
     constraints: false
+  },
+  sessionCount:{
+    type: S.INTEGER,
+    defaultValue: 0
   }
 }
 );

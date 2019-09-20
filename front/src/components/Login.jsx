@@ -4,7 +4,7 @@ import { checkUserLogin } from '../redux/action-creators/action-creator';
 import { connect } from 'react-redux';
 import { withRouter, Link, Redirect } from 'react-router-dom';
 import ModalInfo from './ModalInfo'
-
+import axios from 'axios'
 
 
 class Login extends React.Component {
@@ -15,9 +15,14 @@ class Login extends React.Component {
       password: '',
       checkedUser: null,
       userGender: '',
+      sessionCount:'',
       isOpen: false
     };
   }
+
+setSessionUpdate = ()=>{
+  axios.post(`/api/usuarios/updSessionCount/${this.state.userId}`)
+}
 
 
   handleChange = (e) => {
@@ -34,10 +39,11 @@ class Login extends React.Component {
         if (data.usuario) {
           this.setState({ checkedUser: data.usuario.nombre });
           this.setState({ userGender: data.usuario.genero })
+          this.setState({ userId: data.usuario.id });
+          this.setState({ sessionCount: data.usuario.sessionCount }, this.setSessionUpdate)
         }
       })
       .catch(err => { this.setState({ checkedUser: false }) })
-      ;
   }
 
   render() {
@@ -75,7 +81,7 @@ class Login extends React.Component {
           <ModalInfo
             show={this.state.isOpen}
             encabezado={this.state.checkedUser ? 'Usuario logueado' : 'Error'}
-            accion={this.state.checkedUser ? `Bienvenid${this.state.userGender == 'Masculino' ? 'o' : 'a'} de nuevo, ` : 'La combinación de usuario y contraseña son incorrectos'}
+            accion={this.state.checkedUser ? `Bienvenid${this.state.userGender == 'Masculino' ? 'o' : 'a'} ${this.state.sessionCount != 0 ? 'de nuevo': 'a GetSmart'}, ` : 'La combinación de usuario y contraseña son incorrectos'}
             nombre={this.state.checkedUser ? this.state.checkedUser : ''}
             history={this.props.history}
             location={this.props.location}

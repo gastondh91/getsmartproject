@@ -106,7 +106,7 @@ const UserAsAdmin = (props) => {
         email: Email,
       })
         .then(() => {
-          setEstado(Estado[0] = ['Usuario editado', 'Se editó el usuario' + ' ' + props.usuario.nombre + ' ' + props.usuario.apellido])
+          setEstado(Estado[0] = ['Usuario editado', 'Se editó el usuario' + ' "' + props.usuario.Nickname+ '"'])
         });
     }
   }

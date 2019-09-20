@@ -94,7 +94,7 @@ const AdminProd = (props) => {
         axios.post("/api/imagenes/prodImage", formData, config)
       })
       .then(() => {
-        setEstado(Estado = ['Se creo el producto' + ' ' + Marca + ' ' + Modelo, null])
+        setEstado(Estado = ['Se creó el producto ' + '"' + Marca + ' ' + Modelo + '"', null])
       });
   }
 

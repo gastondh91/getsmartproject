@@ -30,7 +30,7 @@ const Header = (props) => {
   return (
     !props.login
       ? <header className='header'>
-        <div className='hoverLog' style={{ marginTop: '9.3px' }}>
+        <div className='hoverLog' style={{ marginTop: '10px' }}>
           <span>
             <Link to='/usuarios/registro' id='linkLogIn'><img id='userLogIn' src="/utils/signupiconlg.gif"></img>
               <span className='caption'>Registrarse</span>

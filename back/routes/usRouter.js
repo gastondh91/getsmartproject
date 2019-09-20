@@ -16,6 +16,12 @@ router.post('/esAdm/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.post('/updSessionCount/:id',(req,res) => {
+  Usuarios.findByPk(req.params.id)
+  .then(option => option.increment('sessionCount'))
+  .then(()=> res.sendStatus(200))
+})
+
 router.get('/todos', (req, res) => {
   if (!req.user.dataValues.nombre) res.send(404, 'cantfindthat');
   res.send(req.user.dataValues.nombre);

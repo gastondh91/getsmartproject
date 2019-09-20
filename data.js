@@ -8,6 +8,7 @@ const usuarios =
       password: '5739gaston',
       genero: 'Masculino',
       isAdmin: true,
+      Nickname: '@gastondh91',
       avatar: '/utils/Usuarios/gastondh91@gmail.com/gastonavatar.jpg'
     },
     {
@@ -17,6 +18,7 @@ const usuarios =
       domicilio: 'Salas y valdez 647',
       genero: 'Masculino',
       password: '123456',
+      Nickname: '@juancarlos',
       avatar: '/utils/Usuarios/juancarlos@gmail.com/juancarlos.jpg',
       isAdmin: false
     },
@@ -27,6 +29,7 @@ const usuarios =
       domicilio: 'Los Ceibos 635',
       genero: 'Femenino',
       password: '123456',
+      Nickname: '@julisilva',
       avatar: '/utils/Usuarios/julisilva@gmail.com/Juliavatar.jpg',
       isAdmin: true
     },
@@ -34,6 +37,7 @@ const usuarios =
       nombre: 'Bill',
       apellido: 'Gates',
       email: 'billgates@gmail.com',
+      Nickname: '@billgates',
       domicilio: 'West Avenue 458',
       genero: 'Masculino',
       password: '123456',
@@ -46,6 +50,7 @@ const usuarios =
       email: 'valeruiz@gmail.com',
       domicilio: 'Lamadrid 529',
       genero: 'Femenino',
+      Nickname: '@valeruiz',
       password: '123456',
       avatar: '/utils/Usuarios/valeruiz@gmail.com/valentinaavatar.jpg',
       isAdmin: false
@@ -55,6 +60,7 @@ const usuarios =
       apellido: 'Montiel',
       email: 'josemontiel@gmail.com',
       domicilio: 'Av. Santa Fe 1238',
+      Nickname: '@josemontiel',
       genero: 'Masculino',
       password: '123456',
       isAdmin: false,

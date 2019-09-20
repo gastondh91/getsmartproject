@@ -15,7 +15,7 @@ const StarsRating = (props) => {
     if (puntajes.length) {
       for (let i = 0; i < puntajes.length; i += 1) {
         if (puntajes[i].usuarioId == props.userId) {
-          setModalState(ModalState = 'Ya calificaste este producto.')
+          setModalState(ModalState = 'Ya calificaste este producto. ¿Te gustaria borrar tu calificación?')
           return true
         }
       }
@@ -41,6 +41,7 @@ const StarsRating = (props) => {
   return (
     <span> 
       <ModalTextarea  
+      estado={ModalState}
       textBody={ModalState}
       userId={props.userId}
       prodId={props.prodId}
