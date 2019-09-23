@@ -4,7 +4,8 @@ import {
   SET_PRODUCTS,
   SET_CATEGORIAS,
   SET_ALLCAT,
-  SEARCH_MARK
+  SEARCH_MARK,
+  SET_PUNTAJES
 } from '../constants';
 
 export const setAllCat = (allCategories) => ({
@@ -17,12 +18,17 @@ export const setProducts = (products) => ({
   products
 });
 
+export const setPuntajes = (puntajes) => ({
+  type: SET_PUNTAJES,
+  puntajes
+})
+
 const recibirProducto = (product) => ({
   type: RECEIVE_PRODUCT,
   product
 });
 
-const setCategorias = (categorias) => ({
+export const setCategorias = (categorias) => ({
   type: SET_CATEGORIAS,
   categorias
 });
@@ -54,14 +60,19 @@ export const buscarMarcas = markProd => dispatch => {
 export const buscarCategorias = prodId => dispatch => {
   axios.get(`/api/categorias/${prodId}`)
     .then(info => info.data)
-    .then(categorias => dispatch(setCategorias(categorias)))}
+    .then(categorias => dispatch(setCategorias(categorias)))
+}
 
-export const getAllCat = () => dispatch =>{
+export const getAllCat = () => dispatch => {
   axios.get('/api/categorias/get')
     .then(categorias => dispatch(setAllCat(categorias.data)))
-  }
+}
 
 export const borrarProd = (prodID) =>
   axios.delete(`/api/productos/${prodID}`)
   ;
 
+export const buscarPuntajes = (prodId) => dispatch => {
+  axios.get(`/api/puntajes/getPuntajes/${prodId}`)
+    .then(puntajes => dispatch(setPuntajes(puntajes.data)))
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { buscarProducto } from '../redux/action-creators/products-actions';
+import { buscarProducto, buscarPuntajes } from '../redux/action-creators/products-actions';
 import ModalAccept from './ModalAccept'
 
 const ModalTextarea = (props) => {
@@ -19,7 +19,15 @@ const ModalTextarea = (props) => {
       if (puntaje.usuarioId == props.userId) miPuntaje = puntaje
     });
     axios.get(`/api/puntajes/borrarPuntaje/${miPuntaje.id}/${miPuntaje.review ? miPuntaje.review.id : 'null'}`)
-      .then(() => props.buscarProducto(props.prodId))
+      .then(() => {
+        props.buscarPuntajes(props.prodId)
+      })
+      .then(() => {
+        axios.get(`/api/puntajes/updateCalification/${props.prodId}`)
+        .then(() => {
+          props.buscarProducto(props.prodId)
+        })
+      })
   }
 
   const showButtons = (estado) => {
@@ -32,7 +40,7 @@ const ModalTextarea = (props) => {
             data-target="#acceptModal"
             className="example_b general yesnobutton"
             // data-dismiss="modal"
-            onClick={() => borrarPuntaje(props.producto.puntajes)}
+            onClick={() => borrarPuntaje(props.puntajes)}
           >
             Si
           </button>
@@ -61,15 +69,17 @@ const ModalTextarea = (props) => {
 
   const handleSubmitText = () => {
     if (Comentarios) {
-      axios.post(`/api/puntajes/getPuntaje/${props.prodId}`, {
-        userId: props.userId
+      axios.get(`/api/puntajes/getPuntaje/${props.prodId}/${props.userId}`, {
       })
         .then(puntaje => {
           axios.post(`/api/puntajes/reviews`, {
             Comentarios,
             PuntajeId: puntaje.data.id
           })
-            .then(() => props.buscarProducto(props.prodId))
+            .then(() => {
+              props.buscarProducto(props.prodId)
+              props.buscarPuntajes(props.prodId)
+            })
         })
     }
   }
@@ -96,11 +106,13 @@ const ModalTextarea = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  producto: state.selectedProd
+  producto: state.selectedProd,
+  puntajes: state.puntajes
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  buscarProducto: (prodId) => dispatch(buscarProducto(prodId))
+  buscarProducto: (prodId) => dispatch(buscarProducto(prodId)),
+  buscarPuntajes: (prodId) => dispatch(buscarPuntajes(prodId))
 });
 
 

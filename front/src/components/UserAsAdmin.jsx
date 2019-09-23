@@ -24,7 +24,7 @@ class UserAsAdmin extends React.Component {
   adminTicks = () => {
     if (this.props.usuario.isAdmin) {
       return (<span>
-        <strong className='titlesUsers'> Admin:</strong>{this.props.selectedUser.isAdmin ? <img style={{ maxWidth: '8%', marginBottom: '2.8%' }} className="ticks" src='/utils/checked.svg' /> : <img style={{ marginLeft: '2px' , maxWidth: '7%', marginBottom: '0.2rem' }} className="ticks" src='/utils/unchecked.svg' />} <br />
+        <strong className='titlesUsers'> Admin:</strong>{this.props.selectedUser.isAdmin ? <img style={{ maxWidth: '8%', marginBottom: '2.8%' }} className="ticks" src='/utils/checked.svg' /> : <img style={{ marginLeft: '2px', maxWidth: '7%', marginBottom: '0.2rem' }} className="ticks" src='/utils/unchecked.svg' />} <br />
       </span>)
     }
   }
@@ -37,8 +37,8 @@ class UserAsAdmin extends React.Component {
         'content-type': 'multipart/form-data',
       }
     };
-    axios.post('/api/imagenes/defRutaUsuarios',{
-          email: this.props.selectedUser.email
+    axios.post('/api/imagenes/defRutaUsuarios', {
+      email: this.props.selectedUser.email
     })
       .then(() => {
         console.log('hola')
@@ -69,6 +69,8 @@ class UserAsAdmin extends React.Component {
       case 'Femenino': if (user.isAdmin) { resultado = 'adminrfemale.svg' } else resultado = 'adminfemale.svg'
         break;
       case 'Masculino': if (user.isAdmin) { resultado = 'adminrmale.svg' } else resultado = 'adminmale.svg'
+        break;
+      case 'No especificado': if (user.isAdmin) { resultado = 'adminrmale.svg' } else resultado = 'adminmale.svg'
         break;
     }
     return resultado
@@ -106,7 +108,7 @@ class UserAsAdmin extends React.Component {
             </button>
           </span>}
           {this.props.usuario.id == this.props.selectedUser.id && <span style={{ marginLeft: '15px' }}>
-          <img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'editmale.svg' : 'editfemale.svg'}`}></img>
+            <img className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'editmale.svg' : 'editfemale.svg'}`}></img>
             <button
               type='button'
               onClick={() => this.props.history.push(`/usuarios/edit/${this.props.selectedUser.id}/editdata/${this.props.selectedUser.id}`)}
@@ -117,7 +119,7 @@ class UserAsAdmin extends React.Component {
             </button>
           </span>}
           <span>
-          <img style={{marginLeft: `${this.props.selectedUser.id == this.props.usuario.id ? '18px': '10px'}`}}className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Masculino' ? 'deletemale.svg' : 'deletefemale.svg'}`}></img>
+            <img style={{ marginLeft: `${this.props.selectedUser.id == this.props.usuario.id ? '18px' : '10px'}` }} className='adminIcons' src={`/utils/${this.props.selectedUser.genero == 'Femenino' ? 'deletefemale.svg' : 'deletemale.svg'}`}></img>
             <button
               type='button'
               data-toggle="modal"
@@ -139,7 +141,7 @@ class UserAsAdmin extends React.Component {
                   <h5 className="modal-title" id="exampleModalLabel">{'Permisos de usuario modificados'}</h5>
                 </div>
                 <div className="modal-body">
-                  <p style={{ fontWeight: '600' }}>{`El usuario ${'"'+this.props.selectedUser.Nickname+'"'} ` + `${this.props.selectedUser.isAdmin ? 'ahora solo posee permisos de usuario.' : 'ahora posee permisos de administrador.'}`}</p>
+                  <p style={{ fontWeight: '600' }}>{`El usuario ${'"' + this.props.selectedUser.Nickname + '"'} ` + `${this.props.selectedUser.isAdmin ? 'ahora solo posee permisos de usuario.' : 'ahora posee permisos de administrador.'}`}</p>
                 </div>
                 <div style={{ padding: '10px', height: 'fit-content' }} className="modal-footer">
                   <button style={{ textTransform: 'none', background: 'steelblue' }} className="example_b logBut" id='cartbutton' onClick={() => location.reload()} type="button" data-dismiss="modal">Aceptar</button>

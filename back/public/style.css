@@ -32,7 +32,7 @@
     padding-left: 15%;
     padding-right:15%;
     text-align: center;
-    height: 14rem;
+    height: 8rem;
     font-size: 1.4rem;
     text-size-adjust: auto;
     font-variant: titling-caps;
@@ -248,7 +248,7 @@
     border: 1px solid black;
     border-radius: 20px;
     padding: 50px;
-    height: 55rem;
+    height: 57rem;
 }
 #input{
     border-radius: 25px;

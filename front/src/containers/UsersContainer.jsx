@@ -51,9 +51,9 @@ class UsersContainer extends React.Component {
 
                   </div>
                   <div className="containerUser">
-                    <Link to={`/usuarios/edit/${user.id}`}><img id='editUser' src={user.genero == 'Masculino' ? "/utils/editmale.svg" : "/utils/editfemale.svg"}
+                    <Link to={`/usuarios/edit/${user.id}`}><img id='editUser' src={user.genero == 'Femenino' ? "/utils/editfemale.svg" : "/utils/editmale.svg"}
                     ></img></Link>
-                    <img data-toggle="modal" data-target="#definiteModal" id='deleteUser' src={user.genero == 'Masculino' ? "/utils/deletemale.svg" : "/utils/deletefemale.svg"} onClick={(e) => {
+                    <img data-toggle="modal" data-target="#definiteModal" id='deleteUser' src={user.genero == 'Femenino' ? "/utils/deletefemale.svg" : "/utils/deletemale.svg"} onClick={(e) => {
                       this.setState({ userId: user.id, userName: user.Nickname });
                     }}></img>
                   </div>

@@ -4,7 +4,7 @@ import 'react-rater/lib/react-rater.css'
 import axios from 'axios';
 import './AnimatedRater.scss'
 import { connect } from 'react-redux'
-import { buscarProducto } from '../redux/action-creators/products-actions';
+import { buscarProducto, buscarPuntajes } from '../redux/action-creators/products-actions';
 import ModalTextarea from './ModalTextarea'
 
 const StarsRating = (props) => {
@@ -33,7 +33,7 @@ const StarsRating = (props) => {
       userId: props.userId
     })
       .then(() => {
-        props.buscarProducto(props.prodId);
+        props.buscarPuntajes(props.prodId)
         setModalState(ModalState = '¿Deseas agregar una reseña?')
       })
   }
@@ -52,18 +52,20 @@ const StarsRating = (props) => {
         data-target={props.userId ? '#modalTextarea' : null}
         total={5}
         rating={props.ratings}
-        onRate={({ rating }) => !checkUserCalification(props.producto.puntajes) && postPuntaje(rating)} 
+        onRate={({ rating }) => !checkUserCalification(props.puntajes) && postPuntaje(rating)} 
         />
     </span>)
 }
 
 
 const mapStateToProps = (state) => ({
-  producto: state.selectedProd
+  producto: state.selectedProd,
+  puntajes: state.puntajes
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  buscarProducto: (prodId) => dispatch(buscarProducto(prodId))
+  buscarProducto: (prodId) => dispatch(buscarProducto(prodId)),
+  buscarPuntajes: (prodId) => dispatch(buscarPuntajes(prodId))
 });
 
 

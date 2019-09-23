@@ -209,21 +209,21 @@ sessionStore.sync()
     });
   })
   // Para detener el seedeo de la base de datos borrar o comentar las lineas que estan mas abajo
-  // .then(()=>{
+  .then(()=>{
 
-  //   var copydir = require('copy-dir');
+    var copydir = require('copy-dir');
 
-  //   copydir.sync('back/public/utils/Test/Telefonos', 'back/public/utils/Telefonos', {
-  //     utimes: true,  // keep add time and modify time
-  //     mode: true,    // keep file mode
-  //     cover: true    // cover file when exists, default is true
-  //   });
-  //   copydir.sync('back/public/utils/Test/Usuarios', 'back/public/utils/Usuarios', {
-  //     utimes: true,  // keep add time and modify time
-  //     mode: true,    // keep file mode
-  //     cover: true    // cover file when exists, default is true
-  //   });
-  // })
+    copydir.sync('back/public/utils/Test/Telefonos', 'back/public/utils/Telefonos', {
+      utimes: true,  // keep add time and modify time
+      mode: true,    // keep file mode
+      cover: true    // cover file when exists, default is true
+    });
+    copydir.sync('back/public/utils/Test/Usuarios', 'back/public/utils/Usuarios', {
+      utimes: true,  // keep add time and modify time
+      mode: true,    // keep file mode
+      cover: true    // cover file when exists, default is true
+    });
+  })
   // .then(() => {
   //   Productos.create(iPhone, { individualHooks: true })
   //     .then(producto => producto.setCategorias([3, 5, 7]))

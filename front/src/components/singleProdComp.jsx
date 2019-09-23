@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { buscarProducto } from '../redux/action-creators/products-actions';
+import { buscarProducto, buscarPuntajes } from '../redux/action-creators/products-actions';
 import { addToCart } from '../redux/action-creators/carrito-actions'
 import ModalConfirm from './ModalConfirm'
 import StarsRating from '../components/StarsRating'
@@ -12,18 +12,7 @@ import 'react-rater/lib/react-rater.css'
 import axios from 'axios'
 
 
-
-
 const SingleProdComp = (props) => {
-
-  var [thisPuntajes, setthisPuntajes] = useState()
-
-  useEffect(() => {
-    buscarProducto(props.productoId)
-
-    axios.get(`/api/puntajes/getPuntajes/${props.productoId}`)
-    .then( puntajes => setthisPuntajes(thisPuntajes = puntajes.data))
-  },[])
 
 
   const transfArray = () => {
@@ -37,22 +26,6 @@ const SingleProdComp = (props) => {
     }
     else return props.producto.imagenes
   }
-  // useEffect(()=>{
-  //   var coll = document.getElementsByClassName("collapsible");
-  //   var i;
-
-  //   for (i = 0; i < coll.length; i++) {
-  //     coll[i].addEventListener("click", function() {
-  //       this.classList.toggle("active");
-  //       var content = this.nextElementSibling;
-  //       if (content.style.display === "block") {
-  //         content.style.display = "none";
-  //       } else {
-  //         content.style.display = "block";
-  //       }
-  //     });
-  //   }
-  // },[])
 
   const califExist = (calificacion) => {
     if (calificacion){
@@ -62,10 +35,10 @@ const SingleProdComp = (props) => {
 }
 
 
-  const { borrarProd, categorias, onClick } = props;
+  const { borrarProd, onClick } = props;
   return (
     <div id="singleProd">
-      {console.log(thisPuntajes)}
+      {/* {console.log('PROPS', props.producto.categorias)} */}
       <div className="row">
         <div style={{ height: 'fit-content' }} className="col-lg-6 col-xs-12">
 
@@ -79,7 +52,7 @@ const SingleProdComp = (props) => {
           <div id="puntuacion" className="row">
             <h3>Puntuación :  </h3>
             <h2 style={{ margin: '0 auto' }}>
-              <StarsRating ratings={props.producto.calificacion} userId={props.usuario.id} prodId={props.productoId} />
+              <StarsRating ratings={props.producto.calificacion} userId={props.usuario.id} prodId={props.producto.id} />
               < span style={{ marginLeft: '1rem' }}>
                 {califExist(props.producto.calificacion)}
               </span>
@@ -112,7 +85,7 @@ const SingleProdComp = (props) => {
 
 
           <button
-            onClick={() => props.adminInfo ? props.history.push(`/productos/edit/${props.producto.id}`) : props.addToCart(props.props.producto.id, props.usuario.id)}
+            onClick={() => props.adminInfo ? props.history.push(`/productos/edit/${props.producto.id}`) : props.addToCart(props.producto.id, props.usuario.id)}
             className="example_c"
             rel="nofollow noopener"
             id='cartbutton'
@@ -138,7 +111,7 @@ const SingleProdComp = (props) => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} >
         <div><h4><strong>Categorias :</strong></h4>
           <ul style={{ listStylePosition: 'inside' }}><h6>
-            {categorias && categorias.map((obj) => {
+            {props.producto.categorias.map((obj) => {
               return <li key={obj.id}>{obj.name}</li>;
             })}
           </h6></ul>
@@ -146,8 +119,8 @@ const SingleProdComp = (props) => {
         <div>
           <h4 style={{ textAlign: 'center' }}><strong>Reviews :</strong></h4>
           <div className='Stars'>
-            {thisPuntajes && <Carousel >
-              {thisPuntajes.map((puntaje) => (
+            {props.puntajes && <Carousel >
+              {props.puntajes.map((puntaje) => (
                 <Carousel.Item
                   key={puntaje.id}
                 >
@@ -190,15 +163,11 @@ const SingleProdComp = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  producto: state.selectedProd,
-  categorias: state.categorias,
   usuario: state.usuario
-
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (idProducto, idUsuario) => dispatch(addToCart(idProducto, idUsuario)),
-  buscarProducto: (prodID) => dispatch(buscarProducto(prodID))
 });
 
 

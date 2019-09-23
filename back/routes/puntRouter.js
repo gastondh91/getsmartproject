@@ -8,14 +8,14 @@ const Reviews = require('../models/Reviews')
 
 router.get('/borrarPuntaje/:puntaje/:review', (req, res) => {
   Puntajes.findByPk(req.params.puntaje)
-  .then( puntaje => {
-    if(puntaje.reviewId){
-      Reviews.destroy({ where: { id: req.params.review }})
-    }
-    else console.log('No Reviews')
-  })
-  .then(()=> Puntajes.destroy({where: { id: req.params.puntaje}}))
-  .then(()=> res.sendStatus(200))
+    .then(puntaje => {
+      if (puntaje.reviewId) {
+        Reviews.destroy({ where: { id: req.params.review } })
+      }
+      else console.log('No Reviews')
+    })
+    .then(() => Puntajes.destroy({ where: { id: req.params.puntaje } }))
+    .then(() => res.sendStatus(200))
 })
 
 router.post(`/reviews`, (req, res) => {
@@ -34,16 +34,37 @@ router.post(`/reviews`, (req, res) => {
     })
 })
 
-router.get(`/getPuntajes/:id`,(req,res)=> {
-  Puntajes.findAll({ where: { productoId : req.params.id }, include: [Reviews, Usuarios]})
-  .then( puntajes => res.send(puntajes))
+router.get(`/getPuntajes/:id`, (req, res) => {
+  Puntajes.findAll({ where: { productoId: req.params.id }, include: [Reviews, Usuarios] })
+    .then(puntajes => res.send(puntajes))
 })
 
+router.get(`/updateCalification/:prodId`, (req, res) => {
+  Puntajes.findAll({ attributes: ['Puntaje'], where: { productoId: req.params.prodId } })
+    .then(puntajes => puntajes = puntajes.map(arreglo => arreglo.Puntaje))
+    .then(puntajes => {
+      var promedio
+      if (puntajes.length){
+        var arrPuntajes = puntajes
+        
+        puntajes = puntajes.reduce((a, b) => {
+          return a + b;
+        }, 0);
+      puntajes = puntajes / arrPuntajes.length
 
+      promedio = puntajes
+      }
+      else promedio = 0
+      Producto.findByPk(req.params.prodId)
+        .then((producto) => {
+          producto.update({ calificacion: promedio })
+            .then(() => res.sendStatus(200))
+        })
+    })
+})
 
-
-router.post(`/getPuntaje/:id`, (req, res) => {
-  Puntajes.findOne({ where: { productoId: req.params.id, usuarioId: req.body.userId } })
+router.get(`/getPuntaje/:prodId/:userId`, (req, res) => {
+  Puntajes.findOne({ where: { productoId: req.params.prodId, usuarioId: req.params.userId } })
     .then(puntajes => res.send(puntajes))
 })
 

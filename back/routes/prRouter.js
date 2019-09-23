@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
   }
 });
 router.get('/:id', (req, res) => {
-  modelos.Productos.findByPk(req.params.id, { include:[Categorias, { model:Puntaje ,where: {productoId : req.params.id }, include:[Reviews,Usuarios], required: false  }]})
+  modelos.Productos.findByPk(req.params.id, { include:[Categorias]})
     .then(producto => {
       res.send(producto);
     }
