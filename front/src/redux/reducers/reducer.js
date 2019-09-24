@@ -57,8 +57,6 @@ export default (state = initialState, action) => {
         ...state,
         users: state.users.filter(user => user.id !== action.id)
       };
-    case SET_ADDTOCART:
-      return Object.assign({}, state, { carrito: [...state.carrito, action.productoCarrito] });
     default:
       return state;
   }

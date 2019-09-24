@@ -1,66 +1,81 @@
 import React, { useEffect, useState } from 'react';
-import { fetchCarrito, comprarCarrito } from '../redux/action-creators/carrito-actions.js';
-import { getProducts } from '../redux/action-creators/products-actions';
+import { fetchCarrito, updateCarrito } from '../redux/action-creators/carrito-actions.js';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const CarritoContainer = (props) => {
 
   const [inputs, setInputs] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     // props.fetchUser()
-    props.getCarrito(props.usuario.id);
-    // props.getProducts('?modelo=');
-    
-  },[])
+    if (props.usuario) props.getCarrito(props.usuario.id);
+
+  }, [])
+
+  const CartPromise = (usuario, input, producto) => {
+    new Promise((resolve, reject) => {
+      props.updateCarrito(usuario, input, producto)
+      resolve('ok')
+    })
+    .then(() => props.history.push('/pagos'))
+  }
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.comprarCarrito(props.usuario.id, state, props.cartProducts);
+    if (Object.keys(inputs).length) CartPromise(props.usuario.id, inputs, props.carrito)
+    else props.history.push('/pagos')
   }
+
   const handleChange = (e) => {
-    setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
+    setInputs(inputs => ({ ...inputs, [event.target.name]: Number(event.target.value) }));
+  }
+
+  const deleteProd = (params) => {
+    axios.post(`/api/carrito/delete/${params}`)
+      .then(() => props.getCarrito(props.usuario.id))
   }
 
 
-    return (
-      <div className='contenedorCarrito'>
-        {console.log('inputs',inputs)}
-        <h1>Carrito de compras:</h1>
-        <hr />
-        <form className='inputCarrito' onSubmit={handleSubmit}>
-          <div className="carritoContainer">
-            {props.cartProducts.map(producto => {
-              return (
-                <div className="media" key={producto.id}>
-                  <img src={producto.imagenes && producto.imagenes[0]} className="mr-3 imgCarritoList" />
-                  <div className="media-body">
-                    <h5 className="mt-0">{producto.marca + ' ' + producto.modelo}</h5>
-                    <p>{producto.descripcion && producto.descripcion.slice(0, 30) + '...'}</p>
-                  </div>
-                  <h5>${producto.precio}</h5>
-                  <div>
-                    <label>Cantidad:</label>
-                    <input type="number" name={producto.id} id='cantidadProd' defaultValue={1} onChange={handleChange}/>
-                  </div>
-                  {/* {console.log('Cantidad acum',Cantidad)} */}
-                  <div className="containerUser">
-                    <img id='trashUser' src="/utils/garbage.svg"></img>
-                  </div>
-                  <hr />
+  return (
+    <div className='contenedorCarrito'>
+      {console.log('inputs', props.carrito)}
+      <h1>Carrito de compras:</h1>
+      <hr />
+      <form className='inputCarrito' onSubmit={handleSubmit}>
+        <div className="carritoContainer">
+          {props.carrito.map(producto => {
+            return (
+              <div className="media" key={producto.id}>
+                <img src={producto.imagenes[0]} className="mr-3 imgCarritoList" />
+                <div className="media-body">
+                  <Link style={{ color: 'navy' }} to={`/productos/${producto.id}`}><h5 className="mt-0">{producto.marca + ' ' + producto.modelo}</h5></Link>
+                  <p>{producto.descripcion.slice(0, 30) + '...'}</p>
                 </div>
-              );
-            })}
-          </div>
-          <button className='pure-material-button-contained' type='submit' onSubmit={handleSubmit}>Comprar</button>
-        </form>
-      </div>
-    );
-  }
+                <h5>${producto.precio}</h5>
+                <div>
+                  <label>Cantidad:</label>
+                  <input type="number" name={producto.id} id='cantidadProd' min='1' max={producto.stock} defaultValue={producto.carrito.cantidad ? producto.carrito.cantidad : 1} onChange={handleChange} />
+                </div>
+                {console.log('props', props)}
+                <div className="containerUser">
+                  <img onClick={() => deleteProd(producto.id)} value={producto.id} id='trashUser' src="/utils/garbage.svg"></img>
+                </div>
+                <hr />
+              </div>
+            );
+          })}
+        </div>
+        <button className='pure-material-button-contained' type='submit' onSubmit={handleSubmit}>Comprar</button>
+      </form>
+    </div>
+  );
+}
 
 const mapStateToProps = state => {
   return {
-    cartProducts: state.carrito,
+    carrito: state.carrito,
     productos: state.products,
     usuario: state.usuario
   };
@@ -69,8 +84,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCarrito: (id) => dispatch(fetchCarrito(id)),
-    getProducts: (searchProduct) => dispatch(getProducts(searchProduct)),
-    comprarCarrito: (id, cantidad, productos) => dispatch(comprarCarrito(id, cantidad, productos)),
+    updateCarrito: (id, cantidad, productos) => dispatch(updateCarrito(id, cantidad, productos)),
   };
 }
 
