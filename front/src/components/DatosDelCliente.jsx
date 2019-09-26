@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({usuario}) => (
   <div>
-    <div className="card">
+    <div className="cardcheck">
       <div className="card-header">
         Datos del Cliente
         </div>

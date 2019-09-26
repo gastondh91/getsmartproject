@@ -29,7 +29,7 @@ const TarjetaDeCredito = (props) => {
           </div>
           <div>
             <label htmlFor="inputPassword5">Codigo de Seguridad: </label>
-            <input className='fecha' type="password" id="inputPassword5" aria-describedby="passwordHelpBlock" />
+            <input maxLength={3} className='fecha' type="password" id="inputPassword5" aria-describedby="passwordHelpBlock" />
             <small id="passwordHelpBlock" className="form-text text-muted note">
               Ultimos 3 digitos en el dorso de la tarjeta
             </small>

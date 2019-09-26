@@ -13,7 +13,7 @@ router.post('/add', (req, res) => { /* CREA UN CARRITO POR USUARIO */
     .catch(err => console.log(err));
 });
 
-router.post('/delete/:id', (req, res) => { /* BORRA UN PRODUCTO DEL CARRITO */
+router.post('/deletecart/:id', (req, res) => { /* BORRA UN PRODUCTO DEL CARRITO */
   modelos.Carrito.destroy({ where: { productoId: req.params.id } })
     .then(() => {
       res.sendStatus(200)

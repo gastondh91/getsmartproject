@@ -38,7 +38,7 @@ export default ({ carrito, history }) => {
           {carrito.map( producto=>{
             return(
           <tr key={producto.id}>
-            <td><img style={{width: '5rem'}} src={producto.imagenes[0]}/></td>
+            <td><img style={{width: '5rem', height: '5rem', objectFit:'contain'}} src={producto.imagenes[0]}/></td>
             <td>{producto.marca + ' '+ producto.modelo}</td>
             <td>{cantidades(producto.carrito.cantidad)}</td>
             <td>${producto.precio}</td>
