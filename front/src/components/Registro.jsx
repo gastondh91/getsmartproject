@@ -128,7 +128,7 @@ class Registro extends React.Component {
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">
               <h3 className="FRUstitle"> Completa tus datos... </h3>
-              <img title='Subir foto de perfil' style={{ cursor: 'pointer', borderStyle: 'initial', height: '10rem' }} onClick={() => this.refs.fileUploader.click()} className='editAvatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
+              <img title='Subir foto de perfil' style={{ cursor: 'pointer', borderStyle: 'initial', height: '10rem' }} onClick={() => this.refs.fileUploader.click()} className='emptyavatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
               <input onChange={this.onImageChange} type="file" ref="fileUploader" style={{ display: 'none' }} />
               <div style={{ marginLeft: '18rem', marginRight: '16rem' }} className="form-check form-check-inline">
                 <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
@@ -170,16 +170,7 @@ class Registro extends React.Component {
                 </div>
                 <div className="form-row">
                 </div>
-                <div className="botones">
-                  <button type="submit" className="btn btn-primary" data-toggle="modal" data-target="#infoModal" onSubmit={this.handleSubmit} >Registrarse</button>
-                  <a className="loginBtn loginBtn--facebook" href='/api/auth/facebook'>
-                    Login with Facebook
-              </a>
-
-                  <a className="loginBtn loginBtn--google" href='/api/auth/google'>
-                    Login with Google
-              </a>
-                </div>
+                  <button type="submit" className="example_b general" id='registerButton' data-toggle="modal" data-target="#infoModal" onSubmit={this.handleSubmit} >Registrarse</button>
               </div>
             </div>
           </form>
