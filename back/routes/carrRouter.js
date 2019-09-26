@@ -14,7 +14,7 @@ router.post('/add', (req, res) => { /* CREA UN CARRITO POR USUARIO */
 });
 
 router.post('/deletecart/:id', (req, res) => { /* BORRA UN PRODUCTO DEL CARRITO */
-  modelos.Carrito.destroy({ where: { productoId: req.params.id } })
+  modelos.Carrito.destroy({ where: { usuarioId: req.params.id } })
     .then(() => {
       res.sendStatus(200)
         ;
