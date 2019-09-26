@@ -1,13 +1,30 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import DatosDelCliente from './DatosDelCliente';
-import DetalleDelCliente from './DetalleDeCompra';
+import DetalleDeCompra from './DetalleDeCompra';
+import { connect } from 'react-redux'
+import { fetchCarrito } from '../redux/action-creators/carrito-actions'
 
-const Checkout = () => {
-  return (<div className='checkoutview'>
-    <div className='datosgrid'><DatosDelCliente /></div>
-    <div className='datosgrid'><DetalleDelCliente /></div>
+
+const Checkout = (props) => {
+  
+  useEffect(()=>{
+    props.fetchCarrito(props.usuario.id)
+  },[])
+
+  return (<div className='checkoutview datosgrid'>
+    <div><DatosDelCliente usuario={props.usuario} /></div>
+    <div><DetalleDeCompra history={props.history} carrito={props.carrito}/></div>
   </div>);
 };
 
-export default Checkout
-;
+
+const mapStateToProps = (state) => ({
+  usuario: state.usuario,
+  carrito: state.carrito
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCarrito: (id) => dispatch(fetchCarrito(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
