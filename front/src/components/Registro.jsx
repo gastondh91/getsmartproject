@@ -86,7 +86,6 @@ class Registro extends React.Component {
               })
             })
             .then(() => {
-              console.log('EL ESTADO', this.state)
 
               const formData = new FormData();
               formData.append('myImage', this.state.file, this.props.user.id);

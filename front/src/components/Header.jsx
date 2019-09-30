@@ -56,7 +56,6 @@ const Header = (props) => {
 
       </header>
       : <header className='header apart'>
-        {console.log(props)}
         <div onClick={() => {
           axios.get('/api/usuarios/logOut')
             .then(data => props.fetchUser(data.data));

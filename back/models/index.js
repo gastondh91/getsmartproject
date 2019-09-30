@@ -38,6 +38,9 @@ Reviews.belongsTo(Puntajes, { constraints: false } )
 OrdenCompra.belongsToMany(Productos, { through: 'orden_productos' });
 Productos.belongsToMany(OrdenCompra, { through: 'orden_productos' });
 
+OrdenCompra.belongsTo(Usuarios)
+Usuarios.belongsToMany(OrdenCompra,{ through: 'orden_usuarios'})
+
 Puntajes.belongsTo(Productos, { as: 'producto', constraints: false})
 Productos.belongsToMany(Puntajes, { through: 'puntajes_productos'})
 Puntajes.belongsTo(Usuarios, { constraints: false })

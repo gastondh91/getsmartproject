@@ -20,7 +20,9 @@ export const SEARCH_MARK = 'SEARCH_MARK';
 
 //CARRITO
 export const SET_ADDTOCART = 'SET_ADDTOCART';
+export const SET_CARRITO = 'SET_CARRITO'
 
 //OTROS
 export const SET_CURRENTLOCATION = 'SET_CURRENTLOCATION'
 export const SET_PUNTAJES = 'SET_PUNTAJES'
+export const GET_OC = 'GET_OC'

@@ -51,10 +51,6 @@ const elTotal = (carrito)=>{
     if(string.length == 6) return string.slice(0,3) + '.' + string.slice(3)
   }
 
-  const sumatoria = (precio, cantidad) => {
-    return precio
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(inputs).length) CartPromise(props.usuario.id, inputs, props.carrito)

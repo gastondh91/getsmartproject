@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_BUSQ, SET_CURRENTLOCATION, GET_SELUSER, CHECK_USER, ADD_USER, ADM_ACCESS, GET_USER } from '../constants';
+import { SET_BUSQ, GET_OC, SET_CURRENTLOCATION, GET_SELUSER, CHECK_USER, ADD_USER, ADM_ACCESS, GET_USER } from '../constants';
 
 export const addUser = (user) => ({
   type: ADD_USER,
@@ -35,6 +35,16 @@ export const getSelUser = (selectedUser) =>({
   type: GET_SELUSER,
   selectedUser
 })
+
+export const getOC = (ordComp) =>({
+  type: GET_OC,
+  ordComp
+})
+
+export const getOrdenes = (id)=> dispatch => 
+axios.get(`/api/ordencompra/getOrden/${id}`)
+  .then(ordenes => dispatch(getOC(ordenes.data)))
+
 
 export const giveadmAccess = (id) => dispatch =>
   axios.post(`/api/usuarios/esAdm/${id}`)

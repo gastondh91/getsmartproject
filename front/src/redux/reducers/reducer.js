@@ -1,4 +1,4 @@
-import {  SET_PUNTAJES, SET_BUSQ, SET_CURRENTLOCATION, GET_SELUSER, CHECK_USER, SET_ALLCAT, SET_SAVEDCATEGORIES, ADD_USER, ADM_ACCESS, RECEIVE_PRODUCT, GET_USER, SET_PRODUCTS, SET_CATEGORIAS, SEARCH_MARK, SET_ADDTOCART } from '../constants';
+import { GET_OC, SET_PUNTAJES, SET_BUSQ, SET_CURRENTLOCATION, GET_SELUSER, CHECK_USER, SET_ALLCAT, SET_SAVEDCATEGORIES, ADD_USER, ADM_ACCESS, RECEIVE_PRODUCT, GET_USER, SET_PRODUCTS, SET_CATEGORIAS, SEARCH_MARK, SET_CARRITO } from '../constants';
 
 const initialState = {
   products: [],
@@ -15,13 +15,16 @@ const initialState = {
   selectedUser: {},
   savedBusqueda: '',
   currentLocation: '',
-  puntajes: []
+  puntajes: [],
+  ordComp: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_BUSQ:
       return Object.assign({}, state, { savedBusqueda: action.busqueda });
+    case GET_OC:
+      return Object.assign({}, state, { ordComp: action.ordComp });
     case SET_PUNTAJES:
       return Object.assign({}, state, { puntajes: action.puntajes });
     case GET_SELUSER:
@@ -48,7 +51,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { usuario: action.usuario });
     case 'SET_USERS':
       return Object.assign({}, state, { users: action.users });
-    case 'SET_CARRITO':
+    case SET_CARRITO:
       return Object.assign({}, state, { carrito: action.carrito });
     case SEARCH_MARK:
       return Object.assign({}, state, { marcas: action.marca });

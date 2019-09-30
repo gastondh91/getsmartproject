@@ -259,6 +259,11 @@
 }
 
 
+.trhover:hover{
+   background : lightsteelblue
+}
+
+
 .hoverLog:hover{
     transform: scale(1.09);
 }
@@ -294,6 +299,25 @@
     height: auto
 }
 
+#cardCheckout{
+    margin-top: 2.5rem;
+    text-align: center
+}
+
+.italic{
+    font-style: italic;
+    font-size: 17px;
+    font-family: serif;
+    margin-bottom: 0
+}
+
+.pCheckout{
+    margin-bottom: 3px;
+    font-weight: 600;
+    font-size: 17px
+}
+
+
 .card{
     padding: 6% 3% 10%;
     margin-top: 20px;
@@ -302,8 +326,8 @@
 }
 
 .cardcheck{
-    margin-top: 5rem;
-    height: 27rem;
+    margin-top: 4.8rem;
+    min-height: 19rem;
     width: 19.5rem;
     border-radius: 1rem;
     box-shadow: 2px 2px 10px #666; 
@@ -330,6 +354,12 @@
 .titleProduct{
     margin-top: 20px
 }
+
+#lastChild{
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
 .products{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -394,6 +424,11 @@ margin-right: 10px;
     margin-top: 1px;
     margin-left: 5%;
     float: right
+}
+
+#ordLink{
+    color: #2B4F81;
+    font-weight: 600;
 }
 
 #deleteUser:hover{
@@ -1493,8 +1528,9 @@ margin-left: 160px;
 }
 
 .LinkCheckout{
-    color:navy;
+    color:#2B4F81;
     margin-left: auto;
+    font-weight: 600;
     margin-right: auto;
     display: block;
 }

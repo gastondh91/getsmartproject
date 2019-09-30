@@ -16,6 +16,8 @@ import Header from '../components/Header';
 import SingleProd from '../containers/SingleProductCont';
 import NavbarContainer from '../containers/NavbarContainer';
 import { getUser, checkUserLogin, fetchUser } from '../redux/action-creators/action-creator';
+import OrdenesDeCompra from '../components/OrdenesDeCompra'
+import OrdenDeCompra from '../components/OrdenDeCompra'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Checkout from '../components/Checkout';
@@ -70,8 +72,10 @@ class Main extends React.Component {
             <Route exact path='/productos/edit/:id' render={({ match, history }) => (<EditProd  isAdmin={this.props.usuario.isAdmin} history={history} prodId={match.params.id} />)} />
             <Route exact path="/productos/:id" render={({ match, history }) => <SingleProd history={history} prodId={match.params.id} isAdmin={this.props.usuario.isAdmin} />} />
             <Route exact path="/pagos" component={Checkout} />} />
-            <Route exact path='/tarjeta' component={TarjetaDeCredito} />
+            <Route exact path='/tarjeta' render={({history}) => <TarjetaDeCredito history={history} />} />
             <Route exact path='/cart' component={CarritoContainer} />
+            <Route exact path='/ordenesdecompra' render={({history}) => <OrdenesDeCompra history={history} />} />
+            <Route exact path='/ordenesdecompra/:id' render={({history,match}) => <OrdenDeCompra ordenId={match.params.id} history={history} />} />
           </Switch>
         </div >
     );
