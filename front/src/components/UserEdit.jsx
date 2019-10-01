@@ -13,8 +13,8 @@ const UserAsAdmin = (props) => {
   var [Domicilio, setDomicilio] = useState()
   var [Email, setEmail] = useState()
   var [file, setFile] = useState(null)
-  var [Password, setPassword] = useState()
-  var [SecondPassword, setSecondPassword] = useState()
+  var [Password, setPassword] = useState('')
+  var [SecondPassword, setSecondPassword] = useState('')
   var [Genero, setGenero] = useState()
   var [Estado, setEstado] = useState(['Usuario editado / Error', 'Razon'])
 
@@ -78,12 +78,12 @@ const UserAsAdmin = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Nombre', Nombre)
+    console.log('Nombre', SecondPassword)
     if (Nombre == '' || Apellido == '' || Genero == '' || Password == '' || Email == '' || Domicilio == '') {
       setEstado(Estado = ['Error', 'Debes completar todos los campos'])
     } else if (Email && (Email.indexOf('@') === -1 || Email.indexOf('.com') === -1)) {
       setEstado(Estado = ['Error', 'Formato de E-mail invalido'])
-    } else if (Password && (Password !== SecondPassword)) {
+    } else if (Password !== SecondPassword) {
       setEstado(Estado = ['Error', 'Las contraseñas ingresadas no coinciden'])
     } else if (SecondPassword.length < 6) {
       setEstado(Estado = ['Error', 'La contraseña debe tener como minimo 6 caracteres'])
@@ -152,7 +152,7 @@ const UserAsAdmin = (props) => {
             </div>
             <div className="form-group col-md-6">
               {/* <label htmlFor="inputPassword4">Contraseña</label> */}
-              <input name='password' onChange={handleChange} type="password" className="form-control" id="inputPassword5" placeholder="Nueva contraseña" />
+              <input name='password' onChange={handleChange} type="password" className="form-control" id="inputPassword5" placeholder="Nueva contraseña o actual" />
             </div>
             <div className="form-group col-md-6">
               {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}

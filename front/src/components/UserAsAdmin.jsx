@@ -138,7 +138,7 @@ class UserAsAdmin extends React.Component {
             <div className="modal-dialog" role="document">
               <div style={{ width: '24rem' }} className="modal-content modalBord2">
                 <div className="modal-header borderModal">
-                  <h5 className="modal-title" id="exampleModalLabel">{'Permisos de usuario modificados'}</h5>
+                  <h5 className="modal-title" id="exampleModalLabel">{'Permisos modificados'}</h5>
                 </div>
                 <div className="modal-body">
                   <p style={{ fontWeight: '600' }}>{`El usuario ${'"' + this.props.selectedUser.Nickname + '"'} ` + `${this.props.selectedUser.isAdmin ? 'ahora solo posee permisos de usuario.' : 'ahora posee permisos de administrador.'}`}</p>

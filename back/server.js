@@ -230,7 +230,7 @@ sessionStore.sync()
   //   Productos.create(samsung, { individualHooks: true })
   //     .then(producto => producto.setCategorias([3, 4, 6]))
   //   Productos.bulkCreate(productos, { individualHooks: true })
-  //   Usuarios.bulkCreate(usuarios, { individualHooks: true });
+    // Usuarios.bulkCreate(usuarios, { individualHooks: true });
   //   Categorias.bulkCreate(categorias, { individualHooks: true })
 
   //   .then(() => console.log('Base de datos Seedeada con exito'))

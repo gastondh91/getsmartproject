@@ -9,7 +9,7 @@ return(
 <div className="modal-dialog" role="document">
   <div style={{width: '21rem'}} className="modal-content modalBord2">
     <div className="modal-header borderModal">
-      <h5 className="modal-title" id="exampleModalLabel">{encabezado}</h5>
+      <h5 style={{textAlign: 'center'}} className="modal-title" id="exampleModalLabel">{encabezado}</h5>
     </div>
     <div style={{fontSize: '1rem', height: 'fit-content'}} id='pModal' className="modal-body">
       <p style={{textAlign: 'center', fontWeight: '600'}}className='pMargin'>{`${accion}${ item ? item : ''}${nombre ? nombre : ''}.`}</p>

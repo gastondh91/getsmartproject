@@ -7,6 +7,7 @@ const modelos = require('../models/index').modelos;
 const Puntaje = require('../models/Puntajes')
 const Reviews = require('../models/Reviews')
 const { Usuarios } = require('../models/Usuario')
+const Carrito = require('../models/Carrito')
 var rimraf = require("rimraf");
 
 router.post('/add', (req, res, next) => {
@@ -49,6 +50,17 @@ router.get('/:id', (req, res) => {
     }
     );
 });
+
+router.post('/descontar',(req,res) =>{
+  // console.log(req.body.carrito)
+  let carrito = req.body.carrito
+  for(i=0; i<carrito.length ; i+=1){
+    modelos.Productos.update({stock: carrito[i].stock - carrito[i].carrito.cantidad}, {where:{ id : carrito[i].id }})
+    console.log(carrito[i].stock - carrito[i].carrito.cantidad)
+
+  }
+  res.sendStatus(200)
+})
 
 
 

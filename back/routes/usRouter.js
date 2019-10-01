@@ -7,8 +7,8 @@ var rimraf = require("rimraf");
 router.post('/esAdm/:id', (req, res) => {
   Usuarios.findByPk(req.params.id)
     .then(data => {
-      if (data.isAdmin) { return data.update({ isAdmin: false }, { where: { isAdmin: true } }) }
-      else { return data.update({ isAdmin: true }, { where: { isAdmin: false } }) }
+      if (data.isAdmin) { return data.update({ isAdmin: false }, { where: { isAdmin: true } , hooks: false }) }
+      else { return data.update({ isAdmin: true }, { where: { isAdmin: false }, hooks : false }) }
       // .then(data => {
       //   return data.update({ isAdmin: true }, { where: { isAdmin: false } });
       // })

@@ -32,14 +32,21 @@ const TarjetaDeCredito = (props) => {
       setModal(Modal = ['Error', 'El código de seguridad debe tener una longitud de 3 digitos'])
     } else if(!inputs.year || !inputs.expirationDate) { setModal(Modal = ['Error', 'Debes seleccionar el mes y el año del vencimiento de la tarjeta'])
    } else {
-     axios.post(`/api/carrito/deletecart/${props.usuario.id}`)
-     .then(()=> {
-       axios.post(`/api/ordencompra/update/${props.usuario.id}`,{
-         status: 'PROCESANDO',
-         brand: tarjeta,
-         lastnum: inputs.cardNumber.slice(inputs.cardNumber.length-4)
-        })
-      })
+    axios.post(`api/productos/descontar`,{
+      carrito: props.carrito
+    })
+    .then(()=>{
+      axios.post(`/api/carrito/deletecart/${props.usuario.id}`)
+      .then(()=> {
+        axios.post(`/api/ordencompra/update/${props.usuario.id}`,{
+          status: 'PROCESANDO',
+          brand: tarjeta,
+          lastnum: inputs.cardNumber.slice(inputs.cardNumber.length-4)
+         })
+       })
+    })
+     
+
       setModal(Modal = ['Compra exitosa', 'Operación exitosa'])
     }
     

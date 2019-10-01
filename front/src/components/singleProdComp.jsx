@@ -20,8 +20,6 @@ const SingleProdComp = (props) => {
   var [Modal, setModal] = useState(['Estado', 'Mensaje'])
 
   const agregarAlCarrito = () => {
-    if (props.adminInfo) props.history.push(`/productos/edit/${props.producto.id}`)
-    else {
       let carrito = props.carrito
       for (let i = 0; i < carrito.length; i += 1) {
         if (carrito[i].id == props.producto.id) {
@@ -36,7 +34,6 @@ const SingleProdComp = (props) => {
         idUsuario: props.usuario.id
       })
         .then(() => setModal(Modal = ['Producto agregado', 'Producto agregado al carrito']))
-    }
   }
 
 
@@ -70,7 +67,7 @@ return (
 
         <div className="row" style={{ marginTop: '20px' }}>
           <div className="col-lg-6 col-xs-12"><h1 style={{ textAlign: 'center' }}>$ {props.producto.precio} </h1></div>
-          <div style={{ textAlign: 'center', marginTop: '9px' }} className="col-lg-6 col-xs-12">{props.producto.stock > 5 ? <h4>Disponible</h4> : <h4>Últimas {props.producto.stock} unidades</h4>}</div>
+<div style={{ textAlign: 'center', marginTop: '9px' }} className="col-lg-6 col-xs-12">{props.producto.stock > 5 ? <h5 >{props.producto.stock} Unidades disponibles</h5> : props.producto.stock > 0 ? <h5 style={{fontWeight: (props.producto.stock == 1 || props.producto.stock < 5) ? '600' : '100'  ? '600' : '100' }}>Última{props.producto.stock == 1 ? '' : 's'} {props.producto.stock != 1 && props.producto.stock} {(props.producto.stock == 1 || props.producto.stock < 6) && <br/>}Unidad{props.producto.stock == 1 ? '' : 'es'}</h5> : <h5>Actualmente sin stock</h5>}</div>
         </div>
 
         <div id="puntuacion" className="row">
@@ -126,7 +123,7 @@ return (
         </Carousel>
 
 
-        <button
+        { !props.adminInfo && props.producto.stock > 1 ? <button
           onClick={() => agregarAlCarrito()}
           className="example_c"
           data-toggle='modal'
@@ -134,19 +131,36 @@ return (
           rel="nofollow noopener"
           id='cartbutton'
           type="button"
-          style={{ marginLeft: props.adminInfo ? '4.7rem' : '1.9rem', width: props.adminInfo && '7.6rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
-        >{!props.adminInfo ? 'Agregar al Carrito' : 'Editar'}
-        </button>
-        <button
-          data-toggle={props.adminInfo && "modal"}
-          data-target={props.adminInfo && "#definiteModal"}
+          style={{ marginLeft: '1.9rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+        >Agregar al Carrito
+        </button> : null}
+        {props.adminInfo ? <button
+          onClick={() => props.history.push(`/productos/edit/${props.producto.id}`)}
+          className="example_c"
+          rel="nofollow noopener"
+          id='cartbutton'
+          type="button"
+          style={{ marginLeft: '4.7rem', width: '7.6rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+        >Editar
+        </button> : null}
+        {!props.adminInfo && props.producto.stock > 1 ? <button
           className="example_b example_d"
           rel="nofollow noopener"
           id='cartbutton'
           type="button"
           style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
-        >{!props.adminInfo ? 'Comprar' : 'Eliminar'}
-        </button>
+        >Comprar
+        </button>: null}
+        {props.adminInfo ? <button
+          data-toggle='modal'
+          data-target='#definiteModal'
+          className="example_b example_d"
+          rel="nofollow noopener"
+          id='cartbutton'
+          type="button"
+          style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+        >Eliminar
+        </button> : null}
       </div>
     </div>
 

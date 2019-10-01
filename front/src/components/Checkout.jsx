@@ -42,8 +42,9 @@ const Checkout = (props) => {
   }
 
   const Totales= (precio, cantidad)=> {
+    let subTotal = priceToNumber(precio) * cantidad
     SumaTotal += subtotal(precio, cantidad)
-    return numberToString(SumaTotal)
+    return numberToString(subTotal)
   }
 
   const separarCantidades = (productos) => {
