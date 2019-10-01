@@ -86,7 +86,7 @@ const Checkout = (props) => {
         }
       }
       if (repetido) {
-        setModal(modal = ['Datos cargados', 'Se cargaron los datos'])
+        setModal(modal = ['Datos cargados', 'Se creó la orden de compra'])
       }
       else {
         separarCantidades(props.carrito);
@@ -98,7 +98,7 @@ const Checkout = (props) => {
           total: numberToString(SumaTotal),
           cantidades
         })
-          .then(() => setModal(modal = ['Datos cargados', 'Se cargaron los datos']))
+          .then(() => setModal(modal = ['Datos cargados', 'Se creó la orden de compra']))
       }
     }
   }

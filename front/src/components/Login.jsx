@@ -49,7 +49,6 @@ setSessionUpdate = ()=>{
   render() {
     return (
       <div>
-        {console.log(this.state)}
         <div className="login-contenedor">
           <div className='FRUsuarios'>
             <form onSubmit={this.handleSubmit} >

@@ -23,7 +23,7 @@ class SingleProd extends React.Component {
     const product = this.props.producto;
     return (
       <div className="container" >
-        {product.id ? <SingleProdComp
+        {product.id && <SingleProdComp
          history={this.props.history}
         borrarProd={this.borrarProd} 
         producto={product}
@@ -31,7 +31,7 @@ class SingleProd extends React.Component {
         categorias={product.categorias} 
         puntajes={this.props.puntajes}
 
-        /> : <h1>Este producto no existe</h1>}
+        />}
       </div>
     );
   }

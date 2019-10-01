@@ -737,7 +737,7 @@ background-color: #2B4F81;
 
 #navbar3 ul{
     display:grid;
-    grid-template-columns: 10fr 10fr 10fr 10fr 10fr 10fr;
+    grid-template-columns: 11fr 11fr 11fr 11fr 11fr 11fr 11fr;
 }
 
 #navbar2 ul li a{

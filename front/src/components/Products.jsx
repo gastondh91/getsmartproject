@@ -9,7 +9,7 @@ const Products = ({ products,savedBusqueda }) => {
 
 
   let filtered = products.filter( value =>{ 
-    
+    console.log(value)
     let concat = value.marca + ' ' + value.modelo
 
     value = concat

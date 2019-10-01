@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setBusqueda } from '../redux/action-creators/action-creator'
 
-var productos = ['iPhone', 'Samsung', 'Motorola', 'Xiaomi', 'Huawei', 'LG']
+var productos = ['Catálogo' ,'iPhone', 'Samsung', 'Motorola', 'Xiaomi', 'Huawei', 'LG']
 
 class NavbarContainer extends Component {
   render() {
@@ -17,8 +17,13 @@ class NavbarContainer extends Component {
           <ul>
             {productos.map((producto, index) => {
               return (<li key={index++} onClick={() => {
-                this.props.setBusqueda(producto)
-                this.props.history.push('/productos')
+                if(producto != 'Catálogo'){
+                  this.props.setBusqueda(producto)
+                this.props.history.push('/productos')}
+                else{
+                  this.props.setBusqueda('')
+                  this.props.history.push('/productos')
+                }
               }} ><a style={{ cursor: 'pointer', color: 'white' }}>{producto}</a></li>
               )}
             )}

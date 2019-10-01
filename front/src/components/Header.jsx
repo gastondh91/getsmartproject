@@ -46,7 +46,7 @@ const Header = (props) => {
           return (
 
             <form >
-              <input onChange={handleChange} name='modelo' placeholder='  Busca tu producto 🔎' id='input' />
+              <input onChange={handleChange} name='modelo' placeholder='  Buscar producto 🔎' id='input' />
             </form>
 
           );
@@ -76,7 +76,7 @@ const Header = (props) => {
           return (
             <div>
             <form>
-              <input onChange={handleChange} name='modelo' placeholder='  Busca tu producto 🔎' id='input' />
+              <input onChange={handleChange} name='modelo' placeholder='  Buscar producto 🔎' id='input' />
             </form>
             </div>
           );

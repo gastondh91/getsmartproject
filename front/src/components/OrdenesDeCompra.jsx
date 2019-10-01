@@ -24,13 +24,13 @@ const OrdenesDeCompra = (props) => {
   return (
     <div className='contenedorCarrito'>
       {console.log(Ordenes)}
-      <h1 style={{ textAlign: 'center' }}>Ordenes de compra:</h1>
+      <h1 style={{ textAlign: 'center' }}>Órdenes de compra:</h1>
       <hr />
       {Ordenes && <form className='inputCarrito'>
         <div>
           <table className='tabla'>
             <tbody>
-              <tr className='tr'>
+              <tr style={{background: '#2B4F81', color: 'white'}} className='tr'>
                 <th>Orden de compra</th>
                 <th>Usuario</th>
                 <th>Estado</th>

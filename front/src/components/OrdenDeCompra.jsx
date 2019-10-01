@@ -42,13 +42,13 @@ const OrdenDeCompra = (props) => {
       {Orden && <div className='checkoutview datosgrid'>
         <div>
           <div className="cardcheck" id='cardCheckout'>
-            <div style={{fontWeight: '600', fontSize: '1.2rem'}} className="card-header">
+            <div style={{fontWeight: '600', fontSize: '1.2rem',background: '#2B4F81', color: 'white'}} className="card-header">
               Datos del Cliente
         </div>
             <ul style={{ maxWidth: '100%' }} className="list-group list-group-flush">
             <li className="list-group-item">
                 <p className='pCheckout' >Usuario:</p>
-                <Link id='ordLink' to={`/usuarios/edit/${Orden.usuario.id}`}><p style={{display: 'contents', fontSize: '18px'}} className='italic'>{Orden.usuario.Nickname}</p></Link>
+                <Link id='ordLink' to={`/usuarios/edit/${Orden.usuario.id}`}><p style={{display: 'contents', fontSize: '20px'}} className='italic'>{Orden.usuario.Nickname}</p></Link>
                 </li>
                 <li className="list-group-item">
               <p className='pCheckout' >Estado:</p>
@@ -86,7 +86,7 @@ const OrdenDeCompra = (props) => {
             <div style={{marginLeft : '1rem'}}>
               <table className='tabla'>
                 <tbody>
-                  <tr className='tr'>
+                  <tr style={{background: '#2B4F81', color: 'white'}} className='tr'>
                     <th>Imagenes</th>
                     <th>Productos</th>
                     <th>Cantidad</th>

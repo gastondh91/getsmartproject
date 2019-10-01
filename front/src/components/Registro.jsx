@@ -123,11 +123,12 @@ class Registro extends React.Component {
   render() {
     return (
       <div>
+        {console.log(this.state)}
         <div>
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">
               <h3 className="FRUstitle"> Completa tus datos... </h3>
-              <img title='Subir foto de perfil' style={{ cursor: 'pointer', borderStyle: 'initial', height: '10rem' }} onClick={() => this.refs.fileUploader.click()} className='emptyavatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
+              <img title='Subir foto de perfil' style={{ cursor: 'pointer', borderStyle: 'initial', borderRadius: '10rem', objectFit: 'cover', height: '10rem' }} onClick={() => this.refs.fileUploader.click()} className='emptyavatar ' id='avatarVacio' src={!this.state.file ? '/utils/avatar.svg' : this.state.fileName} />
               <input onChange={this.onImageChange} type="file" ref="fileUploader" style={{ display: 'none' }} />
               <div style={{ marginLeft: '18rem', marginRight: '16rem' }} className="form-check form-check-inline">
                 <input id='Masculino' name='genero' onChange={this.handleChange} type='radio' className="form-check-input" value='Masculino' />
@@ -157,11 +158,11 @@ class Registro extends React.Component {
                   </div>
                   <div className="form-group col-md-6">
                     {/* <label htmlFor="inputPassword4">Contraseña</label> */}
-                    <input name='secondPassword' onChange={this.handleChange} type="password" className="form-control" id="inputPassword5" placeholder="Contraseña" />
+                    <input name='password' onChange={this.handleChange} type="password" className="form-control" id="inputPassword4" placeholder="Contraseña" />
                   </div>
                   <div className="form-group col-md-6">
                     {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}
-                    <input name='password' onChange={this.handleChange} type="password" className="form-control" id="inputPassword4" placeholder="Confirmar contraseña" />
+                    <input name='secondPassword' onChange={this.handleChange} type="password" className="form-control" id="inputPassword5" placeholder="Confirmar contraseña" />
                   </div>
                   <div className="form-group col-md-6">
                     {/* <label htmlFor="inputPassword4">Confirmar contraseña</label> */}

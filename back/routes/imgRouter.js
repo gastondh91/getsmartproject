@@ -118,7 +118,7 @@ router.post('/upload', (req, res) => {
   upload(req, res, (err) => {
     console.log(req.file)
     Usuarios.findByPk(Number(req.file.originalname))
-      .then(usuario => usuario.update({ avatar: `${rutaUsuarios}/${req.file.filename}` }))
+      .then(usuario => usuario.update({ avatar: `${rutaUsuarios}/${req.file.filename}`},{ hooks: false }))
     if (!err)
       return res.sendStatus(200).end();
 

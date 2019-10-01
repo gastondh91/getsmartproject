@@ -131,7 +131,7 @@ return (
           rel="nofollow noopener"
           id='cartbutton'
           type="button"
-          style={{ marginLeft: '1.9rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
+          style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
         >Agregar al Carrito
         </button> : null}
         {props.adminInfo ? <button
@@ -143,14 +143,14 @@ return (
           style={{ marginLeft: '4.7rem', width: '7.6rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
         >Editar
         </button> : null}
-        {!props.adminInfo && props.producto.stock > 1 ? <button
+        {/* {!props.adminInfo && props.producto.stock > 1 ? <button
           className="example_b example_d"
           rel="nofollow noopener"
           id='cartbutton'
           type="button"
           style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
         >Comprar
-        </button>: null}
+        </button>: null} */}
         {props.adminInfo ? <button
           data-toggle='modal'
           data-target='#definiteModal'
