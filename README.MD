@@ -2,7 +2,7 @@
 
 Proyecto final de programación basado en aplicacíon de e-commerce dedicada a la comercializacíon de telefonos celulares.
 
-![status](https://img.shields.io/badge/status-running-green.svg?colorB=00C106) ![readme](https://img.shields.io/badge/readme-OK-green.svg?colorB=00C106) ![database](https://img.shields.io/badge/database-OK-green.svg?colorB=00C106) ![commits](https://img.shields.io/badge/commits-62-blue.svg)
+![status](https://img.shields.io/badge/status-running-green.svg?colorB=00C106) ![readme](https://img.shields.io/badge/readme-OK-green.svg?colorB=00C106) ![database](https://img.shields.io/badge/database-OK-green.svg?colorB=00C106) ![commits](https://img.shields.io/badge/commits-63-blue.svg)
 
 ---
 
@@ -14,6 +14,9 @@ Proyecto final de programación basado en aplicacíon de e-commerce dedicada a l
 - Puntuación y comentarios de productos.
 - Carrito para usuarios, checkout, ordenes de compra y pagos.
 
+### Inicio
+
+- Haz click en fork y luego clona el repositorio.
 
 ## Cargar la base de datos (Linux)
 
@@ -68,7 +71,7 @@ npm install
 
 ```
 
-## Inicio
+## Iniciando la aplicacíon
 
 Desde la terminal, usa el siguiente comando:
 
