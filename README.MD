@@ -20,7 +20,7 @@ Proyecto final de programación basado en aplicacíon de e-commerce dedicada a l
 Para construir la base de datos, primero debes instalar y configurar
 postgresql.
 
-	1- Ingresa los siguientes comandos en la terminal:
+1- Ingresa los siguientes comandos en la terminal:
 
 ```
 sudo apt-get install postgresql postgresql-contrib
@@ -32,7 +32,7 @@ createdb $getSmartDB
 
 ```
 
-	2- Desde la terminal ingresa el siguiente comando:
+2- Desde la terminal ingresa el siguiente comando:
 
 ```
 nano /etc/postgresql/VERSION_DE_POSTGRES/main/pg_hba.conf
