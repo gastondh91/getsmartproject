@@ -1,0 +1,12 @@
+{
+ “extends”: “airbnb”,
+ “env”: {
+ “node”: true,
+ “es6”: true,
+ “browser”: true
+ },
+ “rules”: {
+        "react/jsx-uses-react": 1,
+        "semi": [2, "always"]
+ }
+}

@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { getOrdenes } from '../redux/action-creators/action-creator'
 import { fetchCarrito } from '../redux/action-creators/carrito-actions'
 import axios from 'axios'
-import ModalInfo from './ModalInfo'
-import { Link } from 'react-router-dom'
 
 const Checkout = (props) => {
 
@@ -12,12 +10,12 @@ const Checkout = (props) => {
   var [cantidades, setCantidades] = useState({})
   var [modal, setModal] = useState(false)
 
-  const numberToString = (numero)=>{
+  const numberToString = (numero) => {
     let string = numero.toString()
-    if(string.length == 4) return string[0] + '.' + string.slice(1)
-    if(string.length == 5) return string.slice(0,2) + '.' + string.slice(2)
-    if(string.length == 6) return string.slice(0,3) + '.' + string.slice(3)
-    if(string.length == 7) return string.slice(0,4) + '.' + string.slice(4)
+    if (string.length == 4) return string[0] + '.' + string.slice(1)
+    if (string.length == 5) return string.slice(0, 2) + '.' + string.slice(2)
+    if (string.length == 6) return string.slice(0, 3) + '.' + string.slice(3)
+    if (string.length == 7) return string.slice(0, 4) + '.' + string.slice(4)
   }
 
   const priceToNumber = (numero) => {
@@ -30,10 +28,10 @@ const Checkout = (props) => {
   var cantidadTotal = 0
   var SumaTotal = 0
 
-  var cantidades = (cantidad)=>{
-    cantidadTotal+= cantidad
+  var funcCantidades = (cantidad) => {
+    cantidadTotal += cantidad
     return cantidad
-  } 
+  }
 
   const subtotal = (precio, cantidad) => {
     var sumatoria = priceToNumber(precio) * cantidad
@@ -41,7 +39,7 @@ const Checkout = (props) => {
     return sumatoria
   }
 
-  const Totales= (precio, cantidad)=> {
+  const Totales = (precio, cantidad) => {
     let subTotal = priceToNumber(precio) * cantidad
     SumaTotal += subtotal(precio, cantidad)
     return numberToString(subTotal)
@@ -65,13 +63,11 @@ const Checkout = (props) => {
     setInputs({ nombreyapellido: props.usuario.nombre + ' ' + props.usuario.apellido, email: props.usuario.email, direccion: props.usuario.domicilio })
   }, [])
 
-  const handleChange = (e) => {
+  const handleChange = () => {
     setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }));
   }
 
   const handleSubmit = () => {
-
-    console.log(SumaTotal)
 
     if (!inputs.nombreyapellido || !inputs.email || !inputs.direccion || !inputs.cp || !inputs.localidad) {
       setModal(modal = ['Error', 'Debes completar todos los campos'])
@@ -105,19 +101,18 @@ const Checkout = (props) => {
 
   return (
     <div>
-      {console.log(SumaTotal)}
       <div className='checkoutview datosgrid'>
         <div>
-          <div style={{textAlign: 'center'}} className="cardcheck cardCheckout">
-            <div style={{fontWeight: '600', fontSize: '1.2rem'}} className="card-header">
+          <div style={{ textAlign: 'center' }} className="cardcheck cardCheckout">
+            <div style={{ fontWeight: '600', fontSize: '1.2rem' }} className="card-header">
               Datos del Cliente
         </div>
             <ul style={{ maxWidth: '100%' }} className="list-group list-group-flush">
-              <li className="list-group-item "><p className='pCheckout' >Nombre y apellido:</p> <input style={{textAlign: 'center'}} onChange={handleChange} defaultValue={props.usuario.nombre + ' ' + props.usuario.apellido} type="text" name="nombreyapellido" className='inputDetail' /></li>
-              <li className="list-group-item"><p className='pCheckout' >Email:</p> <input style={{textAlign: 'center'}} onChange={handleChange} defaultValue={props.usuario.email} type="email" name="email" className='inputDetail' /></li>
-              <li className="list-group-item"><p className='pCheckout' >Dirección de envío:</p> <input style={{textAlign: 'center'}} onChange={handleChange} defaultValue={props.usuario.domicilio ? props.usuario.domicilio : ''} type="text" name="direccion" className='inputDetail' /></li>
-              <li className="list-group-item"><p className='pCheckout' >Código Postal:</p> <input style={{textAlign: 'center'}} onChange={handleChange} type="text" name="cp" className='inputDetail' /></li>
-              <li className="list-group-item"><p className='pCheckout' >Localidad:</p> <input style={{textAlign: 'center'}} onChange={handleChange} type="text" name="localidad" className='inputDetail' /></li>
+              <li className="list-group-item "><p className='pCheckout' >Nombre y apellido:</p> <input style={{ textAlign: 'center' }} onChange={handleChange} defaultValue={props.usuario.nombre + ' ' + props.usuario.apellido} type="text" name="nombreyapellido" className='inputDetail' /></li>
+              <li className="list-group-item"><p className='pCheckout' >Email:</p> <input style={{ textAlign: 'center' }} onChange={handleChange} defaultValue={props.usuario.email} type="email" name="email" className='inputDetail' /></li>
+              <li className="list-group-item"><p className='pCheckout' >Dirección de envío:</p> <input style={{ textAlign: 'center' }} onChange={handleChange} defaultValue={props.usuario.domicilio ? props.usuario.domicilio : ''} type="text" name="direccion" className='inputDetail' /></li>
+              <li className="list-group-item"><p className='pCheckout' >Código Postal:</p> <input style={{ textAlign: 'center' }} onChange={handleChange} type="text" name="cp" className='inputDetail' /></li>
+              <li className="list-group-item"><p className='pCheckout' >Localidad:</p> <input style={{ textAlign: 'center' }} onChange={handleChange} type="text" name="localidad" className='inputDetail' /></li>
             </ul>
           </div>
         </div>
@@ -145,7 +140,7 @@ const Checkout = (props) => {
                     <tr key={producto.id}>
                       <td><img style={{ width: '5rem', height: '5rem', objectFit: 'contain' }} src={producto.imagenes[0]} /></td>
                       <td><Link className='LinkCheckout' to={`/productos/${producto.id}`}>{producto.marca + ' ' + producto.modelo}</Link></td>
-                      <td>{cantidades(producto.carrito.cantidad)}</td>
+                      <td>{funcCantidades(producto.carrito.cantidad)}</td>
                       <td>${producto.precio}</td>
                       <td>${Totales(producto.precio, producto.carrito.cantidad)}</td>
                     </tr>)
