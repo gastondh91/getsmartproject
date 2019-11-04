@@ -30,7 +30,7 @@ const Checkout = (props) => {
   var cantidadTotal = 0
   var SumaTotal = 0
 
-  const cantidades = (cantidad)=>{
+  var cantidades = (cantidad)=>{
     cantidadTotal+= cantidad
     return cantidad
   } 
