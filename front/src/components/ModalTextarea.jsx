@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
+import React, { useState} from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import { buscarProducto, buscarPuntajes } from '../redux/action-creators/products-actions';
-import ModalAccept from './ModalAccept'
+import ModalAccept from './ModalAccept';
 
 const ModalTextarea = (props) => {
 
-  var [Comentarios, setComentarios] = useState()
+  var [Comentarios, setComentarios] = useState();
 
   const handleText = (e) => {
-    setComentarios(Comentarios = e.target.value)
-  }
+    setComentarios(Comentarios = e.target.value);
+  };
 
 
   const borrarPuntaje = (puntajes) => {
-    var miPuntaje
+    var miPuntaje;
     puntajes.forEach((puntaje) => {
-      if (puntaje.usuarioId == props.userId) miPuntaje = puntaje
+      if (puntaje.usuarioId == props.userId) miPuntaje = puntaje;
     });
     axios.get(`/api/puntajes/borrarPuntaje/${miPuntaje.id}/${miPuntaje.review ? miPuntaje.review.id : 'null'}`)
       .then(() => {
-        props.buscarPuntajes(props.prodId)
+        props.buscarPuntajes(props.prodId);
       })
       .then(() => {
         axios.get(`/api/puntajes/updateCalification/${props.prodId}`)
         .then(() => {
-          props.buscarProducto(props.prodId)
-        })
-      })
-  }
+          props.buscarProducto(props.prodId);
+        });
+      });
+  };
 
   const showButtons = (estado) => {
     if (estado == 'Ya calificaste este producto. ¿Te gustaria borrar tu calificación?') {
@@ -52,7 +52,7 @@ const ModalTextarea = (props) => {
           >No
           </button>
         </span>
-      )
+      );
     }
 
     return (
@@ -63,9 +63,9 @@ const ModalTextarea = (props) => {
         type="button"
         data-dismiss="modal">{props.estado == 'Ya calificaste este producto.' ? 'Aceptar' : Comentarios ? 'Guardar' : 'Omitir'}
       </button>
-    )
+    );
 
-  }
+  };
 
   const handleSubmitText = () => {
     if (Comentarios) {
@@ -77,12 +77,12 @@ const ModalTextarea = (props) => {
             PuntajeId: puntaje.data.id
           })
             .then(() => {
-              props.buscarProducto(props.prodId)
-              props.buscarPuntajes(props.prodId)
-            })
-        })
+              props.buscarProducto(props.prodId);
+              props.buscarPuntajes(props.prodId);
+            });
+        });
     }
-  }
+  };
 
   return (
     <div style={{ all: 'revert' }} className="modal fade" id="modalTextarea" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,9 +101,9 @@ const ModalTextarea = (props) => {
       </div>
       <ModalAccept
       />
-    </div>)
+    </div>);
 
-}
+};
 
 const mapStateToProps = (state) => ({
   producto: state.selectedProd,

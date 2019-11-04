@@ -6,7 +6,7 @@ const addCat = (cat) => {
 };
 const Formulario = ({ onChange, onImageChange, onSubmit, title, array, history }) => {
 
-const inputRef = useRef(null)
+const inputRef = useRef(null);
 
   return (
 
@@ -104,6 +104,6 @@ const inputRef = useRef(null)
     </form >
 
   );
-}
+};
 
 export default Formulario;

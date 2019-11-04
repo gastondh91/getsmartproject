@@ -16,17 +16,17 @@ import Header from '../components/Header';
 import SingleProd from '../containers/SingleProductCont';
 import NavbarContainer from '../containers/NavbarContainer';
 import { getUser, checkUserLogin, fetchUser } from '../redux/action-creators/action-creator';
-import OrdenesDeCompra from '../components/OrdenesDeCompra'
-import OrdenDeCompra from '../components/OrdenDeCompra'
+import OrdenesDeCompra from '../components/OrdenesDeCompra';
+import OrdenDeCompra from '../components/OrdenDeCompra';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Checkout from '../components/Checkout';
-import UserEdit from '../components/UserEdit'
+import UserEdit from '../components/UserEdit';
 import TarjetaDeCredito from '../components/TarjetaDeCredito';
 import Noautorizado from '../components/Noautorizado';
 import UsersContainer from './UsersContainer';
 import CarritoContainer from './CarritoContainer';
-import Subirimg from '../components/Subirimg'
+import Subirimg from '../components/Subirimg';
 
 class Main extends React.Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class Main extends React.Component {
         </div >
     );
   }
-};
+}
 
 const mapStateToProps = (state) => ({
   userCheck: state.userCheck,

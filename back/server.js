@@ -1,5 +1,4 @@
 const express = require('express');
-// const cors = require('cors');
 const app = express();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -10,11 +9,11 @@ var morgan = require('morgan');
 const db = require('./config/db');
 const apiRoutes = require('./routes');
 const { Usuarios } = require('./models/Usuario');
-const Productos = require('./models/Producto')
-const Categorias = require('./models/Categorias')
-const Puntajes = require('./models/Puntajes')
-const Reviews = require('./models/Reviews')
-const chalk = require('chalk')
+const Productos = require('./models/Producto');
+const Categorias = require('./models/Categorias');
+const Puntajes = require('./models/Puntajes');
+const Reviews = require('./models/Reviews');
+const chalk = require('chalk');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sessionStore = new SequelizeStore({ db });
 var fs = require('fs');
@@ -23,7 +22,7 @@ var https = require('https');
 const PORT = process.env.PORT || 8080;
 
 //Linea de Seedeo de la base de datos
-const { usuarios, productos, categorias, iPhone, samsung } = require('../data')
+const { usuarios, productos, categorias, iPhone, samsung } = require('../data');
 
 
 app.use(cookieParser());
@@ -96,14 +95,11 @@ passport.use(new GoogleStrategy({
 },
   (accessToken, refreshToken, profile, done) => {
     var { id, picture, gender, email, name } = profile;
-    console.log('profile ', profile)
-    // console.log('todos los prof fields ',profileFields)
-    // []
     var gender = () => {
-      if (gender == 'male') return 'Masculino'
-      if (gender == 'female') return 'Femenino'
-      else return 'No especificado'
-    }
+      if (gender == 'male') return 'Masculino';
+      if (gender == 'female') return 'Femenino';
+      else return 'No especificado';
+    };
 
 
     Usuarios.findOne({ where: { email: email } })
@@ -111,8 +107,8 @@ passport.use(new GoogleStrategy({
         if (user) {
           user.setGoogle([id])
             .then(user => {
-              return done(null, user)
-            })
+              return done(null, user);
+            });
         }
         else {
           Usuarios.create({
@@ -128,13 +124,13 @@ passport.use(new GoogleStrategy({
               user.setGoogle([id])
                 .then(user => {
 
-                  return done(null, user)
-                })
-            })
+                  return done(null, user);
+                });
+            });
         }
-      })
+      });
   })
-)
+);
 
 passport.use(new FacebookStrategy({
   clientID: '620838298442887',
@@ -144,16 +140,12 @@ passport.use(new FacebookStrategy({
 },
   (accessToken, refreshToken, profile, done) => {
     var { id, displayName, photos, gender, emails } = profile;
-    var emailMap = (emails.map(elem => elem.value))
-    console.log(emailMap)
-    console.log('profile ', profile)
-    // console.log('todos los prof fields ',profileFields)
-    // []
+    var emailMap = (emails.map(elem => elem.value));
     var gender = () => {
-      if (gender == 'male') return 'Masculino'
-      if (gender == 'female') return 'Femenino'
-      else return 'No especificado'
-    }
+      if (gender == 'male') return 'Masculino';
+      if (gender == 'female') return 'Femenino';
+      else return 'No especificado';
+    };
 
 
     Usuarios.findOne({ where: { email: emailMap } })
@@ -161,8 +153,8 @@ passport.use(new FacebookStrategy({
         if (user) {
           user.setFacebook([id])
             .then(user => {
-              return done(null, user)
-            })
+              return done(null, user);
+            });
         }
         else {
           Usuarios.create({
@@ -178,13 +170,13 @@ passport.use(new FacebookStrategy({
               user.setFacebook([id])
                 .then(user => {
 
-                  return done(null, user)
-                })
-            })
+                  return done(null, user);
+                });
+            });
         }
-      })
+      });
   })
-)
+);
 
 
 
@@ -205,9 +197,9 @@ sessionStore.sync()
       //   key: fs.readFileSync('back/cert.key'),
       //   cert: fs.readFileSync('back/cert.crt')
       // }, app).listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
-      app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT))
+      app.listen(PORT, () => console.log('SERVER LISTENING AT PORT', PORT));
     });
-  })
+  });
   // Para detener el seedeo de la base de datos borrar o comentar las lineas que estan mas abajo
   // .then(()=>{
 

@@ -1,88 +1,90 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
-import { getOrdenes } from '../redux/action-creators/action-creator'
-import { fetchCarrito } from '../redux/action-creators/carrito-actions'
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { getOrdenes } from '../redux/action-creators/action-creator';
+import { fetchCarrito } from '../redux/action-creators/carrito-actions';
+import axios from 'axios';
+import ModalInfo from './ModalInfo';
+import { Link } from 'react-router-dom';
 
 const Checkout = (props) => {
 
-  var [inputs, setInputs] = useState({})
-  var [cantidades, setCantidades] = useState({})
-  var [modal, setModal] = useState(false)
+  var [inputs, setInputs] = useState({});
+  var [cantidades, setCantidades] = useState({});
+  var [modal, setModal] = useState(false);
 
   const numberToString = (numero) => {
-    let string = numero.toString()
-    if (string.length == 4) return string[0] + '.' + string.slice(1)
-    if (string.length == 5) return string.slice(0, 2) + '.' + string.slice(2)
-    if (string.length == 6) return string.slice(0, 3) + '.' + string.slice(3)
-    if (string.length == 7) return string.slice(0, 4) + '.' + string.slice(4)
-  }
+    let string = numero.toString();
+    if (string.length == 4) return string[0] + '.' + string.slice(1);
+    if (string.length == 5) return string.slice(0, 2) + '.' + string.slice(2);
+    if (string.length == 6) return string.slice(0, 3) + '.' + string.slice(3);
+    if (string.length == 7) return string.slice(0, 4) + '.' + string.slice(4);
+  };
 
   const priceToNumber = (numero) => {
-    var splited = numero.split('.')
-    var number = Number(splited.join(''))
-    return number
-  }
+    var splited = numero.split('.');
+    var number = Number(splited.join(''));
+    return number;
+  };
 
-  var total = 0
-  var cantidadTotal = 0
-  var SumaTotal = 0
+  var total = 0;
+  var cantidadTotal = 0;
+  var SumaTotal = 0;
 
   var funcCantidades = (cantidad) => {
-    cantidadTotal += cantidad
-    return cantidad
-  }
+    cantidadTotal += cantidad;
+    return cantidad;
+  };
 
   const subtotal = (precio, cantidad) => {
-    var sumatoria = priceToNumber(precio) * cantidad
-    total += sumatoria
-    return sumatoria
-  }
+    var sumatoria = priceToNumber(precio) * cantidad;
+    total += sumatoria;
+    return sumatoria;
+  };
 
   const Totales = (precio, cantidad) => {
-    let subTotal = priceToNumber(precio) * cantidad
-    SumaTotal += subtotal(precio, cantidad)
-    return numberToString(subTotal)
-  }
+    let subTotal = priceToNumber(precio) * cantidad;
+    SumaTotal += subtotal(precio, cantidad);
+    return numberToString(subTotal);
+  };
 
   const separarCantidades = (productos) => {
-    let cantidad = {}
+    let cantidad = {};
     for (let i = 0; i < productos.length; i += 1) {
-      cantidad[productos[i].id] = productos[i].carrito.cantidad
+      cantidad[productos[i].id] = productos[i].carrito.cantidad;
     }
-    setCantidades(cantidades = cantidad)
-  }
+    setCantidades(cantidades = cantidad);
+  };
 
 
   useEffect(() => {
 
-    props.getOrdenes(props.usuario.id)
+    props.getOrdenes(props.usuario.id);
 
-    props.fetchCarrito(props.usuario.id)
+    props.fetchCarrito(props.usuario.id);
 
-    setInputs({ nombreyapellido: props.usuario.nombre + ' ' + props.usuario.apellido, email: props.usuario.email, direccion: props.usuario.domicilio })
-  }, [])
+    setInputs({ nombreyapellido: props.usuario.nombre + ' ' + props.usuario.apellido, email: props.usuario.email, direccion: props.usuario.domicilio });
+  }, []);
 
   const handleChange = () => {
     setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }));
-  }
+  };
 
   const handleSubmit = () => {
 
     if (!inputs.nombreyapellido || !inputs.email || !inputs.direccion || !inputs.cp || !inputs.localidad) {
-      setModal(modal = ['Error', 'Debes completar todos los campos'])
-      return
+      setModal(modal = ['Error', 'Debes completar todos los campos']);
+      return;
     }
     else {
-      let ordenes = props.ordComp
-      let repetido
+      let ordenes = props.ordComp;
+      let repetido;
       for (let i = 0; i < ordenes.length; i += 1) {
         if ((ordenes[i].usuarioId == props.usuario.id) && ordenes[i].status == 'CREADO') {
-          repetido = true
+          repetido = true;
         }
       }
       if (repetido) {
-        setModal(modal = ['Datos cargados', 'Se creó la orden de compra'])
+        setModal(modal = ['Datos cargados', 'Se creó la orden de compra']);
       }
       else {
         separarCantidades(props.carrito);
@@ -94,10 +96,10 @@ const Checkout = (props) => {
           total: numberToString(SumaTotal),
           cantidades
         })
-          .then(() => setModal(modal = ['Datos cargados', 'Se creó la orden de compra']))
+          .then(() => setModal(modal = ['Datos cargados', 'Se creó la orden de compra']));
       }
     }
-  }
+  };
 
   return (
     <div>
@@ -143,7 +145,7 @@ const Checkout = (props) => {
                       <td>{funcCantidades(producto.carrito.cantidad)}</td>
                       <td>${producto.precio}</td>
                       <td>${Totales(producto.precio, producto.carrito.cantidad)}</td>
-                    </tr>)
+                    </tr>);
                 })}
                 <tr style={{ borderTop: 'solid thin darkslategrey' }}><td /><td /><td style={{ fontWeight: '600' }}>{cantidadTotal}</td><td /><td style={{ fontWeight: '600' }}>${numberToString(total)}</td></tr>
               </tbody>
