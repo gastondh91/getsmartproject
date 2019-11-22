@@ -13,11 +13,11 @@ const Categorias = db.define('categorias', {
 var mayusculas = (categoria)=>{
 
     if (categoria.name.includes(' ') || categoria.name[0] === categoria.name[0].toLowerCase()) {
-      newcategoria = categoria.name.split('')
+      let newcategoria = categoria.name.split('')
     
       if(newcategoria[0] === newcategoria[0].toLowerCase()) newcategoria[0] = newcategoria[0].toUpperCase()
       
-      for (i = 0; i < newcategoria.length; i++) {
+      for (let i = 0; i < newcategoria.length; i++) {
         if (newcategoria[i] === ' ') newcategoria[i + 1] = newcategoria[i + 1].toUpperCase()
       }
       categoria.name = newcategoria.join('')

@@ -3,7 +3,7 @@ const S = require('sequelize');
 const crypto = require('crypto');
 const db = require('../config/db');
 
-const Usuarios = db.define('usuario', {
+const Usuarios = db.define("usuario", {
   nombre: {
     type: S.STRING,
     allowNull: false
@@ -65,11 +65,11 @@ const Usuarios = db.define('usuario', {
 var mayusculasNombre = (usuario) => {
 
   if (usuario.nombre.includes(' ') || usuario.nombre[0] === usuario.nombre[0].toLowerCase()) {
-    newUsuario = usuario.nombre.split('')
+    let newUsuario = usuario.nombre.split('')
 
     if (newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
 
-    for (i = 0; i < newUsuario.length; i++) {
+    for (let i = 0; i < newUsuario.length; i++) {
       if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
     }
     usuario.nombre = newUsuario.join('')
@@ -80,11 +80,11 @@ var mayusculasNombre = (usuario) => {
 var mayusculasApellido = (usuario) => {
 
   if (usuario.apellido.includes(' ') || usuario.apellido[0] === usuario.apellido[0].toLowerCase()) {
-    newUsuario = usuario.apellido.split('')
+    let newUsuario = usuario.apellido.split('')
 
     if (newUsuario[0] === newUsuario[0].toLowerCase()) newUsuario[0] = newUsuario[0].toUpperCase()
 
-    for (i = 0; i < newUsuario.length; i++) {
+    for (let i = 0; i < newUsuario.length; i++) {
       if (newUsuario[i] === ' ') newUsuario[i + 1] = newUsuario[i + 1].toUpperCase()
     }
     usuario.apellido = newUsuario.join('')

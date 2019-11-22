@@ -27,9 +27,9 @@ postgresql.
 
 ```
 sudo apt-get install postgresql postgresql-contrib
-sudo -u postgres createuser --superuser $USER
+sudo -u postgres createuser --superuser $USER (donde '$USER' vendria a ser tu usuario)
 createdb $USER
-createdb $getSmartDB
+createdb getSmartDB
 
 (Donde $USER es tu nombre de usuario de linux)
 
@@ -79,6 +79,8 @@ Desde la terminal, usa el siguiente comando:
 npm start
 
 ``` 
+
+Nota: por defecto la base de datos se esta llenando automaticamente. Si deseas detener esto tienes que ir al archivo "back/server.js" y comentar o borrar desde la linea 204 hasta la 230.
 
 Y luego abre el navegador en `http://localhost:8080` para correr la aplicacíon.
 
