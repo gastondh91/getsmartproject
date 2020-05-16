@@ -19,6 +19,6 @@ export const fetchUsers = () => dispatch => {
 };
 
 export const deleteUser = (id) => dispatch => {
-  return axios.delete(`/api/usuarios/${id}`)
+  return axios.get(`/api/usuarios/${id}`)
     .then(() => dispatch(removeUser(id)));
 };

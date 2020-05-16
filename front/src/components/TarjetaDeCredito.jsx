@@ -64,7 +64,6 @@ const Tarjeta = (input) => {
 
 return (
   <div>
-    {console.log(inputs)}
     <div className="heading">
       <h1 style={{ textAlign: 'center', marginTop: '1rem' }}>Confirmar compra</h1>
       <hr style={{ width: '62rem' }} />

@@ -123,7 +123,6 @@ class Registro extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state)}
         <div>
           <form onSubmit={this.handleSubmit} >
             <div className="registro-contenedor">

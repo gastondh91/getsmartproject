@@ -28,7 +28,6 @@ const AdminProd = (props) => {
 
   const toggleClass = (e) => {
     setActive(!Active)
-    console.log(e.target.value)
   };
 
   const handleChange = (e) => {

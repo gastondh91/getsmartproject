@@ -24,8 +24,6 @@ const SingleProdComp = (props) => {
       for (let i = 0; i < carrito.length; i += 1) {
         if (carrito[i].id == props.producto.id) {
         setModal(Modal = ['Producto agregado', 'Ya agregaste este producto al carrito'])
-        console.log(props.producto.id)
-        console.log(carrito[i])
         return;}
       }
 
@@ -60,7 +58,6 @@ const califExist = (calificacion) => {
 const { borrarProd, onClick } = props;
 return (
   <div id="singleProd">
-    {console.log('PROPS', props)}
     <div className="row">
       <div style={{ height: 'fit-content' }} className="col-lg-6 col-xs-12">
         <h1 style={{ textAlign: 'center', marginBottom: '10px', borderBottom: '1px solid black', paddingBottom: '7px' }}>{props.producto.marca} {props.producto.modelo}</h1>

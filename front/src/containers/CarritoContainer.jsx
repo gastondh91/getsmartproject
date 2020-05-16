@@ -77,7 +77,6 @@ const elTotal = (carrito)=>{
 
   return (
     <div className='contenedorCarrito'>
-      {/* {console.log('inputs', inputs)} */}
       <h1 style={{textAlign: 'center'}}>Carrito de compras:</h1>
       <hr />
       {props.carrito.length ? <form className='inputCarrito' onSubmit={handleSubmit}>

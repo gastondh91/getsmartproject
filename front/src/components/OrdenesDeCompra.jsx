@@ -23,7 +23,6 @@ const OrdenesDeCompra = (props) => {
 
   return (
     <div className='contenedorCarrito'>
-      {console.log(Ordenes)}
       <h1 style={{ textAlign: 'center' }}>Órdenes de compra:</h1>
       <hr />
       {Ordenes && <form className='inputCarrito'>
@@ -38,18 +37,17 @@ const OrdenesDeCompra = (props) => {
                 <th>Total</th>
               </tr>
               {
-                Ordenes.map(orden => {
-                  return (
+                Ordenes.map(orden => (
                     <tr className='trhover' style={{ cursor: 'pointer'}} onClick={()=> props.history.push(`/ordenesdecompra/${orden.id}`)} key={orden.id}>
                       <td>#{orden.id}</td>
-                      <td style={{color: '#2B4F81', fontWeight: '600'}}>{orden.usuario.Nickname}</td>
+                      <td style={{color: '#2B4F81', fontWeight: '600'}}>{orden.usuario ? orden.usuario.Nickname : 'Usuario eliminado'}</td>
                       <td style={{ fontWeight: 600, color: `${orden.status == 'CANCELADO' ? 'red' : 'green'}`}}>{orden.status}</td>
                       <td>{fecha(orden.fecha)}</td>
                       <td style={{fontWeight : '600'}}>${orden.total}</td>
                     </tr>
 
                   )
-                })
+                )
               }
             </tbody>
           </table>

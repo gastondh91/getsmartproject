@@ -53,12 +53,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/descontar',(req,res) =>{
-  // console.log(req.body.carrito)
   let carrito = req.body.carrito;
   for(i=0; i<carrito.length ; i+=1){
     modelos.Productos.update({stock: carrito[i].stock - carrito[i].carrito.cantidad}, {where:{ id : carrito[i].id }});
-    console.log(carrito[i].stock - carrito[i].carrito.cantidad);
-
   }
   res.sendStatus(200);
 });
@@ -72,7 +69,6 @@ router.delete(('/:id'), (req, res) => {
     .then(producto => rimraf(`back/public/utils/Telefonos/${producto.marca}/${producto.modelo}`, () => { }))
     .then(() => {
       modelos.Productos.destroy({ where: { id: req.params.id } })
-      .then(() => console.log(Chalk.blue(obj)));
     })
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err));

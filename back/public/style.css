@@ -97,16 +97,6 @@
     margin: 25px auto;
     font-size: 50px 
 }
-.header{
-    border-bottom: 1px solid black;
-    display: grid;
-    grid-template-columns: 0.2fr 0.2fr 1fr 1fr 0.5fr;
-    align-items: center; 
-}
-
-.apart{
-    grid-template-columns: 0.3fr 0.2fr 1fr 1fr 0.5fr;    
-}
 
 #avatarVacio{
     display: block;
@@ -231,7 +221,8 @@
 }
 
 .botonLogout{
-    cursor: pointer
+    cursor: pointer;
+    align-self: center;
 }
 
 .botonLogout:hover{
@@ -295,7 +286,7 @@
 }
 
 #carrito{
-    width: 150%;
+    width: 70px;
     height: auto
 }
 
@@ -1026,7 +1017,6 @@ text-shadow:0px 2px 1px grey;
 }
 #linkCart{
     width: 45px;
-    margin-left: 125px;
 }
 
 .yesnobutton{
@@ -1220,7 +1210,7 @@ text-shadow:0px 2px 1px grey;
   }
   .loginBtn--google:before {
     border-right: #BB3F30 1px solid;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google') 6px 6px no-repeat;
   }
   .loginBtn--google:hover,
   .loginBtn--google:focus {
@@ -1666,4 +1656,36 @@ margin-left: 160px;
     opacity: 0;
     transform: translate(-50%, -50%) scale(1);
     transition: opacity 1s, transform 0.5s;
+}
+
+.carrito-count{
+    position: absolute;
+    font-weight: bolder;
+    font-size: 15px;
+    right: 23px;
+    color: white;
+    font-family: sans-serif;
+    z-index: 1;
+    top: 6px;
+}
+
+.cerrar-sesion {
+    margin-right: 14px;
+    line-height: 15px;
+    margin-top: 3.2px;
+    vertical-align: middle;
+    margin-left: 5px;
+    display: inline-flex;
+}
+
+.col-center {
+    align-self: center;
+}
+
+.busquedas{
+    display: inline-block;
+}
+
+.add-carrito {
+    margin-left: 35px;
 }

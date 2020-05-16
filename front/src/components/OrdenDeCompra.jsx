@@ -48,7 +48,7 @@ const OrdenDeCompra = (props) => {
             <ul style={{ maxWidth: '100%' }} className="list-group list-group-flush">
             <li className="list-group-item">
                 <p className='pCheckout' >Usuario:</p>
-                <Link id='ordLink' to={`/usuarios/edit/${Orden.usuario.id}`}><p style={{display: 'contents', fontSize: '20px'}} className='italic'>{Orden.usuario.Nickname}</p></Link>
+                <Link id='ordLink' to={`/usuarios/edit/${Orden.usuario ? Orden.usuario.id : 'Usuario eliminado'}`}><p style={{display: 'contents', fontSize: '20px'}} className='italic'>{Orden.usuario ? Orden.usuario.Nickname : 'Usuario eliminado'}</p></Link>
                 </li>
                 <li className="list-group-item">
               <p className='pCheckout' >Estado:</p>
@@ -82,7 +82,6 @@ const OrdenDeCompra = (props) => {
           </div>
         </div>
         <div className='contenedorCarrito'>
-          {console.log(Orden)}
             <div style={{marginLeft : '1rem'}}>
               <table className='tabla'>
                 <tbody>

@@ -78,7 +78,6 @@ router.post('/prodImage', (req, res) => {
       }
     }
 
-    console.log(req.files)
     Producto.findByPk(Number(singOrPlur().originalname))
       .then(producto => producto.update({ imagenes: fileLength() }))
 
@@ -116,7 +115,6 @@ router.post('/upload', (req, res) => {
   }).single("myImage");
 
   upload(req, res, (err) => {
-    console.log(req.file)
     Usuarios.findByPk(Number(req.file.originalname))
       .then(usuario => usuario.update({ avatar: `${rutaUsuarios}/${req.file.filename}`},{ hooks: false }))
     if (!err)

@@ -15,7 +15,6 @@ router.get('/getAll',(req,res)=>{
 })
 
 router.post('/update/:id',(req,res)=>{
-  console.log(req.body)
   OrdenCompra.update({ status: 'PROCESANDO', tarjeta: { brand: req.body.brand, lastnum : req.body.lastnum }},{ where: { usuarioId: req.params.id, status: 'CREADO' } })
 })
 
@@ -25,7 +24,6 @@ router.get('/adm/:modify', (req, res) => {
 });
 
 router.post(`/crear`,(req,res)=>{
-  console.log(req.body.cantidades)
   OrdenCompra.create({
      datos: req.body.datos,
     status: 'CREADO',

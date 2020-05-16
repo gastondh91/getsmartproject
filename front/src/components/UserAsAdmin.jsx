@@ -41,7 +41,6 @@ class UserAsAdmin extends React.Component {
       email: this.props.selectedUser.email
     })
       .then(() => {
-        console.log('hola')
         axios.post("/api/imagenes/upload", formData, config)
           .then(() => location.reload())
           .catch(() => {
@@ -151,7 +150,6 @@ class UserAsAdmin extends React.Component {
           </div>
         </div>
         <div>
-          {console.log('props del comp', this.props)}
           <ModalConfirm
             funcion={this.props.deleteUser}
             encabezado={'¿Eliminar usuario?'}

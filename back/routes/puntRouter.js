@@ -12,14 +12,12 @@ router.get('/borrarPuntaje/:puntaje/:review', (req, res) => {
       if (puntaje.reviewId) {
         Reviews.destroy({ where: { id: req.params.review } })
       }
-      else console.log('No Reviews')
     })
     .then(() => Puntajes.destroy({ where: { id: req.params.puntaje } }))
     .then(() => res.sendStatus(200))
 })
 
 router.post(`/reviews`, (req, res) => {
-  console.log(req.body)
   Reviews.create({ Review: req.body.Comentarios })
     .then(review => {
       var reviewId = review.id

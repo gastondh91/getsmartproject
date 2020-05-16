@@ -78,7 +78,6 @@ const UserAsAdmin = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Nombre', SecondPassword)
     if (Nombre == '' || Apellido == '' || Genero == '' || Password == '' || Email == '' || Domicilio == '') {
       setEstado(Estado = ['Error', 'Debes completar todos los campos'])
     } else if (Email && (Email.indexOf('@') === -1 || Email.indexOf('.com') === -1)) {
@@ -115,9 +114,6 @@ const UserAsAdmin = (props) => {
   return (
     <div><form className='registro-contenedor' onSubmit={handleSubmit} >
       <h1 style={{ textAlign: 'center' }}>{'Editar datos de usuario'}</h1>
-      {console.log('Password', Password)}
-      {console.log('secondPassword', SecondPassword)}
-      {console.log('Email', Email)}
       <div className='griduser'>
         <div >
           <img onClick={() => { props.usuario.id == props.usuario.id ? inputRef.current.click() : null }} title={props.usuario.id == props.usuario.id ? 'Cambiar avatar' : null} style={{ height: '8rem', objectFit: 'cover', cursor: props.usuario.id == props.usuario.id ? 'pointer' : 'auto' }} className='editAvatar avatarInEdit' src={props.usuario.avatar} />

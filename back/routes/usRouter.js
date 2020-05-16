@@ -7,20 +7,20 @@ var rimraf = require("rimraf");
 router.post('/esAdm/:id', (req, res) => {
   Usuarios.findByPk(req.params.id)
     .then(data => {
-      if (data.isAdmin) { return data.update({ isAdmin: false }, { where: { isAdmin: true } , hooks: false }) }
-      else { return data.update({ isAdmin: true }, { where: { isAdmin: false }, hooks : false }) }
+      if (data.isAdmin) { return data.update({ isAdmin: false }, { where: { isAdmin: true } , hooks: false }); }
+      else { return data.update({ isAdmin: true }, { where: { isAdmin: false }, hooks : false }); }
       // .then(data => {
       //   return data.update({ isAdmin: true }, { where: { isAdmin: false } });
       // })
     })
-    .catch(err => console.log(err))
-})
+    .catch(err => console.log(err));
+});
 
 router.post('/updSessionCount/:id',(req,res) => {
   Usuarios.findByPk(req.params.id)
   .then(option => option.increment('sessionCount'))
-  .then(()=> res.sendStatus(200))
-})
+  .then(()=> res.sendStatus(200));
+});
 
 router.get('/todos', (req, res) => {
   if (!req.user.dataValues.nombre) res.send(404, 'cantfindthat');
@@ -43,7 +43,7 @@ router.get('/user', (req, res) => {
 
 router.get('/user/:id', (req, res) => {
   Usuarios.findByPk(req.params.id)
-    .then(usuario => res.send(usuario))
+    .then(usuario => res.send(usuario));
 });
 
 router.get('/logOut', (req, res) => {
@@ -62,20 +62,20 @@ router.get('/all', (req, res) => {
     .then(usuarios => res.send(usuarios));
 });
 
-router.delete('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Usuarios.findByPk(req.params.id)
     .then(usuario => rimraf(`back/public/utils/Usuarios/${usuario.email}`, () => { }))
     .then(() => {
       Usuarios.destroy({ where: { id: req.params.id } })
-        .then((ok) => res.sendStatus(200))
-    })
-})
+        .then((ok) => res.sendStatus(200));
+    });
+});
 
 router.get('/auth/facebook', passport.authenticate('facebook',{ scope: ['email']},));
 
 router.get('/auth/facebook/callback',passport.authenticate('facebook'), (req,res)=>{
   if (req.isAuthenticated()) {
-    res.redirect('/')
+    res.redirect('/');
   }
 });
 
@@ -90,11 +90,11 @@ router.put('/edit/:id', (req, res, next) => {
 
 router.get('/auth/google', passport.authenticate('google',{
   scope: ['profile','email']
-}))
+}));
 
 router.get('/auth/google/callback',passport.authenticate('google'), (req,res)=>{
   if (req.isAuthenticated()) {
-    res.redirect('/')
+    res.redirect('/');
   }
 });
 
