@@ -268,13 +268,6 @@
     padding: 50px;
     height: 57rem;
 }
-#input{
-    border-radius: 25px;
-    width: 500px;
-    height: 40px;
-    padding-left: 10px;
-    text-indent: 10px;
-}
 
 #input::-webkit-input-placeholder{
     line-height: 100px;/* Centrado vertical */
@@ -1042,11 +1035,11 @@ text-shadow:0px 2px 1px grey;
     height: 15px;
     color: black;
     font-weight: 600;
+    font-variant: all-petite-caps;
     vertical-align: 3.5px;
     font-size: 12.5px;
     margin-left: 18px;
     margin-top: 2px;
-    font-variant: all-petite-caps;
   
 }
 

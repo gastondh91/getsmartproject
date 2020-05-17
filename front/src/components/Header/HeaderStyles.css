@@ -1,0 +1,52 @@
+.header-col{
+  display: flex;
+  align-items: center;
+}
+.registro {
+  max-width: 50px;
+  margin-left: 5px;
+}
+
+.ingreso {
+  max-width: 47px;
+}
+
+.registrarse {
+  color: black;
+  font-weight: 600;
+  font-variant: all-petite-caps;
+}
+
+.ingresar {
+  color: black;
+  font-weight: 600;
+  font-variant: all-petite-caps;
+}
+
+.logo {
+  min-width: 170px;
+  max-height: 68px;
+}
+
+.busqueda {
+  border-radius: 25px;
+  height: 40px;
+  max-width: 330px;
+  padding-left: 10px;
+  text-indent: 10px;
+}
+
+.carrito {
+  max-width: 70px;
+}
+
+.ingreso-registro {
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.busqueda-carrito{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
