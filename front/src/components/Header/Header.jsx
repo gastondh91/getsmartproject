@@ -64,7 +64,7 @@ const Header = (props) => {
 
 
               <form className="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
-                <input onChange={handleChange} className="form-control form-control-sm mr-3 w-75 search-bar" type="text" placeholder="Buscar productos"
+                <input id='input' onChange={handleChange} className="form-control form-control-sm mr-3 w-75 search-bar" type="text" placeholder="Buscar productos"
                   aria-label="Buscar productos" />
                 <i className="fas fa-search" aria-hidden="true"></i>
               </form>

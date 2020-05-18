@@ -1,93 +1,101 @@
-.header-col{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.header-col {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 .img-registro {
-  max-width: 45.6px;
-  margin-left: 5px;
+    max-width: 45.6px;
+    margin-left: 10px;
 }
 
 .img-ingreso {
-  max-width: 43px;
-  margin-top: -0.52px;
-  user-select: text;
+    max-width: 43px;
+    margin-top: -0.52px;
+    user-select: text;
 }
 
 .registrarse {
-  color: black;
-  font-size: small;
-  font-weight: 600;
-  font-variant: all-petite-caps;
+    color: black;
+    font-size: initial;
+    font-weight: 600;
+    font-variant: all-petite-caps;
 }
 
 .ingresar {
-  color: black;
-  font-weight: 600;
-  font-size: small;
-  font-variant: all-petite-caps;
+    color: black;
+    font-weight: 600;
+    font-size: initial;
+    font-variant: all-petite-caps;
 }
 
 .logo {
-  min-width: 170px;
-  max-height: 68px;
+    min-width: 170px;
+    max-height: 68px;
 }
 
 .busqueda {
-  border-radius: 25px;
-  height: 40px;
-  max-width: 330px;
-  padding-left: 10px;
-  text-indent: 10px;
+    border-radius: 25px;
+    height: 40px;
+    max-width: 330px;
+    padding-left: 10px;
+    text-indent: 10px;
 }
 
 .carrito {
-  max-width: 70px;
+    max-width: 70px;
 }
 
 .ingreso-registro {
-  display: inline-flex;
-  justify-content: space-evenly;
-  align-items: center;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.busqueda-carrito{
+.busqueda-carrito {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
-  border-bottom: 1px solid #4dd0e1;
-  box-shadow: 0 1px 0 0 #4dd0e1;
-}
-
-.active-cyan-2 input[type=text]:focus:not([readonly]) {
-  border-bottom: 1px solid #4dd0e1;
-  box-shadow: 0 1px 0 0 #4dd0e1;
-}
-
-.active-cyan .fa, .active-cyan-2 .fa {
-  color: #4dd0e1;
-}
-
 .md-form input[type="text"]:not(.browser-default) {
-  border-bottom: 1px solid royalblue;
+    border-bottom: 1px solid royalblue;
 }
 
-/* .search-bar:active:focus{
-  border-bottom: 1px solid #2B4F81;
-} */
-
-.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
-  border-bottom: 1px solid royalblue;
-  box-shadow: 0 1px 0 0 royalblue;
+.active-cyan-2 input.form-control[type=text]:hover:not([readonly]) {
+    border-bottom: 1px solid royalblue;
+    box-shadow: 0 1px 0 0 royalblue;
 }
 
 .fa-search {
-  color: royalblue
+    color: #375886;
+    margin-top: 5px;
+    font-size: larger;
 }
 
-.md-form{
-  margin: 0
+.search-bar {
+    font-size: medium;
+}
+
+.md-form {
+    margin: 0;
+}
+
+.md-form .form-control {
+    padding: .6rem 0 .2rem 0;
+}
+
+.carousel-indicators li {
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.carousel .carousel-indicators li {
+    width: 32px;
+    height: 3px;
+    border-radius: 0
+}
+
+.carousel-img {
+    cursor: pointer
 }
