@@ -1,20 +1,22 @@
 {
- “extends”: “airbnb”,
- “env”: {
- “node”: true,
- “es6”: true,
- “browser”: true,
-  "plugins": [
-    "proposal"
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true,
+    "plugins": [
+      "proposal"
+    ]
+  },
+  "rules": {
+    "react/jsx-uses-react": 1,
+    "semi": [
+      2,
+      "always"
+    ],
+    "proposal/class-property-space-infix-ops": "error"
+  },
+  "extends": [
+    "plugin:proposal/recommended",
+    "eslint:recommended"
   ]
- },
- 
- “rules”: {
-        "react/jsx-uses-react": 1,
-        "semi": [2, "always"],
-        "proposal/class-property-space-infix-ops": "error"
- },
- "extends": [
-       "plugin:proposal/recommended"
-     ]
 }

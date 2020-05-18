@@ -41,7 +41,7 @@ const Header = (props) => {
             <div>
               <Link to='/usuarios/registro'>
                 <div>
-                  <img className='registro img-responsive' src="/utils/signupiconlg.gif" />
+                  <img className='img-registro img-responsive' src="/utils/signupiconlg.gif" />
                 </div>
                 <span className='registrarse'>Registrarse</span>
               </Link>
@@ -49,7 +49,7 @@ const Header = (props) => {
             <div>
               <Link to='/usuarios/login'>
                 <div className='text-center'>
-                  <img className='ingreso img-responsive' src="/utils/log.svg" />
+                  <img className='img-ingreso img-responsive' src="/utils/log.svg" />
                 </div>
                 <span className='ingresar'>Ingresar</span></Link>
             </div>
@@ -58,20 +58,16 @@ const Header = (props) => {
 
             <Link to='/' ><img className='logo img-responsive' title='Inicio' src="/utils/logoBlanco3.jpg" /></Link>
           </div>
-          <div className='col-4' />
-          <div className="col-4 busqueda-carrito">
+          <div className="col-6 busqueda-carrito">
 
-            <div>
+            <div className='col-10'>
 
-              <Route render={({ history }) => {
-                return (
 
-                  <input onChange={handleChange} className='busqueda' name='modelo' placeholder='  Buscar producto 🔎' id='input' />
-
-                );
-              }
-              } />
-
+              <form className="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+                <input onChange={handleChange} className="form-control form-control-sm mr-3 w-75 search-bar" type="text" placeholder="Buscar productos"
+                  aria-label="Buscar productos" />
+                <i className="fas fa-search" aria-hidden="true"></i>
+              </form>
             </div>
             <Link to='/cart' title='Ver carrito'>
               <img className='carrito img-responsive' src="/utils/carrito.svg" />

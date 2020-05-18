@@ -1,18 +1,22 @@
 .header-col{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.registro {
-  max-width: 50px;
+.img-registro {
+  max-width: 45.6px;
   margin-left: 5px;
 }
 
-.ingreso {
-  max-width: 47px;
+.img-ingreso {
+  max-width: 43px;
+  margin-top: -0.52px;
+  user-select: text;
 }
 
 .registrarse {
   color: black;
+  font-size: small;
   font-weight: 600;
   font-variant: all-petite-caps;
 }
@@ -20,6 +24,7 @@
 .ingresar {
   color: black;
   font-weight: 600;
+  font-size: small;
   font-variant: all-petite-caps;
 }
 
@@ -43,10 +48,46 @@
 .ingreso-registro {
   display: inline-flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .busqueda-carrito{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+.active-cyan .fa, .active-cyan-2 .fa {
+  color: #4dd0e1;
+}
+
+.md-form input[type="text"]:not(.browser-default) {
+  border-bottom: 1px solid royalblue;
+}
+
+/* .search-bar:active:focus{
+  border-bottom: 1px solid #2B4F81;
+} */
+
+.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid royalblue;
+  box-shadow: 0 1px 0 0 royalblue;
+}
+
+.fa-search {
+  color: royalblue
+}
+
+.md-form{
+  margin: 0
 }

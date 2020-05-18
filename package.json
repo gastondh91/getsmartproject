@@ -51,7 +51,7 @@
     "pg": "^7.14.0",
     "pg-hstore": "^2.3.3",
     "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap": "^1.0.1",
     "react-credit-cards": "^0.8.0",
     "react-dom": "^16.12.0",
     "react-icons": "^3.8.0",

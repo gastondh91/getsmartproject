@@ -5,30 +5,41 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
-const Products = ({ products,savedBusqueda }) => {
+const Products = ({ products, savedBusqueda }) => {
 
 
-  let filtered = products.filter( value =>{ 
+  let filtered = products.filter(value => {
+
+    // let criterio = value.marca || value.modelo
+
+    // let regex = new RegExp(`/${savedBusqueda}\\b', 'g`);
+
+    // return criterio.match(savedBusqueda)
+
+    // console.log('regex', regex)
+    // console.log('match', criterio.match(regex))
+    // console.log('savedBusqueda', savedBusqueda)
+    // console.log('value', value.marca.concat(` ${value.modelo}`))
     let concat = value.marca + ' ' + value.modelo
 
     value = concat
 
-    return ((value.toLowerCase().includes(savedBusqueda) 
-    || 
-    value.toUpperCase().includes(savedBusqueda)
-    || 
-    value.includes(savedBusqueda)))
-    
-    })
+    return ((value.toLowerCase().includes(savedBusqueda)
+      ||
+      value.toUpperCase().includes(savedBusqueda)
+      ||
+      value.includes(savedBusqueda)))
+
+  })
 
   return (
 
-    (savedBusqueda ? filtered : products).sort((a, b) =>  a - b ).map(product => (
+    (savedBusqueda ? filtered : products).sort((a, b) => a - b).map(product => (
       <Link to={`/productos/${product.id}`} key={product.id}>
         <div className="product" >
           <div className="card">
             <img style={{ objectFit: 'contain' }} src={`${product.imagenes[0]
-          }`}
+              }`}
               className="card-img-top imgproduct" />
             <div className="card-body">
               <h5 className="card-title last"> {product.marca + ' ' + product.modelo} </h5>
