@@ -1,0 +1,20 @@
+.carousel-img {
+    object-fit: cover;
+    width: inherit;
+    height: 80vh
+}
+
+.carousel-caption {
+    background-color: rgba(51, 51, 51, 0.3);
+    margin: -8px -13rem;
+}
+
+.carousel .carousel-control-prev-icon {
+    width: 9rem;
+    height: 9rem
+}
+
+.carousel .carousel-control-next-icon {
+    width: 9rem;
+    height: 9rem
+}
