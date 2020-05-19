@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NavbarUser from '../components/NavbarUser';
+import NavbarUser from '../components/Navbar/NavbarUser';
 import NavbarAdm from '../components/NavbarAdm';
 import { checkUserLogin } from '../redux/action-creators/action-creator';
 
 class NavbarContainer extends React.Component {
-  render () {
+  render() {
     return (
       <div>
-        { this.props.isAdmin ? <NavbarAdm history={history} location={this.props.location} /> : <NavbarUser history={this.props.history} location={this.props.location} />}
+        {this.props.isAdmin ? <NavbarAdm history={history} location={this.props.location} /> : <NavbarUser history={this.props.history} location={this.props.location} />}
       </div>
     );
   }

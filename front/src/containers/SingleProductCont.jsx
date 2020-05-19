@@ -6,7 +6,7 @@ import SingleProdComp from '../components/singleProdComp';
 import axios from 'axios';
 
 class SingleProd extends React.Component {
-  constructor () {
+  constructor() {
     super();
   }
 
@@ -14,22 +14,22 @@ class SingleProd extends React.Component {
     axios.delete(`/api/productos/${id}`)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.buscarProd(this.props.prodId);
     this.props.buscarPuntajes(this.props.prodId)
   }
 
-  render () {
-    const product = this.props.producto;
+  render() {
+    const producto = this.props.producto;
     return (
       <div className="container" >
-        {product.id && <SingleProdComp
-         history={this.props.history}
-        borrarProd={this.borrarProd} 
-        producto={product}
-        adminInfo={this.props.isAdmin} 
-        categorias={product.categorias} 
-        puntajes={this.props.puntajes}
+        {producto.id && <SingleProdComp
+          history={this.props.history}
+          borrarProd={this.borrarProd}
+          producto={producto}
+          adminInfo={this.props.isAdmin}
+          categorias={producto.categorias}
+          puntajes={this.props.puntajes}
 
         />}
       </div>

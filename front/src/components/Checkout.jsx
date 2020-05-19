@@ -156,7 +156,11 @@ const Checkout = (props) => {
             data-toggle='modal'
             data-target='#infoModal'
             style={{ marginBottom: '2rem' }} className='example_b general' id='checkoutButton' >Proceder al pago</button>
-          <button onClick={() => props.history.push('/cart')} className='example_c general' id='goBack'>Volver al carrito</button>
+          <button
+            onClick={() => props.history.push('/cart')}
+            className='example_c general'
+            id='goBack'
+          >Volver al carrito</button>
         </div>
       </div>
     </div>);

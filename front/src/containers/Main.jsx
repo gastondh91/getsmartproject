@@ -5,7 +5,7 @@ import CreateCat from './CreateCat'
 
 // eslint-disable-next-line no-unused-vars
 import { Route, Redirect, Switch, Link } from 'react-router-dom'
-import ProductsContainer from './ProductsContainer'
+import Productos from '../components/Productos/Productos'
 import CrearProd from './CrearProd'
 import HomeRL from './HomeRL'
 import Registro from '../components/Registro'
@@ -69,7 +69,7 @@ class Main extends React.Component {
             <Route exact path='/usuarios/login' render={({ history, location }) => (<Login login={this.props.usuario.id} history={history} location={location} />)} />
             <Route exact path='/' component={Home} />
             <Route exact path='/categorias/adm' render={({ history }) => (<CreateCat isAdmin={this.props.usuario.isAdmin} history={history} />)} />
-            <Route exact path='/productos' render={({ location }) => <ProductsContainer search={location.search} />} />
+            <Route exact path='/productos' render={({ location }) => <Productos search={location.search} />} />
             <Route exact path='/usuarios/edit/:id' render={({ history, match, location }) => (<UserAsAdmin usuario={this.props.usuario} location={this.props.location} isAdmin={this.props.usuario.isAdmin} history={history} userId={match.params.id} />)} />
             <Route exact path='/productos/add' render={({ history }) => (<CrearProd isAdmin={this.props.usuario.isAdmin} history={history} />)} />
             <Route exact path='/productos/edit/:id' render={({ match, history }) => (<EditProd isAdmin={this.props.usuario.isAdmin} history={history} prodId={match.params.id} />)} />
