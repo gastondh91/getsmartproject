@@ -35,7 +35,7 @@ const Productos = (props) => {
       <hr />
       <Row>
         <CardGroup>
-          {(props.savedBusqueda ? filtered : props.productos).sort((a, b) => a - b).map((producto, index) => (
+          {(props.savedBusqueda ? filtered : props.productos).sort((a, b) => a.marca.localeCompare(b.marca)).map((producto, index) => (
             <Col key={index} xs={12} sm={6} md={4}>
               <Link className='link' to={`/productos/${producto.id}`} key={producto.id}>
                 <Card className='my-4 pt-4 px-4'>
