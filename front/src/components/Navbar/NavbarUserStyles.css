@@ -1,0 +1,15 @@
+.navbar-user {
+    background-color: #2B4F81;
+}
+
+.nav-link {
+    color: white;
+    font-weight: 600;
+    font-size: medium;
+}
+
+.nav-link:hover {
+    color: white;
+    font-weight: 600;
+    text-shadow: lightgrey 0px 1px 0px;
+}

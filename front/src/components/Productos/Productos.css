@@ -1,0 +1,49 @@
+.card {
+    transition: 0.4s ease-in-out;
+}
+
+.card:hover {
+    transition: 0.4s ease-in-out;
+    box-shadow: 2px 7px 11px 4px grey;
+    transform: scale(1.04);
+}
+
+.card-text {
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.card-img-top {
+    height: 15rem;
+    width: 100%;
+    object-fit: contain;
+}
+
+.card-text-precio {
+    font-weight: 700;
+}
+
+.link {
+    color: black
+}
+
+.link:hover {
+    color: black
+}
+
+.carousel-productos-img {
+    object-fit: scale-down;
+    width: inherit;
+    height: 50vh
+}
+
+.carousel-productos {
+    padding-top: 1rem
+}
+
+.h5-transp {
+    opacity: 0.7
+}
