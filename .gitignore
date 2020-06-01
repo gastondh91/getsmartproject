@@ -1,6 +1,5 @@
 node_modules/*
-back/public/bundle.js.map
-back/public/bundle.js
-back/public/utils/Telefonos/*
-back/public/utils/Test
-back/public/utils/Usuarios
+server/public/dist/*
+server/public/utils/Telefonos
+server/public/utils/Test
+server/public/utils/Usuarios
