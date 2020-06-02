@@ -1,30 +1,30 @@
-const path = require('path');
+const path = require('path')
 
 const scssLoader = [
-  "style-loader",
+  'style-loader',
   {
-    loader: "css-loader",
+    loader: 'css-loader',
     options: {
       modules: {
-        mode: "local",
-        localIdentName: "[path][name]__[local]--[hash:base64:5]",
-        context: path.resolve(__dirname, "src")
-      }
-    }
+        mode: 'local',
+        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+        context: path.resolve(__dirname, 'src'),
+      },
+    },
   },
-  "sass-loader"
-];
+  'sass-loader',
+]
 
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
     path: __dirname,
-    filename: './dist/dist.js'
+    filename: './server/public/dist/dist.js',
   },
-  
+
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   context: __dirname,
   module: {
@@ -36,19 +36,19 @@ module.exports = {
         query: {
           presets: [
             '@babel/preset-react',
-            '@babel/env'
-          ]
-        }
+            '@babel/env',
+          ],
+        },
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: scssLoader
+        use: scssLoader,
       },
-    ]
+    ],
   },
-  devtool: 'source-map'
-};
+  devtool: 'source-map',
+}
