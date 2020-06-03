@@ -28,6 +28,8 @@
         "react/destructuring-assignment" : [0],
         "no-const-assign": [0],
         "max-len": [0],
-        "react/no-array-index-key": [0]
+        "react/no-array-index-key": [0],
+        "no-use-before-define": [0],
+        "no-console": [0]
     }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import Rater from 'react-rater'
 import axios from 'axios'
 import { fetchCarrito } from '../../redux/action-creators/carrito-actions'
@@ -12,25 +12,29 @@ import 'react-rater/lib/react-rater.css'
 import style from './SingleProducto.css'
 
 
-const SingleProducto = (props) => {
+const SingleProducto = ({
+  producto, history, puntajes, adminInfo, borrarProd,
+}) => {
   useEffect(() => {
-    if (props.usuario.id) props.fetchCarrito(props.usuario.id)
+    if (usuario.id) dispatch(fetchCarrito)
   }, [])
 
-  const [Modal, setModal] = useState(['Estado', 'Mensaje'])
+  const dispatch = useDispatch()
+  const usuario = useSelector((store) => store.usuario, shallowEqual)
+  const carrito = useSelector((store) => store.carrito, shallowEqual)
 
+  const [Modal, setModal] = useState(['Estado', 'Mensaje'])
   const agregarAlCarrito = () => {
-    const { carrito } = props
     for (let i = 0; i < carrito.length; i += 1) {
-      if (carrito[i].id === props.producto.id) {
+      if (carrito[i].id === producto.id) {
         setModal(Modal = ['Producto agregado', 'Ya agregaste este producto al carrito'])
         return
       }
     }
 
     axios.post('/api/carrito/add', {
-      idProducto: props.producto.id,
-      idUsuario: props.usuario.id,
+      idProducto: producto.id,
+      idUsuario: usuario.id,
     })
       .then(() => {
         setModal(Modal = ['Producto agregado', 'Producto agregado al carrito'])
@@ -52,15 +56,15 @@ const SingleProducto = (props) => {
 
 
   const transfArray = () => {
-    let arrImagenFinal = props.producto.imagenes
+    let arrImagenFinal = producto.imagenes
 
-    if (props.producto.imagenes.includes('}')) {
+    if (producto.imagenes.includes('}')) {
       arrImagenFinal = arrImagenFinal.substring(0, arrImagenFinal.length - 1)
       arrImagenFinal = arrImagenFinal.slice(1)
       arrImagenFinal = arrImagenFinal.split(',')
       return arrImagenFinal
     }
-    return props.producto.imagenes
+    return producto.imagenes
   }
 
   const califExist = (calificacion) => {
@@ -69,24 +73,23 @@ const SingleProducto = (props) => {
   }
 
 
-  const { borrarProd } = props
   return (
     <div id="singleProd">
       <div className="row">
         <div className="col-lg-6 col-xs-12">
           <h1 className="display-4 text-center">
-            {`${props.producto.marca} ${props.producto.modelo}`}
+            {`${producto.marca} ${producto.modelo}`}
           </h1>
           <hr />
 
           <div>
-            { props.producto.stock > 10
+            { producto.stock > 10
               ? (
                 <div className="row">
                   <div className="col-md-12 text-center">
                     <h1>
                       $
-                      {props.producto.precio}
+                      {producto.precio}
                     </h1>
                   </div>
                 </div>
@@ -97,11 +100,11 @@ const SingleProducto = (props) => {
                   <div className="col-md-5">
                     <h1>
                       $
-                      {props.producto.precio}
+                      {producto.precio}
                     </h1>
                   </div>
                   <div className="col-md-7 ult-unid">
-                    {defUltimasUnidades(props.producto.stock)}
+                    {defUltimasUnidades(producto.stock)}
                   </div>
                 </div>
               )}
@@ -109,10 +112,10 @@ const SingleProducto = (props) => {
           <div id="puntuacion" className="row">
             <h3>Puntuación :  </h3>
             <h2 style={{ margin: '0 auto' }}>
-              <StarsRating ratings={props.producto.calificacion} userId={props.usuario.id} prodId={props.producto.id} />
-              { props.producto.calificacion && (
+              <StarsRating ratings={producto.calificacion} userId={usuario.id} prodId={producto.id} />
+              { producto.calificacion && (
               <span style={{ marginLeft: '1rem' }}>
-                {califExist(props.producto.calificacion)}
+                {califExist(producto.calificacion)}
               </span>
               )}
             </h2>
@@ -120,7 +123,7 @@ const SingleProducto = (props) => {
           <div className="row">
             <div style={{ minWidth: 'fit-content' }} className="col-lg-6 col-xs-12">
               <h3 style={{ marginTop: '2rem' }}><strong>Descripción : </strong></h3>
-              <h5 className="collapsible">{props.producto.descripcion}</h5>
+              <h5 className="collapsible">{producto.descripcion}</h5>
             </div>
           </div>
         </div>
@@ -161,7 +164,7 @@ const SingleProducto = (props) => {
           </Carousel>
 
 
-          {!props.adminInfo && props.producto.stock > 1 ? (
+          {!adminInfo && producto.stock > 1 ? (
             <button
               onClick={() => agregarAlCarrito()}
               className="example_c"
@@ -177,9 +180,9 @@ const SingleProducto = (props) => {
               Agregar al Carrito
             </button>
           ) : null}
-          {props.adminInfo ? (
+          {adminInfo ? (
             <button
-              onClick={() => props.history.push(`/productos/edit/${props.producto.id}`)}
+              onClick={() => history.push(`/productos/edit/${producto.id}`)}
               className="example_c"
               rel="nofollow noopener"
               id="cartbutton"
@@ -191,7 +194,7 @@ const SingleProducto = (props) => {
               Editar
             </button>
           ) : null}
-          {/* {!props.adminInfo && props.producto.stock > 1 ? <button
+          {/* {!adminInfo && producto.stock > 1 ? <button
           className="example_b example_d"
           rel="nofollow noopener"
           id='cartbutton'
@@ -199,7 +202,7 @@ const SingleProducto = (props) => {
           style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline', color: 'black', borderColor: '#2B4F81', padding: '20px' }}
         >Comprar
         </button>: null} */}
-          {props.adminInfo ? (
+          {adminInfo ? (
             <button
               data-toggle="modal"
               data-target="#definiteModal"
@@ -224,16 +227,16 @@ const SingleProducto = (props) => {
           <h4><strong>Categorias :</strong></h4>
           <ul style={{ listStylePosition: 'inside' }}>
             <h6>
-              {props.producto.categorias.map((obj) => <li key={obj.id}>{obj.name}</li>)}
+              {producto.categorias.map((obj) => <li key={obj.id}>{obj.name}</li>)}
             </h6>
           </ul>
         </div>
         <div>
           <h4 style={{ textAlign: 'center' }}><strong>Reviews :</strong></h4>
           <div className="Stars">
-            {props.puntajes && (
+            {puntajes && (
             <Carousel>
-              {props.puntajes.map((puntaje) => (
+              {puntajes.map((puntaje) => (
                 <Carousel.Item
                   key={puntaje.id}
                 >
@@ -266,13 +269,13 @@ const SingleProducto = (props) => {
       </div>
       <ModalConfirm
         funcion={borrarProd}
-        parametro={props.producto.id}
+        parametro={producto.id}
         encabezado="¿Eliminar producto?"
         encabezadoInfo="Producto eliminado"
         confirmacion="¿Confirma que desea eliminar"
-        history={props.history}
+        history={history}
         historypush="/productos"
-        nombre={`"${props.producto.marca} ${props.producto.modelo}"`}
+        nombre={`"${producto.marca} ${producto.modelo}"`}
         item="el producto "
         accion="Se eliminó "
       />
@@ -280,13 +283,4 @@ const SingleProducto = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  usuario: state.usuario,
-  carrito: state.carrito,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchCarrito: (id) => dispatch(fetchCarrito(id)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleProducto)
+export default SingleProducto
