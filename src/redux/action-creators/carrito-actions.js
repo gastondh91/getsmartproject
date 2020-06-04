@@ -8,11 +8,8 @@ const setCarrito = (carrito) => ({
 
 
 export const fetchCarrito = (id) => (dispatch) => axios.get(`/api/carrito/${id}`)
-  .then((carrito) => {
-    console.log('HOLAAAAAAAAAAAAAAAAAA')
-    return dispatch(setCarrito(carrito.data))
-  })
+  .then((carrito) => dispatch(setCarrito(carrito.data)))
 
-export const updateCarrito = (id, cantidad, productos) => (dispatch) => {
+export const updateCarrito = (id, cantidad, productos) => () => {
   axios.post(`/api/carrito/update/${id}`, { cantidad, productos })
 }

@@ -15,6 +15,7 @@ import style from './SingleProducto.css'
 const SingleProducto = ({
   producto, history, puntajes, adminInfo, borrarProd,
 }) => {
+
   useEffect(() => {
     if (usuario.id) dispatch(fetchCarrito)
   }, [])

@@ -1,11 +1,6 @@
 {
   "name": "getSmart",
   "version": "1.0.0",
-  "babel": {
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
-  },
   "description": "ecommerce de celulares",
   "main": "./server/start.js",
   "scripts": {
@@ -23,6 +18,7 @@
   },
   "homepage": "https://github.com/ombaez/getSmart#readme",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.1",
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.0",
@@ -74,6 +70,8 @@
     "@babel/preset-react": "^7.7.0",
     "@babel/register": "^7.6.2",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-runtime": "^6.26.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
