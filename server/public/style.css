@@ -63,12 +63,6 @@
     border-radius: 0.5rem;
 }
 
-#cartbutton:hover {
-    background-color: #2B4F81;
-    color: black;
-    font-weight: bold
-    /* -webkit-text-stroke: medium */
-}
 
 
 /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */

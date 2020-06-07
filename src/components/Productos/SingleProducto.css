@@ -1,7 +1,78 @@
 .ult-unid{
-  font-size: 26px;
+  font-size: 22px;
 }
 
 .precio-unidades{
+  justify-content: center;
   align-items: center;
+}
+
+.short-text {
+  font-size: 15px;
+  font-family: serif, sans-serif;
+  font-style: italic;
+  line-height: 1.4;
+  display: -webkit-box;
+}
+
+.col-puntuacion {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.no-margin{
+  margin: 0
+}
+
+.stars {
+  font-size: xx-large;
+  justify-content: center;
+  align-items: center;
+    display: flex;
+}
+
+.xxl-text{
+  font-size: xx-large;
+}
+
+.readMoreText{
+  margin-left: 6px;
+}
+
+.btn-agr-carr {
+  margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-color: rgb(43, 79, 129);
+    padding: 10px 16px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #10ac84;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.4s ease 0s;
+    box-shadow: 2px 2px 4px #666;
+}
+
+.btn-agr-carr:hover {
+  background-color: #2e6abd;
+}
+
+.react-rater-star.is-active {
+  color: #fc6
+}
+
+
+.react-rater-star.is-active {
+  color: #fc6
+}
+
+.react-rater-star.will-be-active {
+  color: #fbbe43
+}
+
+.calif {
+  font-size: larger;
 }

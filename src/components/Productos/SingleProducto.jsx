@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import Rater from 'react-rater'
 import axios from 'axios'
+import ReadMoreAndLess from 'react-read-more-less'
 import { fetchCarrito } from '../../redux/action-creators/carrito-actions'
 import ModalConfirm from '../ModalConfirm'
 import StarsRating from '../StarsRating'
@@ -16,8 +17,12 @@ const SingleProducto = ({
   producto, history, puntajes, adminInfo, borrarProd,
 }) => {
 
+  const showMoreRef = React.createRef()
+
   useEffect(() => {
     if (usuario.id) dispatch(fetchCarrito)
+
+
   }, [])
 
   const dispatch = useDispatch()
@@ -68,63 +73,48 @@ const SingleProducto = ({
     return producto.imagenes
   }
 
-  const califExist = (calificacion) => {
-    if (calificacion.toString().length > 3) return calificacion.toString().slice(0, 3)
-    return calificacion.toString()
-  }
-
-
   return (
     <div id="singleProd">
+      { console.log(showMoreRef)}
       <div className="row">
         <div className="col-lg-6 col-xs-12">
-          <h1 className="display-4 text-center">
+          <div className="display-4 text-center no-margin">
             {`${producto.marca} ${producto.modelo}`}
-          </h1>
+          </div>
+          <div className="stars text-center">
+            { producto.calificacion && (
+            <span className="calif mr-2">
+              {producto.calificacion.toFixed(2)}
+            </span>
+            )}
+            <StarsRating ratings={producto.calificacion} userId={usuario.id} prodId={producto.id} />
+          </div>
           <hr />
 
-          <div>
-            { producto.stock > 10
-              ? (
-                <div className="row">
-                  <div className="col-md-12 text-center">
-                    <h1>
-                      $
-                      {producto.precio}
-                    </h1>
-                  </div>
-                </div>
-              )
-
-              : (
-                <div className="row precio-unidades">
-                  <div className="col-md-5">
-                    <h1>
-                      $
-                      {producto.precio}
-                    </h1>
-                  </div>
-                  <div className="col-md-7 ult-unid">
-                    {defUltimasUnidades(producto.stock)}
-                  </div>
-                </div>
-              )}
+          <div className="row precio-unidades">
+            <div className="col-md-6 xxl-text text-center">
+              $
+              {producto.precio}
+            </div>
+            {producto.stock < 10 && (
+            <div className="col-md-6 ult-unid">
+              {defUltimasUnidades(producto.stock)}
+            </div>
+            )}
           </div>
-          <div id="puntuacion" className="row">
-            <h3>Puntuación :  </h3>
-            <h2 style={{ margin: '0 auto' }}>
-              <StarsRating ratings={producto.calificacion} userId={usuario.id} prodId={producto.id} />
-              { producto.calificacion && (
-              <span style={{ marginLeft: '1rem' }}>
-                {califExist(producto.calificacion)}
-              </span>
-              )}
-            </h2>
-          </div>
+          <hr />
           <div className="row">
-            <div style={{ minWidth: 'fit-content' }} className="col-lg-6 col-xs-12">
-              <h3 style={{ marginTop: '2rem' }}><strong>Descripción : </strong></h3>
-              <h5 className="collapsible">{producto.descripcion}</h5>
+            <div className="col-sm-12 col-md-12 col-lg-12">
+              <h3><strong>Descripción : </strong></h3>
+
+              <ReadMoreAndLess
+                ref={showMoreRef}
+                charLimit={500}
+                readMoreText="Leer más"
+                readLessText="Leer menos"
+              >
+                {producto.descripcion}
+              </ReadMoreAndLess>
             </div>
           </div>
         </div>
@@ -168,15 +158,12 @@ const SingleProducto = ({
           {!adminInfo && producto.stock > 1 ? (
             <button
               onClick={() => agregarAlCarrito()}
-              className="example_c"
+              className="btn-agr-carr"
               data-toggle="modal"
               data-target="#cartModal"
               rel="nofollow noopener"
               id="cartbutton"
               type="button"
-              style={{
-                marginLeft: 'auto', marginRight: 'auto', display: 'block', color: 'black', borderColor: '#2B4F81', padding: '20px',
-              }}
             >
               Agregar al Carrito
             </button>
