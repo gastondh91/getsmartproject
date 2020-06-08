@@ -41,7 +41,35 @@ const Header = ({
     <header className="row align-items-center">
       <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4 ingreso-registro">
 
-        {!login && (
+        {login ? (
+
+          <div className="d-flex justify-content-lg-around">
+            <div
+              role="presentation"
+              onClick={async () => {
+                await axios.get('/api/usuarios/logOut')
+                dispatch(fetchUser())
+                history.push(actualLocation)
+              }}
+              className="logout col-3 px-2"
+            >
+              <img className="logout-icon" src="/utils/logout.png" alt="Logout" />
+              <div className="logout-text text-center pl-1">Cerrar Sesión</div>
+            </div>
+
+            <div className="col-2 px-0 text-center">
+
+              <img
+                role="presentation"
+                onClick={() => history.push(`/usuarios/edit/${usuario.id}`)}
+                src={usuario.avatar}
+                title="Perfil"
+                alt="Avatar"
+                className="avatar"
+              />
+            </div>
+          </div>
+        ) : (
           <div className="d-flex">
             <div className="ml-4">
               <Link to="/usuarios/registro">
@@ -63,33 +91,6 @@ const Header = ({
             </div>
           </div>
         )}
-
-        <div className="d-flex justify-content-lg-around">
-          <div
-            role="presentation"
-            onClick={async () => {
-              await axios.get('/api/usuarios/logOut')
-              dispatch(fetchUser())
-              history.push(actualLocation)
-            }}
-            className="logout col-3 px-2"
-          >
-            <img className="logout-icon" src="/utils/logout.png" alt="Logout" />
-            <div className="logout-text text-center pl-1">Cerrar Sesión</div>
-          </div>
-
-          <div className="col-2 px-0 text-center">
-
-            <img
-              role="presentation"
-              onClick={() => history.push(`/usuarios/edit/${usuario.id}`)}
-              src={usuario.avatar}
-              title="Perfil"
-              alt="Avatar"
-              className="avatar"
-            />
-          </div>
-        </div>
 
         <div className="ml-3">
           <Link to="/"><img className="logo img-responsive" title="Inicio" src="/utils/logoBlanco3.jpg" alt="Logo" /></Link>
