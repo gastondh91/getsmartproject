@@ -48,19 +48,14 @@
 
 .ingreso-registro {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .busqueda-carrito {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.md-form input[type="text"]:not(.browser-default) {
-    border-bottom: 1px solid royalblue;
-}
 
 .active-cyan-2 input.form-control[type=text]:hover:not([readonly]) {
     border-bottom: 1px solid royalblue;
@@ -77,14 +72,6 @@
     font-size: medium;
 }
 
-.md-form {
-    margin: 0;
-}
-
-.md-form .form-control {
-    padding: .6rem 0 .2rem 0;
-}
-
 .carousel-indicators li {
     margin-right: 2px;
     margin-left: 2px;
@@ -98,4 +85,39 @@
 
 .carousel-img {
     cursor: pointer;
+}
+
+.avatar {
+    cursor: pointer;
+    object-fit: cover;
+    width: 4rem;
+    border-radius: 2rem;
+    box-shadow: 2px 3px 5px #666;
+  }
+  
+  .logout-icon {
+    width: 2.6rem;
+  }
+
+  .logout {
+    line-height: 15px;
+    align-items: center;
+    display: inline-flex;
+    align-self: center;
+    cursor: pointer;
+}
+
+.logout:hover{
+    transform: scale(1.10);
+}
+
+.logout-text {
+    font-weight: 600;
+    font-variant: petite-caps;
+    font-size: small;
+    line-height: 15px;
+}
+
+.md-form {
+    margin: 0
 }

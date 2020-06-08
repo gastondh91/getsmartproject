@@ -38,10 +38,11 @@ const Header = ({
   }
 
   return (
-    !login
-      ? (
-        <header className="row align-items-center">
-          <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4 ingreso-registro">
+    <header className="row align-items-center">
+      <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4 ingreso-registro">
+
+        {!login && (
+          <div className="d-flex">
             <div className="ml-4">
               <Link to="/usuarios/registro">
                 <div>
@@ -51,6 +52,7 @@ const Header = ({
               </Link>
             </div>
 
+
             <div className="ml-3">
               <Link to="/usuarios/login">
                 <div className="text-center">
@@ -59,96 +61,64 @@ const Header = ({
                 <span className="ingresar">Ingresar</span>
               </Link>
             </div>
-
-            <div className="ml-3">
-              <Link to="/"><img className="logo img-responsive" title="Inicio" src="/utils/logoBlanco3.jpg" alt="Logo" /></Link>
-            </div>
-
           </div>
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 offset-md-2 busqueda-carrito">
+        )}
 
-            <div className="col-xs-6 col-sm-6 col-md-10 col-lg-10">
-
-
-              <form className="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
-                <input
-                  id="input"
-                  onChange={handleChange}
-                  className="form-control form-control-sm mr-3 w-75 search-bar"
-                  type="text"
-                  placeholder="Buscar productos"
-                  aria-label="Buscar productos"
-                />
-                <i className="fas fa-search" aria-hidden="true" />
-              </form>
-            </div>
-            <Link to="/cart" title="Ver carrito">
-              <img className="carrito img-responsive" src="/utils/carrito.svg" alt="Carrito" />
-            </Link>
+        <div className="d-flex justify-content-lg-around">
+          <div
+            role="presentation"
+            onClick={async () => {
+              await axios.get('/api/usuarios/logOut')
+              dispatch(fetchUser())
+              history.push(actualLocation)
+            }}
+            className="logout col-3 px-2"
+          >
+            <img className="logout-icon" src="/utils/logout.png" alt="Logout" />
+            <div className="logout-text text-center pl-1">Cerrar Sesión</div>
           </div>
-        </header>
-      )
-      : (
-        <header className="header row apart">
-          <div className="col-md-6 col-sm-6 col-xs-6 col-lg-6">
 
-            <span
+          <div className="col-2 px-0 text-center">
+
+            <img
               role="presentation"
-              onClick={async () => {
-                await axios.get('/api/usuarios/logOut')
-                dispatch(fetchUser())
-                history.push(actualLocation)
-              }}
-              className="botonLogout"
-            >
-              <img className="logoutIcon" src="/utils/logout.png" alt="Logout" />
-              <div className="cerrar-sesion">
-                <span htmlFor="logoutIcon">
-                  <span className="letraHead" style={{ fontSize: 'small' }}>Cerrar</span>
-                  <div className="letraHead" style={{ marginLeft: '2.5px', fontSize: 'small' }}>Sesión</div>
-                </span>
-              </div>
-            </span>
-            <span>
-
-              <img
-                role="presentation"
-                style={{
-                  cursor: 'pointer', objectFit: 'cover', width: '4rem', height: '3.9rem', borderRadius: '2rem',
-                }}
-                onClick={() => history.push(`/usuarios/edit/${usuario.id}`)}
-                src={usuario.avatar}
-                title="Perfil"
-                id="avatar"
-                alt="Avatar"
-                className="avatar"
-              />
-            </span>
-            <span>
-
-              <Link to="/" id="linkLogo"><img id="logo" title="Inicio" src="/utils/logoBlanco3.jpg" alt="Logo" /></Link>
-            </span>
+              onClick={() => history.push(`/usuarios/edit/${usuario.id}`)}
+              src={usuario.avatar}
+              title="Perfil"
+              alt="Avatar"
+              className="avatar"
+            />
           </div>
-          <div className="col-md-6 col-sm-6 col-xs-6 col-lg-6 col-center">
+        </div>
 
-            <div className="busquedas">
+        <div className="ml-3">
+          <Link to="/"><img className="logo img-responsive" title="Inicio" src="/utils/logoBlanco3.jpg" alt="Logo" /></Link>
+        </div>
 
-              <input onChange={handleChange} name="modelo" placeholder="  Buscar producto 🔎" id="input" />
-            </div>
-            <span className="add-carrito">
+      </div>
+      <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 offset-md-3 busqueda-carrito">
 
-              <span className="carrito-count">
-                {carrito.length}
-              </span>
-              <FiberManualRecordIcon style={{
-                fontSize: '1.8rem', position: 'absolute', left: '1315px', top: '2.6px', color: '#2B4F81',
-              }}
-              />
-              <Link to="/cart" title="Ver carrito" id="linkCart"><img id="carrito" src="/utils/carrito.svg" alt="Carrito" /></Link>
-            </span>
-          </div>
-        </header>
-      )
+        <div className="col-7">
+
+          <form className="form-inline d-flex md-form form-sm active-cyan-2 mt-2">
+            <input
+              id="input"
+              onChange={handleChange}
+              className="form-control form-control-sm mr-3 w-75 search-bar"
+              type="text"
+              placeholder="Buscar productos"
+              aria-label="Buscar productos"
+            />
+            <i className="fas fa-search" aria-hidden="true" />
+          </form>
+        </div>
+        <div className="col-2 pl-3 pr-1">
+          <Link to="/cart" title="Ver carrito">
+            <img className="carrito img-responsive" src="/utils/carrito.svg" alt="Carrito" />
+          </Link>
+        </div>
+      </div>
+    </header>
   )
 }
 

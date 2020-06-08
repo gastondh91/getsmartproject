@@ -238,18 +238,15 @@
     transform: scale(1.10);
 }
 
-.letraHead {
-    font-weight: 600;
-    font-variant: petite-caps
-}
 
-#avatar {
+
+/* #avatar {
     width: 40px;
     margin-left: 8px;
     margin-top: 3px;
     box-shadow: 2px 3px 5px #666;
     margin-bottom: 0.4rem;
-}
+} */
 
 .logoutIcon {
     width: 2.6rem;
@@ -1748,14 +1745,6 @@ table tr:last-child td:last-child {
     top: 6px;
 }
 
-.cerrar-sesion {
-    margin-right: 14px;
-    line-height: 15px;
-    margin-top: 3.2px;
-    vertical-align: middle;
-    margin-left: 5px;
-    display: inline-flex;
-}
 
 .col-center {
     align-self: center;

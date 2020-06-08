@@ -48,8 +48,9 @@ const SingleProducto = ({
   }
 
   const defUltimasUnidades = (stock) => {
-    let ultimas = 'Últimas'; let numero = ''; let
-      unidades = 'unidades'
+    let ultimas = 'Últimas'
+    let numero = ''
+    let unidades = 'unidades'
 
     if (stock === 1) {
       ultimas = 'Última'
@@ -75,7 +76,6 @@ const SingleProducto = ({
 
   return (
     <div id="singleProd">
-      { console.log(showMoreRef)}
       <div className="row">
         <div className="col-lg-6 col-xs-12">
           <div className="display-4 text-center no-margin">
@@ -155,7 +155,8 @@ const SingleProducto = ({
           </Carousel>
 
 
-          {!adminInfo && producto.stock > 1 ? (
+          {!adminInfo && usuario && producto.stock > 1
+            && (
             <button
               onClick={() => agregarAlCarrito()}
               className="btn-agr-carr"
@@ -167,7 +168,7 @@ const SingleProducto = ({
             >
               Agregar al Carrito
             </button>
-          ) : null}
+            )}
           {adminInfo ? (
             <button
               onClick={() => history.push(`/productos/edit/${producto.id}`)}
