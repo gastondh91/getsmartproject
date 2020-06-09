@@ -1,5 +1,5 @@
 node_modules/*
 server/public/dist/*
-server/public/utils/Telefonos
-server/public/utils/Test
-server/public/utils/Usuarios
+server/public/utils/Telefonos/*
+server/public/utils/Test/*
+server/public/utils/Usuarios/*
