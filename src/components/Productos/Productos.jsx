@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -10,17 +10,23 @@ import Carousel from 'react-bootstrap/Carousel'
 import style from './Productos.css'
 import { getProductos } from '../../redux/action-creators/products-actions'
 
-const Productos = (props) => {
+
+const Productos = ({ search }) => {
+
+  const dispatch = useDispatch()
+  const productos = useSelector(store => store.productos)
+  const savedBusqueda = useSelector(store => store.savedBusqueda)
+
   useEffect(() => {
-    props.getProductos(props.search)
+    dispatch(getProductos(search))
   }, [])
 
-  const filtered = props.productos.filter((value) => {
+  const filtered = productos.filter((value) => {
     const concat = `${value.marca} ${value.modelo}`
 
-    return ((concat.toLowerCase().includes(props.savedBusqueda)
-      || concat.toUpperCase().includes(props.savedBusqueda)
-      || concat.includes(props.savedBusqueda)))
+    return ((concat.toLowerCase().includes(savedBusqueda)
+      || concat.toUpperCase().includes(savedBusqueda)
+      || concat.includes(savedBusqueda)))
   })
 
 
@@ -30,7 +36,7 @@ const Productos = (props) => {
       <hr />
       <Row>
         <CardGroup>
-          {(props.savedBusqueda ? filtered : props.productos).sort((a, b) => a.marca.localeCompare(b.marca)).map((producto, index) => (
+          {(savedBusqueda ? filtered : productos).sort((a, b) => a.marca.localeCompare(b.marca)).map((producto, index) => (
             <Col key={index} xs={12} sm={6} md={4}>
               <Link className="link" to={`/productos/${producto.id}`} key={producto.id}>
                 <Card className="my-4 pt-4 px-4">
@@ -75,13 +81,5 @@ const Productos = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  productos: state.productos,
-  savedBusqueda: state.savedBusqueda,
-})
 
-const mapDispatchToProps = (dispatch) => ({
-  getProductos: (searchProduct) => dispatch(getProductos(searchProduct)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Productos)
+export default Productos
