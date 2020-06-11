@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { fetchCarrito, updateCarrito } from '../redux/action-creators/carrito-actions.js'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory, Link } from 'react-router-dom'
 
-const CarritoContainer = (props) => {
+import axios from 'axios'
+import Table from 'react-bootstrap/Table'
+import { fetchCarrito, updateCarrito } from '../../redux/action-creators/carrito-actions'
+// eslint-disable-next-line no-unused-vars
+import styles from './Carrito.css'
+
+const CarritoContainer = () => {
 
   const [inputs, setInputs] = useState({})
   let [Total, setTotal] = useState(0)
 
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const carrito = useSelector(store => store.carrito)
+  // const productos = useSelector(store => store.products)
+  const usuario = useSelector(store => store.usuario)
+
 
   useEffect(() => {
-    if (props.usuario) props.getCarrito(props.usuario.id)
+    if (usuario) dispatch(fetchCarrito(usuario.id))
 
   }, [])
 
 
   useEffect(() => {
-    if (props.carrito) {
-      const totalMap = props.carrito.map(producto => stringToNumber(producto.precio) * (inputs[producto.id] ? inputs[producto.id] : producto.carrito.cantidad))
+    if (carrito) {
+      const totalMap = carrito.map(producto => stringToNumber(producto.precio) * (inputs[producto.id] ? inputs[producto.id] : producto.carrito.cantidad))
       setTotal(Total = totalMap.reduce((a, b) => a + b, 0))
     }
   }, [inputs])
@@ -40,23 +50,23 @@ const CarritoContainer = (props) => {
 
   const numberToString = (numero) => {
     const string = numero.toString()
-    if (string.length == 4) return `${string[0]}.${string.slice(1)}`
-    if (string.length == 5) return `${string.slice(0, 2)}.${string.slice(2)}`
-    if (string.length == 6) return `${string.slice(0, 3)}.${string.slice(3)}`
+    if (string.length === 4) return `${string[0]}.${string.slice(1)}`
+    if (string.length === 5) return `${string.slice(0, 2)}.${string.slice(2)}`
+    if (string.length === 6) return `${string.slice(0, 3)}.${string.slice(3)}`
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (Object.keys(inputs).length) CartPromise(props.usuario.id, inputs, props.carrito)
-    else props.history.push('/pagos')
+    if (Object.keys(inputs).length) CartPromise(usuario.id, inputs, carrito)
+    else history.push('/pagos')
   }
 
   const CartPromise = (usuario, input, producto) => {
     new Promise((resolve, reject) => {
-      props.updateCarrito(usuario, input, producto)
+      dispatch(updateCarrito(usuario, input, producto))
       resolve('ok')
     })
-      .then(() => props.history.push('/pagos'))
+      .then(() => history.push('/pagos'))
   }
 
   const handleChange = (e) => {
@@ -65,52 +75,52 @@ const CarritoContainer = (props) => {
 
   const deleteProd = (params) => {
     axios.post(`/api/carrito/deleteprod/${params}`)
-      .then(() => props.getCarrito(props.usuario.id))
+      .then(() => dispatch(fetchCarrito(usuario.id)))
   }
 
 
   return (
-    <div className="contenedorCarrito">
+    <div className="container contenedor-carrito">
       <h1 style={{ textAlign: 'center' }}>Carrito de compras:</h1>
-      <hr />
-      {props.carrito.length ? (
-        <form className="inputCarrito" onSubmit={handleSubmit}>
+
+      {carrito.length ? (
+        <form className="form-carrito" onSubmit={handleSubmit}>
+          <hr />
           <div>
-            <table className="tabla">
-              <tbody>
-                <tr className="tr">
+            <Table hover className="tabla">
+              <thead>
+                <tr className="table-head">
                   <th>Imagenes</th>
                   <th>Productos</th>
                   <th>Cantidad</th>
                   <th>Precio unitario</th>
                   <th>Subtotal</th>
                 </tr>
-                {props.carrito.map(producto => (
+              </thead>
+              <tbody className="table-body">
+                {carrito.map(producto => (
                   <tr key={producto.id}>
                     <td><img style={{ width: '5rem', height: '5rem', objectFit: 'contain' }} src={producto.imagenes[0]} /></td>
                     <td><Link className="LinkCheckout" to={`/productos/${producto.id}`}>{`${producto.marca} ${producto.modelo}`}</Link></td>
                     <td>
                       <input type="number" name={producto.id} id="cantidadProd" min="1" max={producto.stock} defaultValue={producto.carrito.cantidad ? producto.carrito.cantidad : 1} onChange={handleChange} />
-                      <img onClick={() => deleteProd(producto.id)} value={producto.id} id="trashCarrito" title="Eliminar" src="/utils/cartdelete.svg" />
+                      <img className="erase-carrito" onClick={() => deleteProd(producto.id)} value={producto.id} title="Eliminar" src="/utils/cartdelete.svg" />
 
                     </td>
+
                     <td>
                       $
-{producto.precio}
+                      {producto.precio}
                     </td>
                     <td>{inputs[producto.id] ? `$${numberToString(stringToNumber(producto.precio) * inputs[producto.id])}` : `$${producto.precio}`}</td>
                   </tr>
 
                 ))}
-                <tr style={{ borderTop: 'solid thin darkslategrey' }}>
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td style={{ fontWeight: '600' }}>{`$${numberToString(Object.keys(inputs).length ? Total : elTotal(props.carrito))}`}</td>
-                </tr>
               </tbody>
-            </table>
+              <tr className="table-foot">
+                <td colSpan="5" style={{ fontWeight: '600' }}>{`$${numberToString(Object.keys(inputs).length ? Total : elTotal(carrito))}`}</td>
+              </tr>
+            </Table>
           </div>
           <button className="example_b botonCarrito general" type="submit" onSubmit={handleSubmit}>Comprar</button>
         </form>
@@ -119,16 +129,5 @@ const CarritoContainer = (props) => {
   )
 }
 
-const mapStateToProps = state => ({
-  carrito: state.carrito,
-  productos: state.products,
-  usuario: state.usuario,
-})
 
-const mapDispatchToProps = dispatch => ({
-  getCarrito: (id) => dispatch(fetchCarrito(id)),
-  updateCarrito: (id, cantidad, productos) => dispatch(updateCarrito(id, cantidad, productos)),
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CarritoContainer)
+export default CarritoContainer

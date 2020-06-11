@@ -1,0 +1,138 @@
+tr > * {
+  text-align: center;
+}
+
+.table td{
+  vertical-align: middle 
+}
+
+.table-bordered td.border-hidden:not(:nth-child(4)){
+    border: hidden;
+}
+
+.table-bordered td.border-hidden:nth-child(4){
+    border:hidden;
+    border-right: 1px solid #dee2e6;
+}
+
+tr:nth-child(even) {
+    background-color: #d4e3f3
+}
+
+/* .table-head, .table-body, .table-foot {
+    border: 1px solid #dee2e6;
+}  */
+
+.table-head, .table-foot{
+    background-color: #2B4F81;
+    color: white;
+}
+
+.table-head > th, .table-foot > th{
+    font-weight: bold;
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+
+
+.erase-carrito {
+    width: 16px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 954px)  {
+    .erase-carrito {
+        margin-left: 12px;
+    }
+}
+
+
+@media screen and (min-width: 768px)  {
+    .contenedor-carrito{
+    height: 100vh;
+    width: 64vw;
+    }
+} 
+
+@media screen and (min-width: 0) and (max-width: 575px)  {
+    .contenedor-carrito, .form-carrito{
+    padding-left: 0;
+    padding-right: 0;
+    width: 91vw;
+    }
+    .table td{
+    padding: .75rem 5px;
+    }
+
+    .tabla{
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+} 
+
+
+.tabla {
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #666;
+}
+
+table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+/* rgba(0,0,0,.05) */
+/* .tr {
+    height: 49px;
+    background: gainsboro;
+    border-width: thin;
+    border-bottom-style: solid;
+    border-bottom-color: darkslategrey
+}
+
+
+
+/* 
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background: transparent;
+}
+
+tr:nth-child(even) {
+    background: #FFF
+}
+
+tr:nth-child(odd):not(.table-head) {
+    background: gainsboro
+}
+
+td,
+th {
+    text-align: center;
+    padding: 8px;
+}
+
+ */
+

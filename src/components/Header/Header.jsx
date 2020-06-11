@@ -39,7 +39,7 @@ const Header = ({
 
   return (
     <header className="row align-items-center">
-      <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4 ingreso-registro">
+      <div className="col-12 col-sm-6 col-md-6 col-lg-6 ingreso-registro">
 
         {login ? (
 
@@ -51,13 +51,12 @@ const Header = ({
                 dispatch(fetchUser())
                 history.push(actualLocation)
               }}
-              className="logout col-3 px-2"
+              className="logout px-2"
             >
-              <img className="logout-icon" src="/utils/logout.png" alt="Logout" />
-              <div className="logout-text text-center pl-1">Cerrar Sesión</div>
+              {/* <img className="logout-icon" src="/utils/logout.png" alt="Logout" /> */}
             </div>
 
-            <div className="col-2 px-0 text-center">
+            <div className="px-0 text-center">
 
               <img
                 role="presentation"
@@ -97,9 +96,9 @@ const Header = ({
         </div>
 
       </div>
-      <div className="col-xs-12 col-sm-12 col-md-5 col-lg-5 offset-md-3 busqueda-carrito">
+      <div className="col-12 col-sm-6 col-md-6 col-lg-6 busqueda-carrito">
 
-        <div className="col-7">
+        <div className="col-7 col-sm-9 col-md-7 col-lg-5">
 
           <form className="form-inline d-flex md-form form-sm active-cyan-2 mt-2">
             <input
@@ -113,7 +112,7 @@ const Header = ({
             <i className="fas fa-search" aria-hidden="true" />
           </form>
         </div>
-        <div className="col-2 pl-3 pr-1">
+        <div className="col-2 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center">
           <Link to="/cart" title="Ver carrito">
             <img className="carrito img-responsive" src="/utils/carrito.svg" alt="Carrito" />
           </Link>

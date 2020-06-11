@@ -46,6 +46,13 @@
     max-width: 70px;
 }
 
+@media screen and (max-width: 575px)  {
+    .ingreso-registro {
+        display: inline-flex;
+        justify-content: center;
+    }
+}
+
 .ingreso-registro {
     display: inline-flex;
 }
@@ -53,7 +60,7 @@
 .busqueda-carrito {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 
@@ -64,12 +71,19 @@
 
 .fa-search {
     color: #375886;
+    font-size: 22px;
     margin-top: 5px;
-    font-size: larger;
+}
+
+@media screen and (min-width: 575px)  {
+    input.search-bar{
+        font-size: medium
+    }
 }
 
 .search-bar {
-    font-size: medium;
+
+    font-size: 15px;
 }
 
 .carousel-indicators li {
@@ -116,6 +130,11 @@
     font-variant: petite-caps;
     font-size: small;
     line-height: 15px;
+}
+
+.md-form .form-control {
+    padding: 4px 0px;
+    margin: 0px;
 }
 
 .md-form {
