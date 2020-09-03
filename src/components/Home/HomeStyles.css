@@ -4,6 +4,12 @@
     height: 80vh
 }
 
+@media screen and (min-width: 768px) {
+    .carousel-img {
+        height: 80vh;
+    }
+}
+
 .carousel-caption {
     background-color: rgba(51, 51, 51, 0.3);
     margin: -8px -13rem;

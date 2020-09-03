@@ -39,7 +39,7 @@ const Header = ({
 
   return (
     <header className="row align-items-center">
-      <div className="col-12 col-sm-6 col-md-5 col-lg-5 offset-lg-1 offset-md-1 ingreso-registro">
+      <div className="col-5 col-sm-5 col-md-6 col-lg-6 ingreso-registro">
 
         {login ? (
 
@@ -69,7 +69,7 @@ const Header = ({
             </div>
           </div>
         ) : (
-          <div className="d-flex">
+          <div className="panel-login">
             <div className="ml-4">
               <Link to="/usuarios/registro">
                 <div>
@@ -96,27 +96,23 @@ const Header = ({
         </div>
 
       </div>
-      <div className="col-12 col-sm-6 col-md-6 col-lg-6 busqueda-carrito">
+      <div className="col-7 col-sm-7 col-md-5 col-lg-5 offset-md-1 offset-lg-1 busqueda-carrito">
 
-        <div className="col-7 col-sm-9 col-md-7 col-lg-5">
 
-          <form className="form-inline d-flex md-form form-sm active-cyan-2 mt-2">
-            <input
-              id="input"
-              onChange={handleChange}
-              className="form-control form-control-sm mr-3 w-75 search-bar"
-              type="text"
-              placeholder="Buscar productos"
-              aria-label="Buscar productos"
-            />
-            <i className="fas fa-search" aria-hidden="true" />
-          </form>
-        </div>
-        <div className="col-2 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center">
-          <Link to="/cart" title="Ver carrito">
-            <img className="carrito img-responsive" src="/utils/carrito.svg" alt="Carrito" />
-          </Link>
-        </div>
+        <form className="form-inline d-flex md-form form-sm active-cyan-2 mt-2">
+          <input
+            id="input"
+            onChange={handleChange}
+            className="form-control form-control-sm mr-2 search-bar"
+            type="text"
+            placeholder="Buscar productos"
+            aria-label="Buscar productos"
+          />
+          <i className="fas fa-search" aria-hidden="true" />
+        </form>
+        <Link to="/cart" title="Ver carrito">
+          <img className="carrito img-responsive" src="/utils/carrito.svg" alt="Carrito" />
+        </Link>
       </div>
     </header>
   )
