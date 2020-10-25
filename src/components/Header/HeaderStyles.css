@@ -45,24 +45,58 @@
 
 /* @media screen and (max-width: 575px) {
     .ingreso-registro {
-        display: inline-flex;
         justify-content: center;
     }
 } */
 
 .ingreso-registro {
+    justify-content: flex-end;
     display: inline-flex;
 }
 
 .busqueda-carrito {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-around
 }
 
 .active-cyan-2 input.form-control[type=text]:hover:not([readonly]) {
     border-bottom: 1px solid royalblue;
     box-shadow: 0 1px 0 0 royalblue;
+}
+
+input.form-control.search-bar {
+    width: 70%
+}
+
+@media screen and (max-width: 368px) {
+    .mt-2 {
+        margin-top: unset !important;
+    }
+    input.search-bar {
+        padding: 1px !important;
+    }
+}
+
+@media screen and (max-width: 536px) {
+    .carrito {
+        width: 29px;
+    }
+    .active-cyan-2 input.form-control[type=text]:hover:not([readonly]) {
+        width: 64% !important;
+        font-size: 9px !important;
+        padding: 0 !important;
+        margin: 0 0 .5rem 0
+    }
+    .fa-search {
+        font-size: 14px !important;
+    }
+    .logo {
+        width: 68%;
+    }
+    .search-bar {
+        font-size: 11px !important;
+    }
 }
 
 .fa-search {
