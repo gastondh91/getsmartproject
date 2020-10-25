@@ -38,10 +38,54 @@ const Header = ({
   }
 
   return (
-    <header className="row align-items-center">
-      <div className="col-12 col-sm-6 col-md-5 col-lg-5 offset-lg-1 offset-md-1 ingreso-registro">
+    <header className="d-flex">
+      <div className="container">
+        <nav className="login-panel">
+          <ol className="nav-list">
+            <li>
+              <Link to="/usuarios/registro">
+                <figure className="nav-imageContainer">
+                  <img className="img-registrarse" src="/utils/signupiconlg.gif" alt="Registrarse" />
+                </figure>
+                <span className="text-registrarse">Registrarse</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/usuarios/login">
+                <figure className="nav-imageContainer">
+                  <img className="img-ingresar" src="/utils/log.svg" alt="Login" />
+                </figure>
+                <span className="text-ingresar">Ingresar</span>
+              </Link>
+            </li>
+          </ol>
+        </nav>
 
-        {login ? (
+        <Link class="logoContainer" to="/">
+          <figure className="logoImgContainer">
+            <img className="logo" title="Inicio" src="/utils/logoBlanco3.jpg" alt="Logo" />
+          </figure>
+        </Link>
+
+
+        <form className="search-bar">
+          <input
+            id="input"
+            onChange={handleChange}
+            className="form-control form-control-sm"
+            type="text"
+            placeholder="Buscar productos"
+            aria-label="Buscar productos"
+          />
+          <i className="fas fa-search" aria-hidden="true" />
+        </form>
+        <Link to="/cart" title="Ver carrito">
+          <img style={{ maxWidth: '5%' }} src="/utils/carrito.svg" alt="Carrito" />
+        </Link>
+      </div>
+
+    </header>
+  /* { login ? (
 
           <div className="d-flex justify-content-lg-around">
             <div
@@ -53,7 +97,7 @@ const Header = ({
               }}
               className="logout px-2"
             >
-              {/* <img className="logout-icon" src="/utils/logout.png" alt="Logout" /> */}
+              <img className="logout-icon" src="/utils/logout.png" alt="Logout" />
             </div>
 
             <div className="px-0 text-center">
@@ -68,57 +112,8 @@ const Header = ({
               />
             </div>
           </div>
-        ) : (
-          <div className="d-flex">
-            <div className="ml-4">
-              <Link to="/usuarios/registro">
-                <div>
-                  <img className="img-registro img-responsive" src="/utils/signupiconlg.gif" alt="Registrarse" />
-                </div>
-                <span className="registrarse">Registrarse</span>
-              </Link>
-            </div>
+        ) : ( } */
 
-
-            <div className="ml-3">
-              <Link to="/usuarios/login">
-                <div className="text-center">
-                  <img className="img-ingreso img-responsive" src="/utils/log.svg" alt="Login" />
-                </div>
-                <span className="ingresar">Ingresar</span>
-              </Link>
-            </div>
-          </div>
-        )}
-
-        <div className="ml-3">
-          <Link to="/"><img className="logo img-responsive" title="Inicio" src="/utils/logoBlanco3.jpg" alt="Logo" /></Link>
-        </div>
-
-      </div>
-      <div className="col-12 col-sm-6 col-md-6 col-lg-6 busqueda-carrito">
-
-        <div className="col-7 col-sm-9 col-md-7 col-lg-5">
-
-          <form className="form-inline d-flex md-form form-sm active-cyan-2 mt-2">
-            <input
-              id="input"
-              onChange={handleChange}
-              className="form-control form-control-sm mr-3 w-75 search-bar"
-              type="text"
-              placeholder="Buscar productos"
-              aria-label="Buscar productos"
-            />
-            <i className="fas fa-search" aria-hidden="true" />
-          </form>
-        </div>
-        <div className="col-2 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center">
-          <Link to="/cart" title="Ver carrito">
-            <img className="carrito img-responsive" src="/utils/carrito.svg" alt="Carrito" />
-          </Link>
-        </div>
-      </div>
-    </header>
   )
 }
 

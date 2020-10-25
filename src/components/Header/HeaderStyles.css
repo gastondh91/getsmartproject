@@ -4,7 +4,8 @@
     justify-content: space-between;
 }
 
-.img-registro {
+
+/* .img-registro {
     max-width: 45.6px;
     margin-left: 10px;
 }
@@ -13,7 +14,7 @@
     max-width: 43px;
     margin-top: -0.52px;
     user-select: text;
-}
+} */
 
 .registrarse {
     color: black;
@@ -29,11 +30,6 @@
     font-variant: all-petite-caps;
 }
 
-.logo {
-    min-width: 170px;
-    max-height: 68px;
-}
-
 .busqueda {
     border-radius: 25px;
     height: 40px;
@@ -46,12 +42,13 @@
     max-width: 70px;
 }
 
-@media screen and (max-width: 575px)  {
+
+/* @media screen and (max-width: 575px) {
     .ingreso-registro {
         display: inline-flex;
         justify-content: center;
     }
-}
+} */
 
 .ingreso-registro {
     display: inline-flex;
@@ -62,7 +59,6 @@
     align-items: center;
     justify-content: flex-end;
 }
-
 
 .active-cyan-2 input.form-control[type=text]:hover:not([readonly]) {
     border-bottom: 1px solid royalblue;
@@ -75,16 +71,17 @@
     margin-top: 5px;
 }
 
-@media screen and (min-width: 575px)  {
-    input.search-bar{
+
+/* @media screen and (min-width: 575px) {
+    input.search-bar {
         font-size: medium
     }
-}
+} */
 
-.search-bar {
 
+/* .search-bar {
     font-size: 15px;
-}
+} */
 
 .carousel-indicators li {
     margin-right: 2px;
@@ -107,13 +104,13 @@
     width: 4rem;
     border-radius: 2rem;
     box-shadow: 2px 3px 5px #666;
-  }
-  
-  .logout-icon {
-    width: 2.6rem;
-  }
+}
 
-  .logout {
+.logout-icon {
+    width: 2.6rem;
+}
+
+.logout {
     line-height: 15px;
     align-items: center;
     display: inline-flex;
@@ -121,7 +118,7 @@
     cursor: pointer;
 }
 
-.logout:hover{
+.logout:hover {
     transform: scale(1.10);
 }
 
@@ -139,4 +136,180 @@
 
 .md-form {
     margin: 0
+}
+
+header ol,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header {
+    height: 76px;
+}
+
+header .container {
+    display: inherit;
+    max-width: 100%;
+    align-items: center;
+    padding: 0;
+    margin-top: initial;
+    align-items: flex-end;
+}
+
+header li a {
+    display: flex;
+    flex-direction: column;
+}
+
+header figure {
+    margin: 0
+}
+
+header .login-panel {
+    display: inherit;
+    height: -webkit-fill-available;
+    align-items: flex-end;
+    flex: 1 0 33%;
+    font-size: 10px
+}
+
+.nav-imageContainer {
+    height: 41px;
+}
+
+.nav-imageContainer .img-registrarse {
+    width: 3em;
+    margin-top: 11px;
+    max-width: 100%;
+    max-height: 47px;
+    object-position: 1px 2px;
+    margin-left: 15%;
+}
+
+.nav-imageContainer .img-ingresar {
+    width: 2.8em;
+    margin-top: 12px;
+    max-width: 100%;
+    max-height: 47px;
+    object-position: 3px 1px;
+    margin-left: 3px;
+}
+
+ol li .text-registrarse,
+ol li .text-ingresar {
+    color: black;
+    font-weight: 600;
+    font-variant: all-petite-caps;
+    font-size: 1em;
+}
+
+nav .nav-list {
+    display: flex;
+    align-items: flex-end;
+}
+
+nav .nav-list li:last-child {
+    margin: 0 7px;
+}
+
+header .logo {
+    height: 46px;
+    width: 107px;
+}
+
+header .search-bar {
+    display: inherit;
+    font-size: .8em;
+    align-items: flex-end;
+    height: 47px;
+}
+
+.search-bar input {
+    height: 18px;
+    width: 76px;
+    font-size: 0.6em;
+    border-radius: 0.5rem;
+    line-height: 0.5;
+    margin-right: 0.5em;
+}
+
+.search-bar i {
+    font-size: .9em;
+    margin-top: 1px;
+    margin-left: 5px;
+}
+
+header .logoContainer {
+    height: -webkit-fill-available;
+    align-items: flex-end;
+    display: flex;
+}
+
+
+/* header .search-bar input {
+    font-size: 1em
+} */
+
+
+/* Media queries */
+
+@media screen and (min-width: 426px) {
+    header .search-bar input {
+        font-size: .3em
+    }
+    .nav-imageContainer .img-registrarse {
+        width: 3.3em;
+        margin-top: 8px;
+    }
+    .nav-imageContainer .img-ingresar {
+        width: 3.1em;
+        margin-top: 9px;
+        margin-left: initial;
+    }
+    header .logo {
+        height: 53px;
+        width: 133px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    header .search-bar input {
+        font-size: .5em
+    }
+    .nav-imageContainer .img-registrarse {
+        width: 41px;
+        margin-top: 1px;
+        margin-left: 5px;
+    }
+    .nav-imageContainer .img-ingresar {
+        width: 4em;
+        margin-top: 1px;
+        margin-left: initial
+    }
+    ol li .text-registrarse,
+    ol li .text-ingresar {
+        font-size: 1.3em;
+    }
+    header .logo {
+        height: 66px;
+        width: 157px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    header .search-bar input {
+        font-size: 1.4em;
+    }
+    ol li .text-registrarse,
+    ol li .text-ingresar {
+        font-size: 1.4em;
+    }
+    .nav-imageContainer .img-ingresar {
+        margin-left: 3px;
+    }
+    .nav-imageContainer .img-registrarse {
+        margin-left: 7px;
+    }
 }
